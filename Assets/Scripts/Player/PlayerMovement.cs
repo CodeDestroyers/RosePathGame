@@ -176,6 +176,14 @@ public class PlayerMovement : MonoBehaviour
             playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
         }
     }
+
+    private void returned()
+    {
+        if (Input.GetButtonDown("R"))
+        {
+            transform.position = new Vector3(0, 0, 0);
+        }
+    }
     
 
 }
