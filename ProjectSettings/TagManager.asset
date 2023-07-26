@@ -12,17 +12,17 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
   - 
   - 
   - 
@@ -40,4 +40,43 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: b1
+    uniqueID: 2606306557
+    locked: 0
+  - name: b2
+    uniqueID: 2080447017
+    locked: 0
+  - name: b3
+    uniqueID: 135101639
+    locked: 0
+  - name: b4
+    uniqueID: 1111028051
+    locked: 0
+  - name: b5
+    uniqueID: 3507834835
+    locked: 0
+  - name: b6
+    uniqueID: 3005447821
+    locked: 0
+  - name: b7
+    uniqueID: 2469313887
+    locked: 0
+  - name: b8
+    uniqueID: 60181267
+    locked: 0
+  - name: Player
+    uniqueID: 3491999547
+    locked: 0
+  - name: f0
+    uniqueID: 1545585611
+    locked: 0
+  - name: f1
+    uniqueID: 3297712435
+    locked: 0
+  - name: f2
+    uniqueID: 696726053
+    locked: 0
+  - name: f3
+    uniqueID: 1395300441
     locked: 0

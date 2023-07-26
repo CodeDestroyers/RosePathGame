@@ -26,7 +26,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 400
+  Length: 500
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   - {fileID: 8381976726770435846}
   StringsBanks:
   - {fileID: 1726338470507851090}
-  cacheTime: 638258483557527730
+  cacheTime: 638258502614819019
   cacheVersion: 131605
 --- !u!114 &1726338470507851090
 MonoBehaviour:
@@ -87,10 +87,10 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638258483557527730
+  lastModified: 638258502614819019
   FileSizes:
   - Name: Desktop
-    Value: 42048
+    Value: 42464
   Exists: 1
 --- !u!114 &8381976726770435846
 MonoBehaviour:

@@ -6,7 +6,7 @@ using FMODUnity;
 public class FMODEvents : MonoBehaviour
 {
     [field: Header ("Player SFX")]
-    [field: SerializedField] public EventReference playerFootsteps { get: private set; }
+    [field: SerializeField] public EventReference playerFootsteps { get; private set; }
     //[field: Header("Coinf SFX")]
     //[field: SerializeField] public EventReferenece coinCollected { get; private set; }
     
