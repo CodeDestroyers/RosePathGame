@@ -102,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (rb.velocity.y < 0 && wasJamp)
         {
-            rb.gravityScale = Mathf.Lerp(2.5f, 4f, 1f);
+            rb.gravityScale = Mathf.Lerp(2.5f, 4f, 0.5f);
         }
         else
         {
