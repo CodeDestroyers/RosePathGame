@@ -13,23 +13,22 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D coll;
     private Animator anime;
-    private SpriteRenderer fliper;
-    private float jumpCutMultiplier = 2f;
+    public SpriteRenderer fliper;
     public float rotated;
-    private float dirX = 0f;
+    public float dirX = 0f;
     private EventInstance playerFootsteps;
     private bool isJumping;
     private bool isFalling;
-    private float jumpTimeCounter;
     private float coyoteCounter;
     private bool wasJamp;
-
+    private bool wasLongJamp;
     [SerializeField] private float coyoteTime;
     [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private float moveSpeed = 4f;
-    [SerializeField] private float jumpForce = 3f;
+    [SerializeField] private float jumpForce = 2.5f;
     [SerializeField] private float jumpTime = 0.5f;
-    
+    [SerializeField] private float jumpCutMultiplier;
+    [SerializeField] private float jumpInterpolationSpeed;
 
 
 
@@ -58,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(isJumping);
     }
     #region Jump
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
 
@@ -69,46 +68,49 @@ public class PlayerMovement : MonoBehaviour
         {
             coyoteCounter = coyoteTime;
             wasJamp = false;
+            isFalling = false;
+            rb.gravityScale = 2.5f;
+
         }
-        else if (wasJamp == false)
+        else if (IsGrounded() == false && wasJamp == false)
         {
             isFalling = true;
             coyoteCounter -= Time.deltaTime;
         }
-
-        if (Input.GetButtonDown("Jump") && coyoteCounter > 0 && (wasJamp == false))
-        { 
-            
-            isJumping = true;
-            coyoteCounter = 0;
-            jumpTimeCounter = jumpTime;
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            wasJamp = true;
-        }
-
+        
+        //Baby jump
+        //if (Input.GetButton("Jump") && coyoteCounter > 0 && (wasJamp == false))
+        //{
+        //   wasJamp = true;
+        //    coyoteCounter = 0;
+        //    jumpTimeCounter = jumpTime;
+        //    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        //    isJumping = true;
+        //}
+        //Long Jump
         if (Input.GetButton("Jump"))
         {
-            if (jumpTimeCounter > 0 && isJumping)
+            if (coyoteCounter > 0 && (wasJamp == false))
             {
-                wasJamp = true;
+                wasLongJamp = true;
                 isJumping = true;
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                jumpTimeCounter -= Time.deltaTime;
-            }
-            else
-            {
-                isJumping = false;
+                isFalling = false;
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Lerp(jumpForce, jumpCutMultiplier, jumpInterpolationSpeed));
+                //jumpTimeCounter -= Time.deltaTime;
             }
         }
-        if (rb.velocity.y < 0 && wasJamp)
+        if (rb.velocity.y >= jumpCutMultiplier && wasLongJamp)
         {
             rb.gravityScale = Mathf.Lerp(2.5f, 4f, 0.5f);
+            isFalling = true;
         }
-        else
+        else if (IsGrounded())
         {
-            rb.gravityScale = 2.5f;
+            isFalling = false;
+            wasJamp = false;
+            isJumping = false;
+            wasLongJamp = false;
         }
-
     }
     #endregion
 
@@ -141,20 +143,19 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-
             state = MovementState.idle;
-
         }
 
-        if (rb.velocity.y > .1f)
+        if (isJumping)
         {
             state = MovementState.jumping;
         }
-        else if (rb.velocity.y < -.1f)
+        else if (isFalling)
         {
             state = MovementState.falling;
 
         }
+
 
         anime.SetInteger("state", (int)state);
 
