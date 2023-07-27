@@ -17,10 +17,10 @@ public class VcamHscrim : MonoBehaviour
         {
             trackingX = Vcamn.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
+      
       var fliperX = GetComponent<PlayerMovement>();
       flipXc = fliperX.fliper;
     }
-
 
     void Update()
     {
@@ -32,11 +32,11 @@ public class VcamHscrim : MonoBehaviour
 
         if (flipXc.flipX == false)
         {
-            trackingX.m_TrackedObjectOffset.x = Mathf.Lerp(0.2f, 1f, 0.2f);
+            trackingX.m_TrackedObjectOffset.x = Mathf.Lerp(0.2f, 2f, 0.4f);
         }
         else if (flipXc.flipX == true)
         {
-            trackingX.m_TrackedObjectOffset.x = Mathf.Lerp(-0.2f, -1f, -0.2f);
+            trackingX.m_TrackedObjectOffset.x = Mathf.Lerp(-0.2f, -2f, 0.4f);
         }
     }
 }
