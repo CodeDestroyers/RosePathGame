@@ -28,20 +28,24 @@ public class PlayerMovement : MonoBehaviour
     public bool isRunning;
     public bool isIdle;
 
-    private float coyoteCounter;
-    private bool wasJamp;
-    private bool whileAttack;
     public Transform attackPoint;
     public float attackRange = 0.5f;
-    public LayerMask enemyLayers;
+    public LayerMask enemyLayers;   
 
+    [SerializeField] private float moveSpeed = 4f;
+
+    [Header("Jump Settings")]
+    [SerializeField] private float JumpTimeCounter;
+    [SerializeField] private float coyoteCounter;
     [SerializeField] private float coyoteTime;
     [SerializeField] private LayerMask jumpableGround;
-    [SerializeField] private float moveSpeed = 4f;
-    [SerializeField] public float jumpForce = 2.5f;
-    [SerializeField] public float jumpTime = 0.5f;
+    [SerializeField] public float jumpForce;
+    [SerializeField] public float jumpTime;
     [SerializeField] public float jumpMaxHight;   
     [SerializeField] public float jumpInterpolationSpeed;
+    [SerializeField][Range(0, 1)] private float shortJumpFactor;
+    private float extraHeight = 0.25f;
+    private RaycastHit2D GroundHit;
     #endregion
 
     #region MainMethods
@@ -75,12 +79,13 @@ public class PlayerMovement : MonoBehaviour
         Idle();
         UptadeSound();
         Move();
+        DrawGroundCheck();
         Jump();
 
     }
     private void FixedUpdate()
     {
-
+    
     }
     #endregion
 
@@ -91,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector2(dirX.x * moveSpeed, rb.velocity.y);
 
-        if (dirX.x != 0 && isFalling == false && isJumping == false)
+        if (dirX.x != 0 && isFalling == false && isJumping == false && IsGrounded())
         {
             isRunning = true;
         }
@@ -112,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Idle()
     {
-        if (dirX.x == 0f && dirX.y == 0f && isFalling == false && isJumping == false && ZeroState == 0)
+        if (dirX.x == 0f && dirX.y == 0f && isFalling == false && isJumping == false && ZeroState == 0 && IsGrounded())
         {
             isIdle = true;
         }
@@ -125,47 +130,74 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Jump
-    public bool IsGrounded()
+    private bool IsGrounded()
     {
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+        GroundHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+
+        if(GroundHit.collider != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
 
     }
     
     private void Jump()
     {
-        var keyboard = Keyboard.current;
-        if (keyboard == null)
-        {
-            return;
-        }
-
         if (IsGrounded())
         {
             coyoteCounter = coyoteTime;
-            wasJamp = false;
-            isFalling = false;
+            isFalling = false; 
             isJumping = false;
             rb.gravityScale = 2.5f;
-            
+            JumpTimeCounter = jumpTime;
+
         }
-        else if (IsGrounded() == false && wasJamp == false)
+        
+        if (!IsGrounded() && isFalling)
         {
             coyoteCounter -= Time.deltaTime;
 
         }
 
-        if (!isJumping && !IsGrounded())
+        if (playerControls.PlayerActions.Jump.WasPressedThisFrame() && coyoteCounter > 0)
         {
-            isFalling = true;
+            isJumping = true;
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            coyoteCounter = 0;
         }
 
-
-        if (keyboard.spaceKey.isPressed && coyoteCounter > 0 && !wasJamp)
+        if (playerControls.PlayerActions.Jump.IsPressed())
         {
-            wasJamp = true;
-            isJumping = true;
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Lerp(jumpForce, jumpMaxHight, jumpInterpolationSpeed));
-       
+            if (JumpTimeCounter > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                JumpTimeCounter -= Time.deltaTime;
+                coyoteCounter = 0;
+
+            }
+
+            else if(JumpTimeCounter == 0f)
+            {
+                isFalling = true;
+                isJumping = false;
+            }
+
+            else
+            {
+                isJumping = false;
+            }
+
+        if (playerControls.PlayerActions.Jump.WasReleasedThisFrame())
+            {
+                isJumping = false;
+            }
+            
+
         }
 
         if (isFalling)
@@ -173,7 +205,15 @@ public class PlayerMovement : MonoBehaviour
             rb.gravityScale = Mathf.Lerp(2.5f, 4.5f, 0.5f);
         }
 
+        if (!IsGrounded() && !isJumping)
+        {
+            isFalling = true;
+        }
+
+
     }
+
+    
     #endregion
 
     #region SoundPlayer
@@ -195,4 +235,24 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
+    #region DebugFunctions
+
+    private void DrawGroundCheck()
+    {
+        Color rayColor;
+        
+        if (IsGrounded())
+        {
+            rayColor = Color.green;
+        }
+        else
+        {
+            rayColor = Color.red;
+        }
+        Debug.DrawRay(coll.bounds.center + new Vector3(coll.bounds.extents.x, 0), Vector2.down * (coll.bounds.extents.y + extraHeight), rayColor);
+        Debug.DrawRay(coll.bounds.center - new Vector3(coll.bounds.extents.x, 0), Vector2.down * (coll.bounds.extents.y + extraHeight), rayColor);
+        Debug.DrawRay(coll.bounds.center - new Vector3(coll.bounds.extents.x, coll.bounds.extents.y + extraHeight), Vector2.right * (coll.bounds.extents.x * 2), rayColor);
+    }
+
+    #endregion
 }
