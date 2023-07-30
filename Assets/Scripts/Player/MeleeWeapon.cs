@@ -19,6 +19,10 @@ public class MeleeWeapon : MonoBehaviour
     //Determines if the melee strike is downwards to perform extra force to fight against gravity
     private bool downwardStrike;
 
+    public Vector2 moveVal;
+
+    private PlayerControls playerControls;
+
     private void Start()
     {
         //Reference to the Character script on the player; if you don't have this or it's named something different, either omit it or change the class name to what your Character script is called
@@ -27,10 +31,18 @@ public class MeleeWeapon : MonoBehaviour
         rb = GetComponentInParent<Rigidbody2D>();
         //Reference to the MeleeAttackManager script on the player
         meleeAttackManager = GetComponentInParent<MeleeAttackManager>();
+
+        OnEnable();
     }
 
     private void Awake()
     {
+        playerControls = new PlayerControls();
+        playerControls.PlayerActions.ChooseVerticalDerection.performed += ctx => moveVal = ctx.ReadValue<Vector2>();
+    }
+    private void OnEnable()
+    {
+        playerControls.Enable();
     }
 
     private void FixedUpdate()
@@ -52,7 +64,7 @@ public class MeleeWeapon : MonoBehaviour
     private void HandleCollision(EnemyHealth objHealth)
     {
         //Checks to see if the GameObject allows for upward force and if the strike is downward as well as grounded
-        if (objHealth.giveUpwardForce && Input.GetAxis("Vertical") < 0 && !character.IsGrounded())
+        if (objHealth.giveUpwardForce && moveVal.y < 0 && !character.IsGrounded())
         {
             //Sets the direction variable to up
             direction = Vector2.up;
@@ -61,7 +73,7 @@ public class MeleeWeapon : MonoBehaviour
             //Sets collided to true
             collided = true;
         }
-        if (Input.GetAxis("Vertical") > 0 && !character.IsGrounded())
+        if (moveVal.y > 0 && !character.IsGrounded())
         {
             //Sets the direction variable to up
             direction = Vector2.down;
@@ -69,7 +81,7 @@ public class MeleeWeapon : MonoBehaviour
             collided = true;
         }
         //Checks to see if the melee attack is a standard melee attack
-        if ((Input.GetAxis("Vertical") <= 0 && character.IsGrounded()) || Input.GetAxis("Vertical") == 0)
+        if ((moveVal.y <= 0 && character.IsGrounded()) || moveVal.y == 0)
         {
             //Checks to see if the player is facing left; if you don't have a character script, the commented out line of code can also check for that
             if (character.fliper.flipX == true) //(transform.parent.localScale.x < 0)

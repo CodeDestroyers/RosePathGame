@@ -47,12 +47,21 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""AttackL"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""93bdc96b-a034-4c1a-983a-f1d91822aafa"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChooseVerticalDerection"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""5e64e741-4a89-4f57-a126-9b5fd7371685"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -110,6 +119,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""AttackL"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""dad41bd7-56ac-4a1e-8b0a-e95ab74b3c4f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChooseVerticalDerection"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""604e2d4c-f535-4459-b65d-16510d2f5c7f"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChooseVerticalDerection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""b788325d-dbe2-431b-89b9-8368dc58c3d9"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChooseVerticalDerection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -127,6 +169,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_Movement = m_PlayerActions.FindAction("Movement", throwIfNotFound: true);
         m_PlayerActions_AttackL = m_PlayerActions.FindAction("AttackL", throwIfNotFound: true);
+        m_PlayerActions_ChooseVerticalDerection = m_PlayerActions.FindAction("ChooseVerticalDerection", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -191,6 +234,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_Movement;
     private readonly InputAction m_PlayerActions_AttackL;
+    private readonly InputAction m_PlayerActions_ChooseVerticalDerection;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -198,6 +242,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @Movement => m_Wrapper.m_PlayerActions_Movement;
         public InputAction @AttackL => m_Wrapper.m_PlayerActions_AttackL;
+        public InputAction @ChooseVerticalDerection => m_Wrapper.m_PlayerActions_ChooseVerticalDerection;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -216,6 +261,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AttackL.started += instance.OnAttackL;
             @AttackL.performed += instance.OnAttackL;
             @AttackL.canceled += instance.OnAttackL;
+            @ChooseVerticalDerection.started += instance.OnChooseVerticalDerection;
+            @ChooseVerticalDerection.performed += instance.OnChooseVerticalDerection;
+            @ChooseVerticalDerection.canceled += instance.OnChooseVerticalDerection;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -229,6 +277,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AttackL.started -= instance.OnAttackL;
             @AttackL.performed -= instance.OnAttackL;
             @AttackL.canceled -= instance.OnAttackL;
+            @ChooseVerticalDerection.started -= instance.OnChooseVerticalDerection;
+            @ChooseVerticalDerection.performed -= instance.OnChooseVerticalDerection;
+            @ChooseVerticalDerection.canceled -= instance.OnChooseVerticalDerection;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -260,5 +311,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnAttackL(InputAction.CallbackContext context);
+        void OnChooseVerticalDerection(InputAction.CallbackContext context);
     }
 }

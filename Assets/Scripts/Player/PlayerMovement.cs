@@ -55,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
         fliper = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
 
+        OnEnable();
+
         playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps);
     }
 

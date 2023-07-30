@@ -10,7 +10,7 @@ public class PlayerAnimationState : MonoBehaviour
     public Animator animator;
     private string CurrentState;
     private PlayerMovement MovementStorage;
-    private PlayerCombat CombatStorage;
+    private MeleeAttackManager CombatStorage;
 
     private bool PLAYER_IDLE;
     private bool PLAYER_RUN;
@@ -18,6 +18,9 @@ public class PlayerAnimationState : MonoBehaviour
     private bool PLAYER_FALL;
     private bool PLAYER_ATTACKL;
     private bool PLAYER_ATTACKLAIR;
+    private bool PLAYER_UPWARDATTACK;
+    private bool PLAYER_DOWNWARDATTACK;
+    private bool PLAYER_FORWARDATTACK;
     #endregion
 
     #region MainMethods
@@ -25,7 +28,7 @@ public class PlayerAnimationState : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         MovementStorage = GetComponent<PlayerMovement>();
-        CombatStorage = GetComponent<PlayerCombat>();
+        CombatStorage = GetComponent<MeleeAttackManager>();
     }
 
     void Update()
@@ -44,11 +47,14 @@ public class PlayerAnimationState : MonoBehaviour
         PLAYER_RUN = MovementStorage.isRunning;
         PLAYER_FALL = MovementStorage.isFalling;
         PLAYER_JUMP = MovementStorage.isJumping;
-        PLAYER_ATTACKL = CombatStorage.isAttackL;
+        PLAYER_UPWARDATTACK = CombatStorage.isUpwardAttack;
+        PLAYER_DOWNWARDATTACK = CombatStorage.isDownwardAttack;
+        PLAYER_FORWARDATTACK = CombatStorage.isForwardAttack;
 
-    }
+}
     void StateMachine()
     {
+        #region MovementAnimations
         if (PLAYER_IDLE)
         {
             animator.Play("Player_Idle");
@@ -76,14 +82,30 @@ public class PlayerAnimationState : MonoBehaviour
             CurrentState = ("Fall");
             return;
         }
-        if (PLAYER_ATTACKL)
+        #endregion
+
+        #region AttackAnimations
+
+        if (PLAYER_UPWARDATTACK)
         {
-            animator.Play("Player_AttackL");
-            CurrentState = ("AttackL");
-            MovementStorage.ZeroState = 1;
+            CurrentState = ("UpwardAttack");
+            return;
+
+        }
+        if (PLAYER_DOWNWARDATTACK)
+        {
+            CurrentState = ("DownwardAttack");
+            return;
+
+        }
+        if (PLAYER_FORWARDATTACK)
+        {
+            CurrentState = ("ForwardAttack");
+            animator.Play("Forward_Attack");
             return;
         }
 
+        #endregion
     }
 
     #endregion
