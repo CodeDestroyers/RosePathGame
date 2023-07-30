@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Jump
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         GroundHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
 

@@ -9,7 +9,8 @@ public class PlayerAnimationState : MonoBehaviour
     private string State;
     public Animator animator;
     private string CurrentState;
-    private PlayerMovement StateStorage;
+    private PlayerMovement MovementStorage;
+    private PlayerCombat CombatStorage;
 
     private bool PLAYER_IDLE;
     private bool PLAYER_RUN;
@@ -23,14 +24,13 @@ public class PlayerAnimationState : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        StateStorage = GetComponent<PlayerMovement>();
-
+        MovementStorage = GetComponent<PlayerMovement>();
+        CombatStorage = GetComponent<PlayerCombat>();
     }
 
     void Update()
     {
         Debug.Log(CurrentState);
-
         StateBox();
         StateMachine();
     }
@@ -40,11 +40,11 @@ public class PlayerAnimationState : MonoBehaviour
 
     void StateBox()
     {
-        var StateSwitch = GetComponent<PlayerMovement>();
-        PLAYER_IDLE = StateSwitch.isIdle;
-        PLAYER_RUN = StateSwitch.isRunning;
-        PLAYER_FALL = StateSwitch.isFalling;
-        PLAYER_JUMP = StateSwitch.isJumping;
+        PLAYER_IDLE = MovementStorage.isIdle;
+        PLAYER_RUN = MovementStorage.isRunning;
+        PLAYER_FALL = MovementStorage.isFalling;
+        PLAYER_JUMP = MovementStorage.isJumping;
+        PLAYER_ATTACKL = CombatStorage.isAttackL;
 
     }
     void StateMachine()
@@ -74,6 +74,13 @@ public class PlayerAnimationState : MonoBehaviour
         {
             animator.Play("Player_Fall");
             CurrentState = ("Fall");
+            return;
+        }
+        if (PLAYER_ATTACKL)
+        {
+            animator.Play("Player_AttackL");
+            CurrentState = ("AttackL");
+            MovementStorage.ZeroState = 1;
             return;
         }
 

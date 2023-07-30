@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "AttackL",
+                    "type": "Button",
+                    "id": "93bdc96b-a034-4c1a-983a-f1d91822aafa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -39,7 +48,7 @@
                 {
                     "name": "Left",
                     "id": "6caf7fb4-4deb-43ce-b33d-143bf508ad0d",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -50,7 +59,7 @@
                 {
                     "name": "Right",
                     "id": "c8be33e3-a760-49ae-910a-f52a9dc07f62",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -61,11 +70,22 @@
                 {
                     "name": "",
                     "id": "6a78df28-62dc-445a-9d1f-8a3122e93005",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "PlayerControl",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c1b6bcb4-e18d-41ea-bef7-7276bc00f98a",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PlayerControl",
+                    "action": "AttackL",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
