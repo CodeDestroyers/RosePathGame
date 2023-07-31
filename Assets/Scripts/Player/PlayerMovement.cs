@@ -35,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask enemyLayers;   
     private MeleeAttackManager meleeAttackManager;
 
+    private float _fallSpeedYDampingChangeTreshold;
+
     [SerializeField] public float moveSpeed = 4f;
 
     [Header("Jump Settings")]
@@ -61,6 +63,8 @@ public class PlayerMovement : MonoBehaviour
         OnEnable();
 
         playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps);
+
+        _fallSpeedYDampingChangeTreshold = CameraManager.instance._fallSpeedYDampingChangeTreshold;
     }
 
     private void Awake()
@@ -86,6 +90,21 @@ public class PlayerMovement : MonoBehaviour
         Move();
         DrawGroundCheck();
         Jump();
+
+        #region CameraLerp
+
+        if (rb.velocity.y < _fallSpeedYDampingChangeTreshold && !CameraManager.instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.instance.LerpYDamping(true);
+        }
+
+        if (rb.velocity.y >= 0f && !CameraManager.instance.IsLerpingYDamping && CameraManager.instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.instance.LerpedFromPlayerFalling = false;
+
+            CameraManager.instance.LerpYDamping(false);
+        }
+        #endregion
 
     }
     private void FixedUpdate()
