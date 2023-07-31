@@ -27,6 +27,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 500
+--- !u!114 &-3375021203016219731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/BackgroundsAmbient.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/BackgroundsAmbient.bank
+  Name: BackgroundsAmbient
+  StudioPath: bank:/BackgroundsAmbient
+  lastModified: 638264469319473886
+  FileSizes:
+  - Name: Desktop
+    Value: 758304
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,14 +63,17 @@ MonoBehaviour:
   - {fileID: 1726338470507851090}
   - {fileID: 8381976726770435846}
   - {fileID: 8042381114683576855}
+  - {fileID: -3375021203016219731}
   EditorEvents:
   - {fileID: -5520490193030413802}
+  - {fileID: 4095709909907955797}
+  - {fileID: 6638264154189957361}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8381976726770435846}
   StringsBanks:
   - {fileID: 1726338470507851090}
-  cacheTime: 638258502614819019
+  cacheTime: 638264469319473886
   cacheVersion: 131605
 --- !u!114 &1726338470507851090
 MonoBehaviour:
@@ -67,11 +90,65 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638258483557107634
+  lastModified: 638264469304376556
   FileSizes:
   - Name: Desktop
-    Value: 810
+    Value: 970
   Exists: 1
+--- !u!114 &4095709909907955797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Backgrounds/L0_S0/CaveBackground
+  m_EditorClassIdentifier: 
+  Path: event:/Backgrounds/L0_S0/CaveBackground
+  Guid:
+    Data1: -600822216
+    Data2: 1206239475
+    Data3: 1725417641
+    Data4: -1758648707
+  Banks:
+  - {fileID: -3375021203016219731}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 63346
+--- !u!114 &6638264154189957361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Fall
+  m_EditorClassIdentifier: 
+  Path: event:/Fall
+  Guid:
+    Data1: 669563767
+    Data2: 1076279381
+    Data3: -577483363
+    Data4: -1093371152
+  Banks:
+  - {fileID: 8042381114683576855}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &8042381114683576855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,10 +164,10 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638258502614819019
+  lastModified: 638264469305251922
   FileSizes:
   - Name: Desktop
-    Value: 42464
+    Value: 43104
   Exists: 1
 --- !u!114 &8381976726770435846
 MonoBehaviour:
@@ -107,7 +184,7 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638258483557097635
+  lastModified: 638264469304366545
   FileSizes:
   - Name: Desktop
     Value: 1036
