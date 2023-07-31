@@ -22,7 +22,9 @@ public class PlayerMovement : MonoBehaviour
     private EventInstance playerFootsteps;
     private PlayerControls playerControls;
 
+    public int AttackState;
     public int ZeroState;
+    public int MovementState;
     public bool isJumping;
     public bool isFalling;
     public bool isRunning;
@@ -31,8 +33,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;   
+    private MeleeAttackManager meleeAttackManager;
 
-    [SerializeField] private float moveSpeed = 4f;
+    [SerializeField] public float moveSpeed = 4f;
 
     [Header("Jump Settings")]
     [SerializeField] private float JumpTimeCounter;
@@ -98,13 +101,23 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector2(dirX.x * moveSpeed, rb.velocity.y);
 
-        if (dirX.x != 0 && isFalling == false && isJumping == false && IsGrounded())
+        if (dirX.x != 0 && isFalling == false && isJumping == false && IsGrounded() && AttackState == 1)
+        {
+            isRunning = false;
+            MovementState = 0;
+        }
+
+
+        if (dirX.x != 0 && isFalling == false && isJumping == false && IsGrounded() && AttackState == 0)
         {
             isRunning = true;
+            MovementState = 1;
         }
+
         else
         {
             isRunning = false;
+            MovementState = 0;
         }
 
         if (dirX.x < 0f)
@@ -119,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Idle()
     {
-        if (dirX.x == 0f && dirX.y == 0f && isFalling == false && isJumping == false && ZeroState == 0 && IsGrounded())
+        if (dirX.x == 0f && dirX.y == 0f && isFalling == false && isJumping == false && AttackState == 0 && IsGrounded())
         {
             isIdle = true;
         }
@@ -157,7 +170,6 @@ public class PlayerMovement : MonoBehaviour
             isJumping = false;
             rb.gravityScale = 2.5f;
             JumpTimeCounter = jumpTime;
-
         }
         
         if (!IsGrounded() && isFalling)
@@ -171,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             coyoteCounter = 0;
+            MovementState = 1;
         }
 
         if (playerControls.PlayerActions.Jump.IsPressed())
@@ -180,6 +193,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 JumpTimeCounter -= Time.deltaTime;
                 coyoteCounter = 0;
+                MovementState = 1;
 
             }
 

@@ -21,6 +21,7 @@ public class PlayerAnimationState : MonoBehaviour
     private bool PLAYER_UPWARDATTACK;
     private bool PLAYER_DOWNWARDATTACK;
     private bool PLAYER_FORWARDATTACK;
+    private bool PLAYER_FORWARDATTACK_RUN;
     #endregion
 
     #region MainMethods
@@ -50,6 +51,7 @@ public class PlayerAnimationState : MonoBehaviour
         PLAYER_UPWARDATTACK = CombatStorage.isUpwardAttack;
         PLAYER_DOWNWARDATTACK = CombatStorage.isDownwardAttack;
         PLAYER_FORWARDATTACK = CombatStorage.isForwardAttack;
+        PLAYER_FORWARDATTACK_RUN = CombatStorage.isForwardAttackRun;
 
 }
     void StateMachine()
@@ -62,7 +64,7 @@ public class PlayerAnimationState : MonoBehaviour
             return;
         }
 
-        if (PLAYER_RUN)
+        if (PLAYER_RUN && !PLAYER_FORWARDATTACK_RUN)
         {
             animator.Play("Player_Running");
             CurrentState = ("Run");
@@ -104,7 +106,12 @@ public class PlayerAnimationState : MonoBehaviour
             animator.Play("Forward_Attack");
             return;
         }
-
+        if (PLAYER_FORWARDATTACK_RUN)
+        {
+            CurrentState = ("Attack_Forward_Run");
+            animator.Play("Attack_Forward_Run");
+            return;
+        }
         #endregion
     }
 

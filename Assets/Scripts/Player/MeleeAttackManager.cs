@@ -26,6 +26,7 @@ public class MeleeAttackManager : PlayerMovement
     public bool isUpwardAttack;
     public bool isDownwardAttack;
     public bool isForwardAttack;
+    public bool isForwardAttackRun;
 
     //The Animator component on the player
     private Animator anim;
@@ -81,46 +82,56 @@ public class MeleeAttackManager : PlayerMovement
             //Sets the meleeAttack bool to true
             meleeAttack = true;
         }
-        else if (playerControls.PlayerActions.AttackL.WasReleasedThisFrame())
-        {
-            wasAttack = false;
-            moveVal.y = 0;
-        }
         //Checks to see if meleeAttack is true and pressing up
-        if (meleeAttack && moveVal.y > 0 && character.ZeroState == 0)
+        if (meleeAttack && moveVal.y > 0 && character.AttackState == 0)
         {
             isUpwardAttack = true;
-            character.ZeroState = 1;
+            character.AttackState = 1;
         }
         else
         {
             isUpwardAttack = false;
-            character.ZeroState = 0;
+            character.AttackState = 0;
+            
         }
 
 
         //Checks to see if meleeAttack is true and pressing down while also not grounded
-        if (meleeAttack && moveVal.y < 0 && !character.IsGrounded() && character.ZeroState == 0)
+        if (meleeAttack && moveVal.y < 0 && !character.IsGrounded() && character.AttackState == 0)
         {
             isDownwardAttack = true;
-            character.ZeroState = 1;
+            character.AttackState = 1;
         }
         else
         {
             isDownwardAttack = false;
-            character.ZeroState = 0;
+            character.AttackState = 0;
         }
 
 
         //Checks to see if meleeAttack is true and not pressing any direction
-        if ((meleeAttack && moveVal.y == 0 && character.ZeroState == 0)
+        if ((meleeAttack && moveVal.y == 0 && character.AttackState == 0)
              //OR if melee attack is true and pressing down while grounded
             || meleeAttack && moveVal.y < 0 && character.IsGrounded())
         {
-            isForwardAttack = true;
-            character.ZeroState = 1;
+            if (character.isRunning)
+            {
+                isForwardAttack = false;
+                isForwardAttackRun = true;
+                character.AttackState = 1;
+            }
+            else if (!character.isRunning && !character.isFalling && !character.isJumping && !isForwardAttackRun && character.IsGrounded())
+            {
+                character.isIdle = false;
+                isForwardAttack = true;
+                isForwardAttackRun = false;
+                character.AttackState = 1;
+            }
 
-
+            else
+            {
+                character.AttackState = 0;
+            }
 
         }
 
@@ -128,8 +139,9 @@ public class MeleeAttackManager : PlayerMovement
     }
     public void ForwardEnd()
     {
+        isForwardAttackRun = false;
         isForwardAttack = false;
-        character.ZeroState = 0;
+        character.AttackState = 0;
         meleeAttack = false;
     }
     #endregion
