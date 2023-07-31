@@ -19,6 +19,7 @@ public class MeleeAttackManager : PlayerMovement
     private Animator meleeAnimator;
 
     public Vector2 moveVal;
+    private bool wasAttack;
 
     private PlayerControls playerControls;
 
@@ -48,6 +49,9 @@ public class MeleeAttackManager : PlayerMovement
         character = GetComponent<PlayerMovement>();
         //The animator on the meleePrefab
         meleeAnimator = GetComponentInChildren<MeleeWeapon>().gameObject.GetComponent<Animator>();
+
+        OnEnable();
+        ForwardEnd();
     }
 
 
@@ -76,35 +80,57 @@ public class MeleeAttackManager : PlayerMovement
         {
             //Sets the meleeAttack bool to true
             meleeAttack = true;
-            character.ZeroState = 1;
         }
-        else
+        else if (playerControls.PlayerActions.AttackL.WasReleasedThisFrame())
         {
-            //Turns off the meleeAttack bool
-            meleeAttack = false;
-            character.ZeroState = 0;
+            wasAttack = false;
+            moveVal.y = 0;
         }
         //Checks to see if meleeAttack is true and pressing up
-        if (meleeAttack && moveVal.y > 0)
+        if (meleeAttack && moveVal.y > 0 && character.ZeroState == 0)
         {
             isUpwardAttack = true;
             character.ZeroState = 1;
         }
+        else
+        {
+            isUpwardAttack = false;
+            character.ZeroState = 0;
+        }
+
+
         //Checks to see if meleeAttack is true and pressing down while also not grounded
-        if (meleeAttack && moveVal.y < 0 && !character.IsGrounded())
+        if (meleeAttack && moveVal.y < 0 && !character.IsGrounded() && character.ZeroState == 0)
         {
             isDownwardAttack = true;
             character.ZeroState = 1;
         }
+        else
+        {
+            isDownwardAttack = false;
+            character.ZeroState = 0;
+        }
+
+
         //Checks to see if meleeAttack is true and not pressing any direction
-        if ((meleeAttack && moveVal.y == 0)
+        if ((meleeAttack && moveVal.y == 0 && character.ZeroState == 0)
              //OR if melee attack is true and pressing down while grounded
             || meleeAttack && moveVal.y < 0 && character.IsGrounded())
         {
             isForwardAttack = true;
             character.ZeroState = 1;
 
+
+
         }
+
+        
+    }
+    public void ForwardEnd()
+    {
+        isForwardAttack = false;
+        character.ZeroState = 0;
+        meleeAttack = false;
     }
     #endregion
 }
