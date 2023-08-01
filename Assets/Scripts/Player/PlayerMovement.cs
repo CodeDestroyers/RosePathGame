@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private MeleeAttackManager meleeAttackManager;
 
     private float _fallSpeedYDampingChangeTreshold;
+    private bool _wasBabyJamp;
 
     [SerializeField] public float moveSpeed = 4f;
 
@@ -189,6 +190,7 @@ public class PlayerMovement : MonoBehaviour
             isJumping = false;
             rb.gravityScale = 2.5f;
             JumpTimeCounter = jumpTime;
+            _wasBabyJamp = false;
         }
         
         if (!IsGrounded() && isFalling)
@@ -197,15 +199,23 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        if (playerControls.PlayerActions.Jump.WasPressedThisFrame() && coyoteCounter > 0)
+        if (playerControls.PlayerActions.Jump.WasPressedThisFrame() && coyoteCounter > 0 && !isJumping)
         {
             isJumping = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             coyoteCounter = 0;
             MovementState = 1;
+            rb.gravityScale = Mathf.Lerp(2.5f, 2f, 0.5f);
+
+
         }
 
-        if (playerControls.PlayerActions.Jump.IsPressed())
+        if (playerControls.PlayerActions.Jump.WasReleasedThisFrame())
+        {
+            _wasBabyJamp = true;
+        }
+
+        if (playerControls.PlayerActions.Jump.IsPressed() && !_wasBabyJamp)
         {
             if (JumpTimeCounter > 0f)
             {
@@ -213,6 +223,7 @@ public class PlayerMovement : MonoBehaviour
                 JumpTimeCounter -= Time.deltaTime;
                 coyoteCounter = 0;
                 MovementState = 1;
+                rb.gravityScale = Mathf.Lerp(2.5f, 2f, 0.5f);
 
             }
 
