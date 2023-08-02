@@ -17,13 +17,16 @@ public class MeleeAttackManager : PlayerMovement
     private bool meleeAttack;
     //The animator on the meleePrefab
     private Animator meleeAnimator;
+    private MeleeWeapon melee;
 
     public Vector2 moveVal;
     private bool wasAttack;
 
     private PlayerControls playerControls;
 
-    public bool isUpwardAttack;
+    public bool isUpwardAttackIdle;
+    public bool isUpwardAttackJump;
+    public bool isUpwardAttackRun;
     public bool isDownwardAttack;
     public bool isForwardAttack;
     public bool isForwardAttackRun;
@@ -51,6 +54,8 @@ public class MeleeAttackManager : PlayerMovement
         //The animator on the meleePrefab
         meleeAnimator = GetComponentInChildren<MeleeWeapon>().gameObject.GetComponent<Animator>();
 
+        melee = GetComponentInChildren<MeleeWeapon>();
+
         OnEnable();
         ForwardEnd();
     }
@@ -75,7 +80,6 @@ public class MeleeAttackManager : PlayerMovement
     private void CheckInput()
     {
 
-
         //Checks to see if Backspace key is pressed which I define as melee attack; you can of course change this to anything you would want
         if (playerControls.PlayerActions.AttackL.WasPressedThisFrame())
         {
@@ -83,21 +87,57 @@ public class MeleeAttackManager : PlayerMovement
             meleeAttack = true;
         }
         //Checks to see if meleeAttack is true and pressing up
-        if (meleeAttack && moveVal.y > 0 && character.AttackState == 0)
+        if (meleeAttack && moveVal.y > 0 && character.AttackState == 0 && character.isRunning)
         {
-            isUpwardAttack = true;
+            isUpwardAttackRun = true;
             character.AttackState = 1;
         }
         else
         {
-            isUpwardAttack = false;
+            isUpwardAttackRun = false;
             character.AttackState = 0;
             
         }
 
+        if (meleeAttack && moveVal.y > 0 && character.AttackState == 0 && character.isJumping || isFalling)
+        {
+            isUpwardAttackJump = true;
+            character.AttackState = 1;
+        }
+        else
+        {
+            isUpwardAttackJump = false;
+            character.AttackState = 0;
 
-        //Checks to see if meleeAttack is true and pressing down while also not grounded
-        if (meleeAttack && moveVal.y < 0 && !character.IsGrounded() && character.AttackState == 0)
+        }
+
+        if (meleeAttack && moveVal.y > 0 && character.AttackState == 0 && character.isIdle)
+        {
+            isUpwardAttackIdle = true;
+            character.AttackState = 1;
+        }
+        else
+        {
+            isUpwardAttackIdle = false;
+            character.AttackState = 0;
+
+        }
+
+        if (meleeAttack && moveVal.y > 0 && character.AttackState == 0 && character.isJumping || isFalling)
+        {
+            isDownwardAttack = true;
+            character.AttackState = 1;
+
+        }
+        else
+        {
+            isDownwardAttack = false;
+            character.AttackState = 0;
+        }
+
+
+            //Checks to see if meleeAttack is true and pressing down while also not grounded
+            if (meleeAttack && moveVal.y < 0 && !character.IsGrounded() && character.AttackState == 0)
         {
             isDownwardAttack = true;
             character.AttackState = 1;
@@ -139,6 +179,10 @@ public class MeleeAttackManager : PlayerMovement
     }
     public void ForwardEnd()
     {
+        isDownwardAttack = false;
+        isUpwardAttackIdle = false;
+        isUpwardAttackJump = false;
+        isUpwardAttackRun = false;
         isForwardAttackRun = false;
         isForwardAttack = false;
         character.AttackState = 0;

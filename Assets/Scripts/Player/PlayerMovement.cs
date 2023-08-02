@@ -205,7 +205,6 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             coyoteCounter = 0;
             MovementState = 1;
-            rb.gravityScale = Mathf.Lerp(2.5f, 2f, 0.5f);
 
 
         }
@@ -223,7 +222,6 @@ public class PlayerMovement : MonoBehaviour
                 JumpTimeCounter -= Time.deltaTime;
                 coyoteCounter = 0;
                 MovementState = 1;
-                rb.gravityScale = Mathf.Lerp(2.5f, 2f, 0.5f);
 
             }
 

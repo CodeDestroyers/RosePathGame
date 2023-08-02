@@ -18,7 +18,7 @@ public class PlayerAnimationState : MonoBehaviour
     private bool PLAYER_FALL;
     private bool PLAYER_ATTACKL;
     private bool PLAYER_ATTACKLAIR;
-    private bool PLAYER_UPWARDATTACK;
+    private bool PLAYER_UPWARDATTACK_IDLE;
     private bool PLAYER_DOWNWARDATTACK;
     private bool PLAYER_FORWARDATTACK;
     private bool PLAYER_FORWARDATTACK_RUN;
@@ -48,7 +48,7 @@ public class PlayerAnimationState : MonoBehaviour
         PLAYER_RUN = MovementStorage.isRunning;
         PLAYER_FALL = MovementStorage.isFalling;
         PLAYER_JUMP = MovementStorage.isJumping;
-        PLAYER_UPWARDATTACK = CombatStorage.isUpwardAttack;
+        PLAYER_UPWARDATTACK_IDLE = CombatStorage.isUpwardAttackIdle;
         PLAYER_DOWNWARDATTACK = CombatStorage.isDownwardAttack;
         PLAYER_FORWARDATTACK = CombatStorage.isForwardAttack;
         PLAYER_FORWARDATTACK_RUN = CombatStorage.isForwardAttackRun;
@@ -88,7 +88,7 @@ public class PlayerAnimationState : MonoBehaviour
 
         #region AttackAnimations
 
-        if (PLAYER_UPWARDATTACK)
+        if (PLAYER_UPWARDATTACK_IDLE)
         {
             CurrentState = ("UpwardAttack");
             return;
