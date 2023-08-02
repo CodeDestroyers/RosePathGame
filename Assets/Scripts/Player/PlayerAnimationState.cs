@@ -19,9 +19,13 @@ public class PlayerAnimationState : MonoBehaviour
     private bool PLAYER_ATTACKL;
     private bool PLAYER_ATTACKLAIR;
     private bool PLAYER_UPWARDATTACK_IDLE;
+    private bool PLAYER_UPWARDATTACK_RUN;
+    private bool PLAYER_UPWARDATTACK_JUMP;
     private bool PLAYER_DOWNWARDATTACK;
     private bool PLAYER_FORWARDATTACK;
     private bool PLAYER_FORWARDATTACK_RUN;
+    private bool PLAYER_FORWARDATTACK_JUMP;
+
     #endregion
 
     #region MainMethods
@@ -49,54 +53,76 @@ public class PlayerAnimationState : MonoBehaviour
         PLAYER_FALL = MovementStorage.isFalling;
         PLAYER_JUMP = MovementStorage.isJumping;
         PLAYER_UPWARDATTACK_IDLE = CombatStorage.isUpwardAttackIdle;
+        PLAYER_UPWARDATTACK_RUN = CombatStorage.isUpwardAttackRun;
+        PLAYER_UPWARDATTACK_JUMP = CombatStorage.isUpwardAttackJump;
         PLAYER_DOWNWARDATTACK = CombatStorage.isDownwardAttack;
         PLAYER_FORWARDATTACK = CombatStorage.isForwardAttack;
         PLAYER_FORWARDATTACK_RUN = CombatStorage.isForwardAttackRun;
+        PLAYER_FORWARDATTACK_JUMP = CombatStorage.isForwardAttackJump;
 
-}
+    }
     void StateMachine()
     {
         #region MovementAnimations
-        if (PLAYER_IDLE)
+        if (CombatStorage.meleeAttack == false)
         {
-            animator.Play("Player_Idle");
-            CurrentState = ("Idle");
-            return;
+            if (PLAYER_IDLE)
+            {
+                animator.Play("Player_Idle");
+                CurrentState = ("Idle");
+                return;
+            }
+
+            if (PLAYER_RUN)
+            {
+                animator.Play("Player_Running");
+                CurrentState = ("Run");
+                return;
+            }
+
+            if (PLAYER_JUMP)
+            {
+                animator.Play("Player_Jump");
+                CurrentState = ("Jump");
+                return;
+            }
+
+            if (PLAYER_FALL && !MovementStorage.IsGrounded())
+            {
+                animator.Play("Player_Fall");
+                CurrentState = ("Fall");
+                return;
+            }
         }
 
-        if (PLAYER_RUN && !PLAYER_FORWARDATTACK_RUN)
-        {
-            animator.Play("Player_Running");
-            CurrentState = ("Run");
-            return;
-        }
-
-        if (PLAYER_JUMP)
-        {
-            animator.Play("Player_Jump");
-            CurrentState = ("Jump");
-            return;
-        }
-
-        if (PLAYER_FALL)
-        {
-            animator.Play("Player_Fall");
-            CurrentState = ("Fall");
-            return;
-        }
+    
         #endregion
 
         #region AttackAnimations
 
         if (PLAYER_UPWARDATTACK_IDLE)
         {
-            CurrentState = ("UpwardAttack");
+            CurrentState = ("Attack_Upward_Idle");
+            animator.Play("Attack_Upward_Idle");
             return;
 
         }
+        if (PLAYER_UPWARDATTACK_RUN)
+        {
+            CurrentState = ("Attack_Upward_Run");
+            animator.Play("Attack_Upward_Run");
+            return;
+        }
+        if (PLAYER_UPWARDATTACK_JUMP)
+        {
+            CurrentState = ("Attack_Upward_Jump");
+            animator.Play("Attack_Upward_Jump");
+            return;
+        }
         if (PLAYER_DOWNWARDATTACK)
         {
-            CurrentState = ("DownwardAttack");
+            CurrentState = ("Attack_Downward_Fall");
+            animator.Play("Attack_Downward_Fall");
             return;
 
         }
@@ -110,6 +136,12 @@ public class PlayerAnimationState : MonoBehaviour
         {
             CurrentState = ("Attack_Forward_Run");
             animator.Play("Attack_Forward_Run");
+            return;
+        }
+        if (PLAYER_FORWARDATTACK_JUMP)
+        {
+            CurrentState = ("Forward_Attack_Jummp");
+            animator.Play("Attack_Forward_Jump");
             return;
         }
         #endregion

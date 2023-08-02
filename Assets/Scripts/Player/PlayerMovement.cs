@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float moveSpeed = 4f;
 
     [Header("Jump Settings")]
+    [SerializeField] private float attackGravity;
     [SerializeField] private float JumpTimeCounter;
     [SerializeField] private float coyoteCounter;
     [SerializeField] private float coyoteTime;
@@ -60,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         fliper = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
+        meleeAttackManager = GetComponent<MeleeAttackManager>();
 
         OnEnable();
 
@@ -88,9 +90,12 @@ public class PlayerMovement : MonoBehaviour
     {
         Idle();
         UptadeSound();
+        gravityUptade();
         Move();
+        MovementStateCheck();
         DrawGroundCheck();
         Jump();
+        Debug.Log(rb.gravityScale);
 
         #region CameraLerp
 
@@ -150,9 +155,28 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void gravityUptade()
+    {
+        if (meleeAttackManager.airAttack)
+        {
+            rb.gravityScale = attackGravity;
+        }
+        else
+        {
+            rb.gravityScale = 3f;
+        }
+    }
+    public void MovementStateCheck()
+    {
+        if (!isJumping && !isFalling && !isRunning)
+        {
+            MovementState = 0;
+        }
+    }
+
     public void Idle()
     {
-        if (dirX.x == 0f && dirX.y == 0f && isFalling == false && isJumping == false && AttackState == 0 && IsGrounded())
+        if (MovementState == 0 && AttackState == 0 && IsGrounded())
         {
             isIdle = true;
         }
@@ -188,7 +212,6 @@ public class PlayerMovement : MonoBehaviour
             coyoteCounter = coyoteTime;
             isFalling = false; 
             isJumping = false;
-            rb.gravityScale = 2.5f;
             JumpTimeCounter = jumpTime;
             _wasBabyJamp = false;
         }
@@ -205,8 +228,6 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             coyoteCounter = 0;
             MovementState = 1;
-
-
         }
 
         if (playerControls.PlayerActions.Jump.WasReleasedThisFrame())
@@ -242,11 +263,6 @@ public class PlayerMovement : MonoBehaviour
             }
             
 
-        }
-
-        if (isFalling)
-        {
-            rb.gravityScale = Mathf.Lerp(2.5f, 4.5f, 0.5f);
         }
 
         if (!IsGrounded() && !isJumping)
