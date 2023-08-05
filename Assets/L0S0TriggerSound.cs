@@ -31,14 +31,12 @@ public class L0S0TriggerSound : MonoBehaviour
 
     public void SoundPlay()
     {
-        PLAYBACK_STATE playbackState;
-        CaveBackground.getPlaybackState(out playbackState);
-
-        CaveBackground.start();
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Backgrounds/L0_S0/CaveBackground");
+        
     }
 
     public void SoundStop()
     {
-        CaveBackground.stop(STOP_MODE.ALLOWFADEOUT);
+       
     }
 }

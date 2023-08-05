@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimationState : MonoBehaviour
+public class PlayerAnimationState : PlayerMovement
 {
     #region Variables
 
@@ -25,6 +25,8 @@ public class PlayerAnimationState : MonoBehaviour
     private bool PLAYER_FORWARDATTACK;
     private bool PLAYER_FORWARDATTACK_RUN;
     private bool PLAYER_FORWARDATTACK_JUMP;
+    private bool PLAYER_ISCROWLING_IDLE;
+    private bool PLAYER_ISCROWLING_RUN;
 
     #endregion
 
@@ -59,6 +61,8 @@ public class PlayerAnimationState : MonoBehaviour
         PLAYER_FORWARDATTACK = CombatStorage.isForwardAttack;
         PLAYER_FORWARDATTACK_RUN = CombatStorage.isForwardAttackRun;
         PLAYER_FORWARDATTACK_JUMP = CombatStorage.isForwardAttackJump;
+        PLAYER_ISCROWLING_IDLE = MovementStorage.isCrowlingIdle;
+        PLAYER_ISCROWLING_RUN = MovementStorage.isCrowlingRun;
 
     }
     void StateMachine()
@@ -66,6 +70,21 @@ public class PlayerAnimationState : MonoBehaviour
         #region MovementAnimations
         if (CombatStorage.meleeAttack == false)
         {
+            if (PLAYER_ISCROWLING_IDLE)
+            {
+                animator.Play("Player_crow_idle");
+                CurrentState = ("Player_isCrowling_idle");
+                return;
+            }
+
+            if (PLAYER_ISCROWLING_RUN)
+            {
+                animator.Play("Player_Crow_Run");
+                CurrentState = ("Player_isCrowlingRun");
+                return;
+
+            }
+
             if (PLAYER_IDLE)
             {
                 animator.Play("Player_Idle");

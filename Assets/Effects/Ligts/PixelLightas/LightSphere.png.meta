@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06a2bf98a8ded2940b3501752ee29446
-      internalID: -207111352
+      spriteID: a11572ffab6520a4ea4056468bbc79de
+      internalID: 692190102
       vertices: []
       indices: 
       edges: []
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ceb23fcf61eaaf48918d2349dcaa6bf
-      internalID: 237843966
+      spriteID: b1c4eef21bb574b44904b671387cf67a
+      internalID: -1281117031
       vertices: []
       indices: 
       edges: []
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a61e0ff25b8f1014c8f37a2b184db933
-      internalID: -395146310
+      spriteID: ed131573393693341b340a4cacea983c
+      internalID: -315095894
       vertices: []
       indices: 
       edges: []
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bcd08fff246a874f86089dd61adb674
-      internalID: 1347992354
+      spriteID: cf2b9a2d6f25dcf42aad89b90ea362f5
+      internalID: 213904368
       vertices: []
       indices: 
       edges: []
@@ -221,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dcc59227f4d9e584f9c937f85d67c4f1
-      internalID: -2138936216
+      spriteID: 85370458b4bf95c45b552fb336a7271f
+      internalID: 951747417
       vertices: []
       indices: 
       edges: []
@@ -242,8 +242,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa438b44932ca9742850a2af7e4ad05e
-      internalID: -1367952802
+      spriteID: fdd46a9d9df6b134595e23b9381d4557
+      internalID: 272952616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightSphere_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e7574b1e42722e44afa5d93248a8101
+      internalID: -1773153255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightSphere_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3f755bdee2575946aaea2dcfa57cc7b
+      internalID: 1291617126
       vertices: []
       indices: 
       edges: []
@@ -259,12 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      LightSphere_0: -207111352
-      LightSphere_1: 237843966
-      LightSphere_2: -395146310
-      LightSphere_3: 1347992354
-      LightSphere_4: -2138936216
-      LightSphere_5: -1367952802
+      LightSphere_0: 692190102
+      LightSphere_1: -1281117031
+      LightSphere_2: -315095894
+      LightSphere_3: 213904368
+      LightSphere_4: 951747417
+      LightSphere_5: 272952616
+      LightSphere_6: -1773153255
+      LightSphere_7: 1291617126
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

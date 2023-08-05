@@ -62,6 +62,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Crowling"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""f65f0b9b-2022-4165-b635-faf4f71697ae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -99,6 +108,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""3530e1a2-24cd-4c75-bbb8-7dbf5527af0f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""ba40be3f-5b69-4f3f-8324-a0aed8ed46f6"",
+                    ""path"": ""<Joystick>/stick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""f104659f-a2dd-46be-bbe2-8131a6dd0216"",
+                    ""path"": ""<Joystick>/stick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""6a78df28-62dc-445a-9d1f-8a3122e93005"",
                     ""path"": ""<Keyboard>/z"",
@@ -111,11 +153,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""16d6a254-1338-4c02-90d7-9afe2aaa03e6"",
+                    ""path"": ""<HID::DragonRise Inc.   Generic   USB  Joystick  >/button3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c1b6bcb4-e18d-41ea-bef7-7276bc00f98a"",
                     ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PlayerControl"",
+                    ""action"": ""AttackL"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8370e159-0306-4424-998d-d25e78fe9143"",
+                    ""path"": ""<HID::DragonRise Inc.   Generic   USB  Joystick  >/button2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""AttackL"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -152,6 +216,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""ChooseVerticalDerection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""57dc95ff-b016-49fd-aba3-ec004df6f9f2"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChooseVerticalDerection"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""93aeaef3-ef5b-48b8-96cb-279c4ae45b50"",
+                    ""path"": ""<Joystick>/stick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChooseVerticalDerection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""05d7f909-fca0-4ac1-9c5d-d221c1ec77ec"",
+                    ""path"": ""<Joystick>/stick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChooseVerticalDerection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b338ff7-e1b2-4dc9-886b-6188ed607598"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerControl"",
+                    ""action"": ""Crowling"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -170,6 +278,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Movement = m_PlayerActions.FindAction("Movement", throwIfNotFound: true);
         m_PlayerActions_AttackL = m_PlayerActions.FindAction("AttackL", throwIfNotFound: true);
         m_PlayerActions_ChooseVerticalDerection = m_PlayerActions.FindAction("ChooseVerticalDerection", throwIfNotFound: true);
+        m_PlayerActions_Crowling = m_PlayerActions.FindAction("Crowling", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -235,6 +344,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Movement;
     private readonly InputAction m_PlayerActions_AttackL;
     private readonly InputAction m_PlayerActions_ChooseVerticalDerection;
+    private readonly InputAction m_PlayerActions_Crowling;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -243,6 +353,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_PlayerActions_Movement;
         public InputAction @AttackL => m_Wrapper.m_PlayerActions_AttackL;
         public InputAction @ChooseVerticalDerection => m_Wrapper.m_PlayerActions_ChooseVerticalDerection;
+        public InputAction @Crowling => m_Wrapper.m_PlayerActions_Crowling;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -264,6 +375,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ChooseVerticalDerection.started += instance.OnChooseVerticalDerection;
             @ChooseVerticalDerection.performed += instance.OnChooseVerticalDerection;
             @ChooseVerticalDerection.canceled += instance.OnChooseVerticalDerection;
+            @Crowling.started += instance.OnCrowling;
+            @Crowling.performed += instance.OnCrowling;
+            @Crowling.canceled += instance.OnCrowling;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -280,6 +394,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ChooseVerticalDerection.started -= instance.OnChooseVerticalDerection;
             @ChooseVerticalDerection.performed -= instance.OnChooseVerticalDerection;
             @ChooseVerticalDerection.canceled -= instance.OnChooseVerticalDerection;
+            @Crowling.started -= instance.OnCrowling;
+            @Crowling.performed -= instance.OnCrowling;
+            @Crowling.canceled -= instance.OnCrowling;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -312,5 +429,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnAttackL(InputAction.CallbackContext context);
         void OnChooseVerticalDerection(InputAction.CallbackContext context);
+        void OnCrowling(InputAction.CallbackContext context);
     }
 }

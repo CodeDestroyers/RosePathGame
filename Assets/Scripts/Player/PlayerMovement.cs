@@ -24,16 +24,30 @@ public class PlayerMovement : MonoBehaviour
 
     public int AttackState;
     public int ZeroState;
+
+
+    // If Movement state = 0 = is Idle
+    // If Movement state = 1 = is any movement states
+    // If Movement state = 2 = is climbing states
+    // If Movement state = 3 = is crowling states
     public int MovementState;
+
+
+
+
     public bool isJumping;
     public bool isFalling;
     public bool isRunning;
     public bool isIdle;
+    public bool isCrowlingIdle;
+    public bool isCrowlingRun;
+
+    private bool wasCrowling;
+    private float switcherCrowling;
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;   
-    private MeleeAttackManager meleeAttackManager;
 
     private float _fallSpeedYDampingChangeTreshold;
     private bool _wasBabyJamp;
@@ -51,8 +65,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float jumpMaxHight;   
     [SerializeField] public float jumpInterpolationSpeed;
     [SerializeField][Range(0, 1)] private float shortJumpFactor;
+    [SerializeField] private float cellingHight;
     private float extraHeight = 0.25f;
     private RaycastHit2D GroundHit;
+    private RaycastHit2D CeilingHit;
     #endregion
 
     #region MainMethods
@@ -61,7 +77,6 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         fliper = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
-        meleeAttackManager = GetComponent<MeleeAttackManager>();
 
         OnEnable();
 
@@ -88,14 +103,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        crowlInput();
         Idle();
         UptadeSound();
-        gravityUptade();
         Move();
         MovementStateCheck();
         DrawGroundCheck();
         Jump();
-        Debug.Log(rb.gravityScale);
+        rb.WakeUp();
+
+
+        Debug.Log("Switcher: " + switcherCrowling);
+        Debug.Log("Movement state: " + MovementState);
+        Debug.Log("Attack State:" + AttackState);
+        Debug.Log("Crowling State: " + isCrowlingIdle);
 
         #region CameraLerp
 
@@ -119,30 +140,21 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
-    #region AxisMovement
-    public void Move()
+    #region MainMovementMethods
+    private void Move()
     {
         dirX = playerControls.PlayerActions.Movement.ReadValue<Vector2>();
 
         rb.velocity = new Vector2(dirX.x * moveSpeed, rb.velocity.y);
 
-        if (dirX.x != 0 && isFalling == false && isJumping == false && IsGrounded() && AttackState == 1)
-        {
-            isRunning = false;
-            MovementState = 0;
-        }
-
-
-        if (dirX.x != 0 && isFalling == false && isJumping == false && IsGrounded() && AttackState == 0)
+        if (dirX.x != 0 && MovementState == 0 && AttackState == 0 && IsGrounded())
         {
             isRunning = true;
-            MovementState = 1;
         }
 
-        else
+        else if (dirX.x == 0)
         {
             isRunning = false;
-            MovementState = 0;
         }
 
         if (dirX.x < 0f)
@@ -155,26 +167,25 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void gravityUptade()
+    private void MovementStateCheck()
     {
-        if (meleeAttackManager.airAttack)
-        {
-            rb.gravityScale = attackGravity;
-        }
-        else
-        {
-            rb.gravityScale = 3f;
-        }
-    }
-    public void MovementStateCheck()
-    {
-        if (!isJumping && !isFalling && !isRunning)
+        if (!isJumping && !isFalling && !isRunning && !isCrowlingIdle && !isCrowlingRun)
         {
             MovementState = 0;
         }
+
+        if (isJumping || isRunning)
+        {
+            MovementState = 1;
+        }
+
+        if (isCrowlingIdle || isCrowlingRun)
+        {
+            MovementState = 3;
+        }
     }
 
-    public void Idle()
+    private void Idle()
     {
         if (MovementState == 0 && AttackState == 0 && IsGrounded())
         {
@@ -222,12 +233,11 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        if (playerControls.PlayerActions.Jump.WasPressedThisFrame() && coyoteCounter > 0 && !isJumping)
+        if (playerControls.PlayerActions.Jump.WasPressedThisFrame() && coyoteCounter > 0 && !isJumping && MovementState < 3 && MovementState >= 0)
         {
             isJumping = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             coyoteCounter = 0;
-            MovementState = 1;
         }
 
         if (playerControls.PlayerActions.Jump.WasReleasedThisFrame())
@@ -235,14 +245,13 @@ public class PlayerMovement : MonoBehaviour
             _wasBabyJamp = true;
         }
 
-        if (playerControls.PlayerActions.Jump.IsPressed() && !_wasBabyJamp)
+        if (playerControls.PlayerActions.Jump.IsPressed() && !_wasBabyJamp && MovementState < 3 && MovementState >= 0)
         {
             if (JumpTimeCounter > 0f)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 JumpTimeCounter -= Time.deltaTime;
                 coyoteCounter = 0;
-                MovementState = 1;
 
             }
 
@@ -273,7 +282,107 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    
+
+    #endregion
+
+    #region CrowlState
+
+
+    public bool onCeiling()
+    {
+        CeilingHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.up, cellingHight, jumpableGround);
+
+        if (CeilingHit.collider != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    private void crowlInput()
+    { 
+
+        switcherCrowling = playerControls.PlayerActions.Crowling.ReadValue<float>();
+
+        if (switcherCrowling > 0.5f)
+        {
+            if (isRunning)
+            {
+                MovementState = 3;
+            }
+
+            if(isIdle || isIdle && onCeiling())
+            {
+               isCrowlingIdle = true;
+             
+            }
+            else if(isRunning || isRunning && onCeiling())
+            {
+                isCrowlingRun = true;
+            }
+            if (isCrowlingIdle && dirX.x != 0)
+            {
+                isCrowlingRun = true;
+                isCrowlingIdle = false;
+            }
+            
+            if (isCrowlingRun && dirX.x == 0)
+            {
+                isCrowlingIdle = true;
+                isCrowlingRun = false;
+            }
+
+            if (dirX.x == 0 && onCeiling())
+            {
+                isCrowlingRun = false;
+                isCrowlingIdle = true;
+            }
+            if (isCrowlingIdle && onCeiling())
+            {
+                isCrowlingIdle = true;
+            }
+            if (isCrowlingRun && dirX.x != 0 && onCeiling())
+            {
+                isCrowlingRun = true;
+            }
+        }
+
+        else if (switcherCrowling < 0.5f)
+        {
+            if (!isRunning && !isIdle && !onCeiling())
+            {
+                isCrowlingIdle = false;
+                isCrowlingRun = false;
+            }
+            if (isRunning && !isIdle && onCeiling())
+            {
+                isCrowlingIdle = false;
+                isCrowlingRun = true;
+            }
+            if (isCrowlingRun && dirX.x != 0 && !onCeiling())
+            {
+                isCrowlingRun = false;
+            }
+            if (isCrowlingIdle && !onCeiling())
+            {
+                isCrowlingIdle = false;
+            }
+            if (dirX.x == 0 && onCeiling())
+            {
+                isCrowlingIdle = true;
+                isCrowlingRun = false;
+            }
+            if (dirX.x != 0 && onCeiling())
+            {
+                isCrowlingIdle = false;
+                isCrowlingRun = true;
+            }
+        }
+    }
     #endregion
 
     #region SoundPlayer

@@ -23,7 +23,7 @@ public class MeleeAttackManager : PlayerMovement
 
     private PlayerControls playerControls;
 
-    public bool airAttack;
+    private bool airAttack;
 
     public bool isUpwardAttackIdle;
     public bool isUpwardAttackJump;
@@ -82,7 +82,7 @@ public class MeleeAttackManager : PlayerMovement
     private void CheckInput()
     {
         //Checks to see if Backspace key is pressed which I define as melee attack; you can of course change this to anything you would want
-        if (playerControls.PlayerActions.AttackL.WasPressedThisFrame())
+        if (playerControls.PlayerActions.AttackL.WasPressedThisFrame() && character.MovementState < 3)
         {
             //Sets the meleeAttack bool to true
             meleeAttack = true;
