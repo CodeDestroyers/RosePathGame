@@ -5,13 +5,13 @@ using UnityEngine;
 public class TravelTO : MonoBehaviour
 {
     public Transform travelPoint;
-    public LightTriiger trigerCheck;
+    public LightTriiger1 trigerCheck;
     private Rigidbody2D rb;
     [SerializeField] private float speed;
     // Start is called before the first frame update
     void Start()
     {
-        trigerCheck = GetComponent<LightTriiger>();
+        trigerCheck = GetComponent<LightTriiger1>();
         rb = GetComponent<Rigidbody2D>();
     }
 

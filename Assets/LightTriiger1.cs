@@ -4,13 +4,15 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class LightTriiger : MonoBehaviour
+public class LightTriiger1 : MonoBehaviour
 {
     // Start is called before the first frame update
 
     private Animator animator;
     [SerializeField] UnityEvent onTriggerStay;
     [SerializeField] UnityEvent onTriggerExit;
+    [SerializeField] UnityEvent onTriggerEnter;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -20,6 +22,11 @@ public class LightTriiger : MonoBehaviour
     private void Update()
     {
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        onTriggerEnter.Invoke();
     }
 
     void OnTriggerStay2D(Collider2D collider)
@@ -35,3 +42,4 @@ public class LightTriiger : MonoBehaviour
 
     }
 }
+

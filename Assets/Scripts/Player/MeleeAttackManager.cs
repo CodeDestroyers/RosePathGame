@@ -210,5 +210,6 @@ public class MeleeAttackManager : PlayerMovement
         airAttack = false;
         character.AttackState = 0;
     }
+
     #endregion
 }

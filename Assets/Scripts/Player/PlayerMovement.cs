@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector2(dirX.x * moveSpeed, rb.velocity.y);
 
-        if (dirX.x != 0 && MovementState == 0 && AttackState == 0 && IsGrounded())
+        if (dirX.x != 0 && MovementState == 0 && AttackState == 0 && IsGrounded() && !isFalling && !isJumping)
         {
             isRunning = true;
         }
@@ -174,7 +174,12 @@ public class PlayerMovement : MonoBehaviour
             MovementState = 0;
         }
 
-        if (isJumping || isRunning)
+        if (isJumping || isFalling)
+        {
+            MovementState = 1;
+        }
+
+        if (isRunning)
         {
             MovementState = 1;
         }
@@ -381,7 +386,25 @@ public class PlayerMovement : MonoBehaviour
                 isCrowlingIdle = false;
                 isCrowlingRun = true;
             }
+            if (onCeiling() && isFalling || onCeiling() && isJumping)
+            {
+                isCrowlingIdle = false;
+                isCrowlingRun = false;
+            }
         }
+    }
+    #endregion
+
+
+    #region TriggerMethods
+
+    public void DragIpdateDown()
+    {
+        rb.drag = 5;
+    }
+    public void DragIpdateUp()
+    {
+        rb.drag = 10;
     }
     #endregion
 
