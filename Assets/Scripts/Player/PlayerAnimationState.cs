@@ -27,6 +27,8 @@ public class PlayerAnimationState : PlayerMovement
     private bool PLAYER_FORWARDATTACK_JUMP;
     private bool PLAYER_ISCROWLING_IDLE;
     private bool PLAYER_ISCROWLING_RUN;
+    private bool PLAYER_ISCLIMBING;
+    private bool PLAYER_ISCLIMBING_JUMP;
 
     #endregion
 
@@ -63,6 +65,8 @@ public class PlayerAnimationState : PlayerMovement
         PLAYER_FORWARDATTACK_JUMP = CombatStorage.isForwardAttackJump;
         PLAYER_ISCROWLING_IDLE = MovementStorage.isCrowlingIdle;
         PLAYER_ISCROWLING_RUN = MovementStorage.isCrowlingRun;
+        PLAYER_ISCLIMBING = MovementStorage.isWallSliding;
+        PLAYER_ISCLIMBING_JUMP = MovementStorage.isWallJumping;
 
     }
     void StateMachine()
@@ -70,6 +74,20 @@ public class PlayerAnimationState : PlayerMovement
         #region MovementAnimations
         if (CombatStorage.meleeAttack == false)
         {
+            if (PLAYER_ISCLIMBING_JUMP)
+            {
+                animator.Play("Player_Jump");
+                CurrentState = ("Player_IsClimbing_jump");
+                return;
+            }
+
+            if (PLAYER_ISCLIMBING)
+            {
+                animator.Play("Player_Climbing");
+                CurrentState = ("Player_isClimbing");
+                return;
+            }
+
             if (PLAYER_ISCROWLING_IDLE)
             {
                 animator.Play("Player_crow_idle");

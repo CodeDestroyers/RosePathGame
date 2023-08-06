@@ -71,6 +71,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EscMenue"",
+                    ""type"": ""Button"",
+                    ""id"": ""b1252990-de0e-4250-851b-9d37e5b4192d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -260,6 +269,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Crowling"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdab7e43-a8f9-4953-b9b4-f3c83befe298"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EscMenue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -279,6 +299,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_AttackL = m_PlayerActions.FindAction("AttackL", throwIfNotFound: true);
         m_PlayerActions_ChooseVerticalDerection = m_PlayerActions.FindAction("ChooseVerticalDerection", throwIfNotFound: true);
         m_PlayerActions_Crowling = m_PlayerActions.FindAction("Crowling", throwIfNotFound: true);
+        m_PlayerActions_EscMenue = m_PlayerActions.FindAction("EscMenue", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -345,6 +366,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_AttackL;
     private readonly InputAction m_PlayerActions_ChooseVerticalDerection;
     private readonly InputAction m_PlayerActions_Crowling;
+    private readonly InputAction m_PlayerActions_EscMenue;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -354,6 +376,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @AttackL => m_Wrapper.m_PlayerActions_AttackL;
         public InputAction @ChooseVerticalDerection => m_Wrapper.m_PlayerActions_ChooseVerticalDerection;
         public InputAction @Crowling => m_Wrapper.m_PlayerActions_Crowling;
+        public InputAction @EscMenue => m_Wrapper.m_PlayerActions_EscMenue;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -378,6 +401,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Crowling.started += instance.OnCrowling;
             @Crowling.performed += instance.OnCrowling;
             @Crowling.canceled += instance.OnCrowling;
+            @EscMenue.started += instance.OnEscMenue;
+            @EscMenue.performed += instance.OnEscMenue;
+            @EscMenue.canceled += instance.OnEscMenue;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -397,6 +423,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Crowling.started -= instance.OnCrowling;
             @Crowling.performed -= instance.OnCrowling;
             @Crowling.canceled -= instance.OnCrowling;
+            @EscMenue.started -= instance.OnEscMenue;
+            @EscMenue.performed -= instance.OnEscMenue;
+            @EscMenue.canceled -= instance.OnEscMenue;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -430,5 +459,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnAttackL(InputAction.CallbackContext context);
         void OnChooseVerticalDerection(InputAction.CallbackContext context);
         void OnCrowling(InputAction.CallbackContext context);
+        void OnEscMenue(InputAction.CallbackContext context);
     }
 }

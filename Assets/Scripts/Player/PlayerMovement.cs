@@ -41,18 +41,36 @@ public class PlayerMovement : MonoBehaviour
     public bool isIdle;
     public bool isCrowlingIdle;
     public bool isCrowlingRun;
+    public bool isOnWall;
 
     private bool wasCrowling;
     private float switcherCrowling;
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
-    public LayerMask enemyLayers;   
+    public LayerMask enemyLayers;
 
     private float _fallSpeedYDampingChangeTreshold;
     private bool _wasBabyJamp;
 
     [SerializeField] public float moveSpeed = 4f;
+    public BoxCollider2D flipCollision;
+
+    [Header("Climbing Settings")]
+
+    public bool isWallSliding;
+    private float wallSlidingSpeed = 2f;
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private LayerMask wallLayer;
+    public bool isWallJumping;
+    private float wallJumpingDirection;
+    private float wallJumpingTime = 0.2f;
+    private float wallJumpingCounter;
+    [SerializeField] private float wallJumpingDuration = 0.4f;
+    [SerializeField] private Vector2 wallJumpingPower = new Vector2(8f, 16f);
+    [SerializeField] private float WalljumpInterpolationSpeed = 1f;
+
+
 
     [Header("Jump Settings")]
     [SerializeField] private float attackGravity;
@@ -60,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float coyoteCounter;
     [SerializeField] private float coyoteTime;
     [SerializeField] private LayerMask jumpableGround;
+    [SerializeField] private LayerMask jumpableWall;
     [SerializeField] public float jumpForce;
     [SerializeField] public float jumpTime;
     [SerializeField] public float jumpMaxHight;   
@@ -67,8 +86,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField][Range(0, 1)] private float shortJumpFactor;
     [SerializeField] private float cellingHight;
     private float extraHeight = 0.25f;
+    [SerializeField] float slideSpeed = -0.2f; 
     private RaycastHit2D GroundHit;
     private RaycastHit2D CeilingHit;
+    private RaycastHit2D WallHit;
+
     #endregion
 
     #region MainMethods
@@ -77,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         fliper = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
-
         OnEnable();
 
         playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps);
@@ -102,21 +123,23 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Update()
-    {
-        crowlInput();
-        Idle();
-        UptadeSound();
-        Move();
-        MovementStateCheck();
-        DrawGroundCheck();
-        Jump();
-        rb.WakeUp();
+    {      
+        if (Time.timeScale > 0)
+        {
+            crowlInput();
+            Idle();
+            UptadeSound();
+            Move();
+            MovementStateCheck();
+            DrawGroundCheck();
+            Jump();
+            rb.WakeUp();
+            WallSlide();
+            WallJump();
+            Debug.Log("Is Wall Sliding? " + isWallSliding);
+            Debug.Log("Is Grounded? " + IsGrounded());
 
-
-        Debug.Log("Switcher: " + switcherCrowling);
-        Debug.Log("Movement state: " + MovementState);
-        Debug.Log("Attack State:" + AttackState);
-        Debug.Log("Crowling State: " + isCrowlingIdle);
+        }
 
         #region CameraLerp
 
@@ -157,12 +180,21 @@ public class PlayerMovement : MonoBehaviour
             isRunning = false;
         }
 
-        if (dirX.x < 0f)
+        else if (isFalling || isJumping)
+        {
+            isRunning = false;
+        }
+
+        if (dirX.x < 0f && !isWallJumping)
         {
             fliper.flipX = true;
+            coll.offset = new Vector2(-0.15f, -0.04311925f);
+
+
         }
-        if (dirX.x > 0f)
+        if (dirX.x > 0f && !isWallJumping)
         {
+            coll.offset = new Vector2(0.15f, -0.04311925f);
             fliper.flipX = false;
         }
     }
@@ -284,6 +316,15 @@ public class PlayerMovement : MonoBehaviour
             isFalling = true;
         }
 
+        if (isFalling)
+        {
+            rb.drag = Mathf.Lerp(rb.drag, 2f, 1f);
+        }
+        else
+        {
+            rb.drag = 5f;
+        }
+
 
     }
 
@@ -296,8 +337,9 @@ public class PlayerMovement : MonoBehaviour
     public bool onCeiling()
     {
         CeilingHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.up, cellingHight, jumpableGround);
+        WallHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.up, cellingHight, wallLayer);
 
-        if (CeilingHit.collider != null)
+        if (CeilingHit.collider != null && WallHit.collider != null)
         {
             return true;
         }
@@ -315,9 +357,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (switcherCrowling > 0.5f)
         {
-            if (isRunning)
+            wasCrowling = true;
+
+            if (wasCrowling || onCeiling())
             {
-                MovementState = 3;
+                moveSpeed = 2f;
             }
 
             if(isIdle || isIdle && onCeiling())
@@ -354,47 +398,114 @@ public class PlayerMovement : MonoBehaviour
             {
                 isCrowlingRun = true;
             }
-        }
-
-        else if (switcherCrowling < 0.5f)
-        {
-            if (!isRunning && !isIdle && !onCeiling())
-            {
-                isCrowlingIdle = false;
-                isCrowlingRun = false;
-            }
-            if (isRunning && !isIdle && onCeiling())
-            {
-                isCrowlingIdle = false;
-                isCrowlingRun = true;
-            }
-            if (isCrowlingRun && dirX.x != 0 && !onCeiling())
-            {
-                isCrowlingRun = false;
-            }
-            if (isCrowlingIdle && !onCeiling())
-            {
-                isCrowlingIdle = false;
-            }
-            if (dirX.x == 0 && onCeiling())
-            {
-                isCrowlingIdle = true;
-                isCrowlingRun = false;
-            }
             if (dirX.x != 0 && onCeiling())
             {
                 isCrowlingIdle = false;
                 isCrowlingRun = true;
             }
-            if (onCeiling() && isFalling || onCeiling() && isJumping)
+            if (!IsGrounded())
             {
                 isCrowlingIdle = false;
                 isCrowlingRun = false;
             }
         }
+        if (switcherCrowling < 0.5f)
+        {
+            wasCrowling = false;
+        }
+        if (dirX.x != 0 && onCeiling())
+        {
+            isCrowlingIdle = false;
+            isCrowlingRun = true;
+        }
+
+        if (dirX.x == 0 && onCeiling())
+        {
+            isCrowlingIdle = true;
+            isCrowlingRun = false;
+        }
+
+        if (!onCeiling() && !wasCrowling || onCeiling() && isFalling || onCeiling() && isJumping || !IsGrounded())
+        {
+            isCrowlingIdle = false;
+            isCrowlingRun = false;
+        }
+        if (!onCeiling() && !wasCrowling)
+        {
+            moveSpeed = 3.2f;
+        }
     }
     #endregion
 
+    #region ClimbingState
+
+    private bool IsWalled()
+    {
+        if (!isCrowlingIdle && !isCrowlingRun)
+        {
+            return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void WallSlide()
+    {
+        if (IsWalled() && !IsGrounded() && dirX.x != 0f )
+        {
+            isWallSliding = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+        }
+        else
+        {
+            isWallSliding = false;
+        }
+
+    }
+
+    private void WallJump()
+    {
+        if (isWallSliding)
+        {
+            isWallJumping = false;
+            if (fliper.flipX)
+            {
+                fliper.flipX = false;
+                wallJumpingDirection = 1f;
+            }
+            else
+            {
+                fliper.flipX = true;
+                wallJumpingDirection = -1f;
+            }
+            wallJumpingCounter = wallJumpingTime;
+
+            CancelInvoke(nameof(StopWallJumping));
+        }
+        else
+        {
+            wallJumpingCounter -= Time.deltaTime;
+        }
+        if (playerControls.PlayerActions.Jump.WasPressedThisFrame() && wallJumpingCounter > 0f)
+        {
+            isFalling = false;
+            isJumping = false;
+            isWallJumping = true;
+            rb.velocity = new Vector2(Mathf.Lerp(wallJumpingDirection * wallJumpingPower.x / 2, wallJumpingDirection * wallJumpingPower.x, WalljumpInterpolationSpeed), Mathf.Lerp(wallJumpingDirection * wallJumpingPower.y / 2, wallJumpingDirection * wallJumpingPower.y, WalljumpInterpolationSpeed)) ;
+            wallJumpingCounter = 0f;
+            Invoke(nameof(StopWallJumping), wallJumpingDuration);
+        }
+    }
+
+    private void StopWallJumping()
+    {
+        isWallJumping = false;
+    }
+
+
+    #endregion
 
     #region TriggerMethods
 
