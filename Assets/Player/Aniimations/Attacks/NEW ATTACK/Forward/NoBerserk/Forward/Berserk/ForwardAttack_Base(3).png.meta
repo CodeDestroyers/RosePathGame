@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d245c03d85f08774b943c822ec89e2d4
+guid: cea5e00878a8e8f48b8398825eb92f7a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,211 +123,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ForwardAttack_Base(2)-sheet_0
+      name: ForwardAttack_Base(3)_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 36
         width: 256
-        height: 96
+        height: 216
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd84d2fe312b89443bf6bef11f76a7fd
-      internalID: 910813425
+      spriteID: 3c391095c4b00864a8aea5e06236d35b
+      internalID: 1220370503
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ForwardAttack_Base(2)-sheet_1
+      name: ForwardAttack_Base(3)_1
       rect:
         serializedVersion: 2
         x: 256
-        y: 0
+        y: 36
         width: 256
-        height: 96
+        height: 220
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9979183ba886f74f9d077ca1892e84f
-      internalID: 951370430
+      spriteID: f7930c9a17667c6499aa940afd84c1db
+      internalID: -1336870280
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ForwardAttack_Base(2)-sheet_2
+      name: ForwardAttack_Base(3)_2
       rect:
         serializedVersion: 2
         x: 512
-        y: 0
+        y: 36
         width: 256
-        height: 96
+        height: 220
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcbb58dacbaff5242ad1e3c7c17f7f65
-      internalID: 154127553
+      spriteID: dcdea86d65c6e534a9c0a68534753603
+      internalID: -1746320554
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ForwardAttack_Base(2)-sheet_3
+      name: ForwardAttack_Base(3)_3
       rect:
         serializedVersion: 2
-        x: 768
-        y: 0
+        x: 773
+        y: 36
         width: 256
-        height: 96
+        height: 220
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0efbe5e9995eac44af4627955a23440
-      internalID: -815118997
+      spriteID: d6c5defb9e4241948a233a7f60d5a631
+      internalID: -1631484626
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ForwardAttack_Base(2)-sheet_4
+      name: ForwardAttack_Base(3)_4
       rect:
         serializedVersion: 2
         x: 1024
-        y: 0
+        y: 36
         width: 256
-        height: 96
+        height: 220
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c40557a883b2f5642b8c241f16ec0618
-      internalID: 1422549903
+      spriteID: 4d1834e3f32cd0c4782c120adf75bc66
+      internalID: 1020899493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ForwardAttack_Base(2)-sheet_5
+      name: ForwardAttack_Base(3)_5
       rect:
         serializedVersion: 2
         x: 1280
-        y: 0
+        y: 36
         width: 256
-        height: 96
+        height: 220
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a129fb7d82c1d24e96723e63002ca66
-      internalID: 1601741037
+      spriteID: 4b00c51f733d71140b9cecac48cb4cad
+      internalID: -1492611041
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ForwardAttack_Base(2)-sheet_6
+      name: ForwardAttack_Base(3)_6
       rect:
         serializedVersion: 2
         x: 1536
-        y: 0
+        y: 36
         width: 256
-        height: 96
+        height: 220
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c72dd18529d08b74f95364aba5887ee7
-      internalID: 709474015
+      spriteID: b7ed36129d888fe4187081e72a02e6a3
+      internalID: 175442113
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ForwardAttack_Base(2)-sheet_7
+      name: ForwardAttack_Base(3)_7
       rect:
         serializedVersion: 2
         x: 1792
-        y: 0
+        y: 36
         width: 256
-        height: 96
+        height: 220
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bf67f84ae0dfe04387eaa00922ba6e6
-      internalID: 863739442
+      spriteID: c6426d71851c15b43a18df3cd707d7ae
+      internalID: -516837130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ForwardAttack_Base(2)-sheet_8
+      name: ForwardAttack_Base(3)_8
       rect:
         serializedVersion: 2
         x: 2048
-        y: 0
+        y: 36
         width: 256
-        height: 96
+        height: 220
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ea0f0dabd66b744bb6ff162a052cb1a
-      internalID: 2036021780
+      spriteID: bedb2a5855459e644864511bf1d548fc
+      internalID: -1551664159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ForwardAttack_Base(2)-sheet_9
+      name: ForwardAttack_Base(3)_9
       rect:
         serializedVersion: 2
         x: 2304
-        y: 0
+        y: 36
         width: 256
-        height: 96
+        height: 220
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 844cebcff9a77cb49a03d01cd8b2c24d
-      internalID: -1080316937
+      spriteID: 2b2f974886f182c4780f9f88635de9a7
+      internalID: 1318555887
       vertices: []
       indices: 
       edges: []
@@ -343,16 +343,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ForwardAttack_Base(2)-sheet_0: 910813425
-      ForwardAttack_Base(2)-sheet_1: 951370430
-      ForwardAttack_Base(2)-sheet_2: 154127553
-      ForwardAttack_Base(2)-sheet_3: -815118997
-      ForwardAttack_Base(2)-sheet_4: 1422549903
-      ForwardAttack_Base(2)-sheet_5: 1601741037
-      ForwardAttack_Base(2)-sheet_6: 709474015
-      ForwardAttack_Base(2)-sheet_7: 863739442
-      ForwardAttack_Base(2)-sheet_8: 2036021780
-      ForwardAttack_Base(2)-sheet_9: -1080316937
+      ForwardAttack_Base(3)_0: 1220370503
+      ForwardAttack_Base(3)_1: -1336870280
+      ForwardAttack_Base(3)_2: -1746320554
+      ForwardAttack_Base(3)_3: -1631484626
+      ForwardAttack_Base(3)_4: 1020899493
+      ForwardAttack_Base(3)_5: -1492611041
+      ForwardAttack_Base(3)_6: 175442113
+      ForwardAttack_Base(3)_7: -516837130
+      ForwardAttack_Base(3)_8: -1551664159
+      ForwardAttack_Base(3)_9: 1318555887
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
