@@ -24,6 +24,7 @@ public class MeleeAttackManager : PlayerMovement
     private PlayerControls playerControls;
 
     private bool airAttack;
+    public int comboState;
 
     public bool isUpwardAttackIdle;
     public bool isUpwardAttackJump;
@@ -32,6 +33,8 @@ public class MeleeAttackManager : PlayerMovement
     public bool isForwardAttack;
     public bool isForwardAttackRun;
     public bool isForwardAttackJump;
+    public bool isForwardComboOne;
+    public bool isForwardComboTwo;
 
     //The Animator component on the player
     private Animator anim;
@@ -148,8 +151,10 @@ public class MeleeAttackManager : PlayerMovement
             }
 
 
+            #region comboForward
+
             //Checks to see if meleeAttack is true and not pressing any direction
-            if ((meleeAttack && moveVal.y == 0 && character.AttackState == 0)
+            if ((meleeAttack && moveVal.y == 0 && character.AttackState == 0 && comboState == 0)
                 //OR if melee attack is true and pressing down while grounded
                 || meleeAttack && moveVal.y < 0 && character.IsGrounded())
             {
@@ -170,7 +175,7 @@ public class MeleeAttackManager : PlayerMovement
                 {
                     character.AttackState = 1;
                     isForwardAttack = true;
-                    isForwardAttackRun = false;
+                    isForwardAttackRun = false;  
                 }
 
                 else
@@ -192,11 +197,42 @@ public class MeleeAttackManager : PlayerMovement
 
             }
 
-        }
-       
+          
+            #endregion
 
-        
+        }
+
+        if (isForwardAttack && comboState == 1)
+        {
+            if (playerControls.PlayerActions.AttackL.WasPressedThisFrame())
+            {
+                isForwardComboOne = true;
+                isForwardAttack = false;
+            }
+        }
+
+        if (isForwardComboOne && comboState == 2)
+        {
+            if (playerControls.PlayerActions.AttackL.WasPressedThisFrame())
+            {
+                isForwardComboTwo = true;
+                isForwardComboOne = false;
+            }
+        }
+
+
+
     }
+
+    public void comboStateOne()
+    {
+        comboState = 1;
+    }
+    public void comboStateTwo()
+    {
+        comboState = 2;
+    }
+
     public void AttackEnd()
     {
         isDownwardAttack = false;
@@ -208,6 +244,9 @@ public class MeleeAttackManager : PlayerMovement
         isForwardAttackJump = false;
         meleeAttack = false;
         airAttack = false;
+        isForwardComboOne = false;
+        isForwardComboTwo = false;
+        comboState = 0;
         character.AttackState = 0;
     }
 

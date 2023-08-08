@@ -81,7 +81,7 @@ public class MeleeWeapon : MonoBehaviour
             collided = true;
         }
         //Checks to see if the melee attack is a standard melee attack
-        if ((moveVal.y <= 0 && character.IsGrounded()) || moveVal.y == 0)
+        if ((moveVal.y <= 0 && character.IsGrounded()) && meleeAttackManager.comboState < 2 || moveVal.y == 0 && meleeAttackManager.comboState < 2)
         {
             //Checks to see if the player is facing left; if you don't have a character script, the commented out line of code can also check for that
             if (gameObject.transform.localScale.x == -1) //(transform.parent.localScale.x < 0)
@@ -115,7 +115,7 @@ public class MeleeWeapon : MonoBehaviour
                 //Propels the player upwards by the amount of upwardsForce in the meleeAttackManager script
                 rb.AddForce(direction * meleeAttackManager.upwardsForce);
             }
-            else
+            else if (meleeAttackManager.comboState < 2)
             {
                 //Propels the player backwards by the amount of horizontalForce in the meleeAttackManager script
                 rb.AddForce(direction * meleeAttackManager.defaultForce);

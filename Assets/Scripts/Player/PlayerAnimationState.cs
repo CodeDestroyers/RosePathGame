@@ -181,6 +181,20 @@ public class PlayerAnimationState : PlayerMovement
             animator.Play("Attack_Forward_Jump");
             return;
         }
+
+        if (CombatStorage.isForwardComboOne)
+        {
+            CurrentState = ("Combo Attack One");
+            animator.Play("Forward_Attack2");
+            return;
+        }
+
+        if (CombatStorage.isForwardComboTwo)
+        {
+            CurrentState = ("Combo Attack One");
+            animator.Play("Forward_Attack3");
+            return;
+        }
         #endregion
     }
 

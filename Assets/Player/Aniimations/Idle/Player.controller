@@ -234,10 +234,10 @@ AnimatorStateMachine:
     m_Position: {x: 300, y: 610, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3249005300936290492}
-    m_Position: {x: 335, y: 675, z: 0}
+    m_Position: {x: 300, y: 680, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3763112137148356318}
-    m_Position: {x: 370, y: 740, z: 0}
+    m_Position: {x: 300, y: 740, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -255,7 +255,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Forward2
+  m_Name: Forward_Attack2
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

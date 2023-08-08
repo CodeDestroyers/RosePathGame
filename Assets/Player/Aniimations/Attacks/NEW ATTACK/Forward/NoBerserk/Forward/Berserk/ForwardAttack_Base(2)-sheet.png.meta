@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd84d2fe312b89443bf6bef11f76a7fd
-      internalID: 910813425
+      spriteID: ec230e3ec59a5434ea01f9c132da1738
+      internalID: 1037728575
       vertices: []
       indices: 
       edges: []
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9979183ba886f74f9d077ca1892e84f
-      internalID: 951370430
+      spriteID: ec6c7c64b29c0e54bb1cc5d7a7165e40
+      internalID: -735155232
       vertices: []
       indices: 
       edges: []
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcbb58dacbaff5242ad1e3c7c17f7f65
-      internalID: 154127553
+      spriteID: e2307a59a352e4444ae8a7fce9e9a2af
+      internalID: -781092762
       vertices: []
       indices: 
       edges: []
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0efbe5e9995eac44af4627955a23440
-      internalID: -815118997
+      spriteID: 966a835a93660f24391cc95d9396ffb8
+      internalID: 1349068570
       vertices: []
       indices: 
       edges: []
@@ -221,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c40557a883b2f5642b8c241f16ec0618
-      internalID: 1422549903
+      spriteID: 6163e4f4722380c4797f03d9e7c49b6e
+      internalID: -528669644
       vertices: []
       indices: 
       edges: []
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a129fb7d82c1d24e96723e63002ca66
-      internalID: 1601741037
+      spriteID: 6db5e511295cbe846ac7daa4935f5e7a
+      internalID: -1371020277
       vertices: []
       indices: 
       edges: []
@@ -263,8 +263,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c72dd18529d08b74f95364aba5887ee7
-      internalID: 709474015
+      spriteID: 37ae58c71e22b374d8cec4418ddb026a
+      internalID: -1850047409
       vertices: []
       indices: 
       edges: []
@@ -284,8 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bf67f84ae0dfe04387eaa00922ba6e6
-      internalID: 863739442
+      spriteID: a415b7ca484874141b9c1a4d236e4b99
+      internalID: -2124345983
       vertices: []
       indices: 
       edges: []
@@ -305,8 +305,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ea0f0dabd66b744bb6ff162a052cb1a
-      internalID: 2036021780
+      spriteID: 86fc6626663cb1c40beb2cddfc0fcd97
+      internalID: 476971105
       vertices: []
       indices: 
       edges: []
@@ -326,8 +326,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 844cebcff9a77cb49a03d01cd8b2c24d
-      internalID: -1080316937
+      spriteID: 0685557e46cea98479f262861e2420e0
+      internalID: 301244326
       vertices: []
       indices: 
       edges: []
@@ -343,16 +343,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ForwardAttack_Base(2)-sheet_0: 910813425
-      ForwardAttack_Base(2)-sheet_1: 951370430
-      ForwardAttack_Base(2)-sheet_2: 154127553
-      ForwardAttack_Base(2)-sheet_3: -815118997
-      ForwardAttack_Base(2)-sheet_4: 1422549903
-      ForwardAttack_Base(2)-sheet_5: 1601741037
-      ForwardAttack_Base(2)-sheet_6: 709474015
-      ForwardAttack_Base(2)-sheet_7: 863739442
-      ForwardAttack_Base(2)-sheet_8: 2036021780
-      ForwardAttack_Base(2)-sheet_9: -1080316937
+      ForwardAttack_Base(2)-sheet_0: 1037728575
+      ForwardAttack_Base(2)-sheet_1: -735155232
+      ForwardAttack_Base(2)-sheet_2: -781092762
+      ForwardAttack_Base(2)-sheet_3: 1349068570
+      ForwardAttack_Base(2)-sheet_4: -528669644
+      ForwardAttack_Base(2)-sheet_5: -1371020277
+      ForwardAttack_Base(2)-sheet_6: -1850047409
+      ForwardAttack_Base(2)-sheet_7: -2124345983
+      ForwardAttack_Base(2)-sheet_8: 476971105
+      ForwardAttack_Base(2)-sheet_9: 301244326
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
