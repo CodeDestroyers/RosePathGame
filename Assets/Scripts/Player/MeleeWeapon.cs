@@ -84,7 +84,7 @@ public class MeleeWeapon : MonoBehaviour
         if ((moveVal.y <= 0 && character.IsGrounded()) || moveVal.y == 0)
         {
             //Checks to see if the player is facing left; if you don't have a character script, the commented out line of code can also check for that
-            if (character.fliper.flipX == true) //(transform.parent.localScale.x < 0)
+            if (gameObject.transform.localScale.x == -1) //(transform.parent.localScale.x < 0)
             {
                 //Sets the direction variable to right
                 direction = Vector2.right;

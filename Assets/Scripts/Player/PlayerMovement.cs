@@ -9,10 +9,11 @@ using System;
 using JetBrains.Annotations;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
 {
-    #region variables
+    #region Variables
     private Rigidbody2D rb;
     private BoxCollider2D coll;
     public SpriteRenderer fliper;
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 dirY;
     private EventInstance playerFootsteps;
     private PlayerControls playerControls;
+    private float flip;
 
     public int AttackState;
     public int ZeroState;
@@ -60,16 +62,18 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isWallSliding;
     private float wallSlidingSpeed = 2f;
-    [SerializeField] private Transform wallCheck;
-    [SerializeField] private LayerMask wallLayer;
+
     public bool isWallJumping;
     private float wallJumpingDirection;
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
-    [SerializeField] private float wallJumpingDuration = 0.4f;
-    [SerializeField] private Vector2 wallJumpingPower = new Vector2(8f, 16f);
-    [SerializeField] private float WalljumpInterpolationSpeed = 1f;
+    private float wallJumpingDuration = 0.4f;
+    private Vector2 wallJumpingPower = new Vector2(8f, 16f);
+    private bool isFacingRight = true;
 
+
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private LayerMask wallLayer;
 
 
     [Header("Jump Settings")]
@@ -78,7 +82,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float coyoteCounter;
     [SerializeField] private float coyoteTime;
     [SerializeField] private LayerMask jumpableGround;
-    [SerializeField] private LayerMask jumpableWall;
     [SerializeField] public float jumpForce;
     [SerializeField] public float jumpTime;
     [SerializeField] public float jumpMaxHight;   
@@ -86,10 +89,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField][Range(0, 1)] private float shortJumpFactor;
     [SerializeField] private float cellingHight;
     private float extraHeight = 0.25f;
-    [SerializeField] float slideSpeed = -0.2f; 
     private RaycastHit2D GroundHit;
     private RaycastHit2D CeilingHit;
-    private RaycastHit2D WallHit;
 
     #endregion
 
@@ -136,8 +137,16 @@ public class PlayerMovement : MonoBehaviour
             rb.WakeUp();
             WallSlide();
             WallJump();
-            Debug.Log("Is Wall Sliding? " + isWallSliding);
+            Debug.Log("Is Wall Jumping? " + isWallJumping);
             Debug.Log("Is Grounded? " + IsGrounded());
+            Debug.Log("Movement state: " + MovementState);
+            Debug.Log("Is walled? " + IsWalled());
+
+
+            if (!isWallJumping)
+            {
+                Flip();
+            }
 
         }
 
@@ -159,6 +168,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (!isWallJumping)
+        {
+            rb.velocity = new Vector2(dirX.x * moveSpeed, rb.velocity.y);
+        }
     
     }
     #endregion
@@ -166,37 +179,48 @@ public class PlayerMovement : MonoBehaviour
     #region MainMovementMethods
     private void Move()
     {
-        dirX = playerControls.PlayerActions.Movement.ReadValue<Vector2>();
-
-        rb.velocity = new Vector2(dirX.x * moveSpeed, rb.velocity.y);
-
-        if (dirX.x != 0 && MovementState == 0 && AttackState == 0 && IsGrounded() && !isFalling && !isJumping)
+        if (AttackState == 0)
         {
-            isRunning = true;
+            dirX = playerControls.PlayerActions.Movement.ReadValue<Vector2>();
+
+            rb.velocity = new Vector2(dirX.x * moveSpeed, rb.velocity.y);
+
+            if (dirX.x != 0 && MovementState == 0 && AttackState == 0 && IsGrounded() && !isFalling && !isJumping)
+            {
+                isRunning = true;
+            }
+
+            else if (dirX.x == 0)
+            {
+                isRunning = false;
+            }
+
+            else if (isFalling || isJumping)
+            {
+                isRunning = false;
+            }
+
+            if (MovementState == 0)
+            {
+                isWallJumping = false;
+            }
         }
 
-        else if (dirX.x == 0)
+        /*if (dirX.x < 0f && !isWallJumping)
         {
-            isRunning = false;
-        }
-
-        else if (isFalling || isJumping)
-        {
-            isRunning = false;
-        }
-
-        if (dirX.x < 0f && !isWallJumping)
-        {
-            fliper.flipX = true;
+            gameObject.transform.localScale = new Vector3(-1f, 1f, 1f);
             coll.offset = new Vector2(-0.15f, -0.04311925f);
+            
 
 
         }
         if (dirX.x > 0f && !isWallJumping)
         {
+            gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
             coll.offset = new Vector2(0.15f, -0.04311925f);
-            fliper.flipX = false;
-        }
+            
+            
+        }*/
     }
 
     private void MovementStateCheck()
@@ -224,9 +248,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Idle()
     {
-        if (MovementState == 0 && AttackState == 0 && IsGrounded())
+        if (MovementState == 0 && AttackState == 0 && IsGrounded() && !isCrowlingIdle && !isCrowlingRun && !onCeiling())
         {
             isIdle = true;
+        }
+        else if (onCeiling())
+        {
+            isIdle = false;
         }
         else
         {
@@ -284,6 +312,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerControls.PlayerActions.Jump.IsPressed() && !_wasBabyJamp && MovementState < 3 && MovementState >= 0)
         {
+            
             if (JumpTimeCounter > 0f)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -311,7 +340,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        if (!IsGrounded() && !isJumping)
+        if (!IsGrounded() && !isJumping && !isWallJumping && !isWallSliding && MovementState < 3)
         {
             isFalling = true;
         }
@@ -337,9 +366,8 @@ public class PlayerMovement : MonoBehaviour
     public bool onCeiling()
     {
         CeilingHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.up, cellingHight, jumpableGround);
-        WallHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.up, cellingHight, wallLayer);
 
-        if (CeilingHit.collider != null && WallHit.collider != null)
+        if (CeilingHit.collider != null)
         {
             return true;
         }
@@ -358,55 +386,22 @@ public class PlayerMovement : MonoBehaviour
         if (switcherCrowling > 0.5f)
         {
             wasCrowling = true;
+            MovementState = 3;
 
-            if (wasCrowling || onCeiling())
+            if (wasCrowling)
             {
                 moveSpeed = 2f;
             }
 
-            if(isIdle || isIdle && onCeiling())
-            {
-               isCrowlingIdle = true;
-             
-            }
-            else if(isRunning || isRunning && onCeiling())
-            {
-                isCrowlingRun = true;
-            }
-            if (isCrowlingIdle && dirX.x != 0)
+            if (wasCrowling && dirX.x != 0)
             {
                 isCrowlingRun = true;
                 isCrowlingIdle = false;
             }
-            
-            if (isCrowlingRun && dirX.x == 0)
-            {
-                isCrowlingIdle = true;
-                isCrowlingRun = false;
-            }
-
-            if (dirX.x == 0 && onCeiling())
+            if (wasCrowling && dirX.x == 0)
             {
                 isCrowlingRun = false;
                 isCrowlingIdle = true;
-            }
-            if (isCrowlingIdle && onCeiling())
-            {
-                isCrowlingIdle = true;
-            }
-            if (isCrowlingRun && dirX.x != 0 && onCeiling())
-            {
-                isCrowlingRun = true;
-            }
-            if (dirX.x != 0 && onCeiling())
-            {
-                isCrowlingIdle = false;
-                isCrowlingRun = true;
-            }
-            if (!IsGrounded())
-            {
-                isCrowlingIdle = false;
-                isCrowlingRun = false;
             }
         }
         if (switcherCrowling < 0.5f)
@@ -430,9 +425,16 @@ public class PlayerMovement : MonoBehaviour
             isCrowlingIdle = false;
             isCrowlingRun = false;
         }
-        if (!onCeiling() && !wasCrowling)
+        if (!onCeiling() && !wasCrowling && MovementState == 3)
         {
             moveSpeed = 3.2f;
+            MovementState = 0;
+        }
+
+        if (IsGrounded() && !onCeiling() && !wasCrowling)
+        {
+            isCrowlingIdle = false;
+            isCrowlingRun = false;
         }
     }
     #endregion
@@ -441,19 +443,12 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsWalled()
     {
-        if (!isCrowlingIdle && !isCrowlingRun)
-        {
-            return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
-        }
-        else
-        {
-            return false;
-        }
+        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
     }
 
     private void WallSlide()
     {
-        if (IsWalled() && !IsGrounded() && dirX.x != 0f )
+        if (IsWalled() && !IsGrounded() && dirX.x != 0f)
         {
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
@@ -462,7 +457,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isWallSliding = false;
         }
-
     }
 
     private void WallJump()
@@ -470,16 +464,7 @@ public class PlayerMovement : MonoBehaviour
         if (isWallSliding)
         {
             isWallJumping = false;
-            if (fliper.flipX)
-            {
-                fliper.flipX = false;
-                wallJumpingDirection = 1f;
-            }
-            else
-            {
-                fliper.flipX = true;
-                wallJumpingDirection = -1f;
-            }
+            wallJumpingDirection = -transform.localScale.x;
             wallJumpingCounter = wallJumpingTime;
 
             CancelInvoke(nameof(StopWallJumping));
@@ -488,13 +473,21 @@ public class PlayerMovement : MonoBehaviour
         {
             wallJumpingCounter -= Time.deltaTime;
         }
+
         if (playerControls.PlayerActions.Jump.WasPressedThisFrame() && wallJumpingCounter > 0f)
         {
-            isFalling = false;
-            isJumping = false;
             isWallJumping = true;
-            rb.velocity = new Vector2(Mathf.Lerp(wallJumpingDirection * wallJumpingPower.x / 2, wallJumpingDirection * wallJumpingPower.x, WalljumpInterpolationSpeed), Mathf.Lerp(wallJumpingDirection * wallJumpingPower.y / 2, wallJumpingDirection * wallJumpingPower.y, WalljumpInterpolationSpeed)) ;
+            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
             wallJumpingCounter = 0f;
+
+            if (transform.localScale.x != wallJumpingDirection)
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= 1f;
+                transform.localScale = localScale;
+            }
+
             Invoke(nameof(StopWallJumping), wallJumpingDuration);
         }
     }
@@ -503,6 +496,19 @@ public class PlayerMovement : MonoBehaviour
     {
         isWallJumping = false;
     }
+
+    private void Flip()
+    {
+        if (isFacingRight && dirX.x < 0f || !isFacingRight && dirX.x > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
+    }
+
+
 
 
     #endregion
