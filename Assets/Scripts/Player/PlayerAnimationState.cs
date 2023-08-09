@@ -66,7 +66,6 @@ public class PlayerAnimationState : PlayerMovement
         PLAYER_ISCROWLING_IDLE = MovementStorage.isCrowlingIdle;
         PLAYER_ISCROWLING_RUN = MovementStorage.isCrowlingRun;
         PLAYER_ISCLIMBING = MovementStorage.isWallSliding;
-        PLAYER_ISCLIMBING_JUMP = MovementStorage.isWallJumping;
 
     }
     void StateMachine()
@@ -74,13 +73,6 @@ public class PlayerAnimationState : PlayerMovement
         #region MovementAnimations
         if (CombatStorage.meleeAttack == false)
         {
-            if (PLAYER_ISCLIMBING_JUMP)
-            {
-                animator.Play("Player_Jump");
-                CurrentState = ("Player_IsClimbing_jump");
-                return;
-            }
-
             if (PLAYER_ISCLIMBING)
             {
                 animator.Play("Player_Climbing");

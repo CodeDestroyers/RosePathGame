@@ -70,8 +70,6 @@ public class MeleeAttackManager : PlayerMovement
     {
         //Method that checks to see what keys are being pressed
         CheckInput();
-        Debug.Log(moveVal);
-        Debug.Log(AttackState);
     }
 
     private void OnEnable()
@@ -206,7 +204,7 @@ public class MeleeAttackManager : PlayerMovement
 
         }
 
-        if (isForwardAttack && comboState == 1)
+        if (isForwardAttack && comboState == 1 && berserkMode)
         {
             if (playerControls.PlayerActions.AttackL.WasPressedThisFrame())
             {
@@ -216,7 +214,7 @@ public class MeleeAttackManager : PlayerMovement
             }
         }
 
-        if (isForwardComboOne && comboState == 2)
+        if (isForwardComboOne && comboState == 2 && berserkMode)
         {
             if (playerControls.PlayerActions.AttackL.WasPressedThisFrame())
             {

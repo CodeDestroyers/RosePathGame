@@ -38,6 +38,9 @@ public class BossOne : MonoBehaviour
     [SerializeField] private bool bossRun;
     [SerializeField] private bool bossIdle;
 
+    public string collisionTag;
+    public int bossAttackDamage = 25;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -83,7 +86,6 @@ public class BossOne : MonoBehaviour
 
         if(hit.collider != null && !attackState && !attackStateBoss)
         {
-            playerHealt = hit.transform.GetComponent<PlayerMovement>().playerHP;
             //bossIdle = false;
             //bossRun = false;
         }
@@ -113,6 +115,15 @@ public class BossOne : MonoBehaviour
             attackStateBoss = true;
             bossRun = false;
             bossIdle = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == collisionTag)
+        {
+            Health health = collision.gameObject.GetComponent<Health>();
+            health.TakeHit(bossAttackDamage);
         }
     }
 

@@ -9,6 +9,7 @@ using System;
 using JetBrains.Annotations;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Animations;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -51,8 +52,12 @@ public class PlayerMovement : MonoBehaviour
 
     #region ExpenseVariable
 
-    public int playerHP = 100;
     public int playerMoney;
+
+    public int berserkCounter;
+    private int berkserkCounterMin = 0;
+    private int berserkCounterMax = 100;
+    public bool berserkMode;
 
     #endregion
 
@@ -66,17 +71,9 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D flipCollision;
 
     [Header("Climbing Settings")]
-
+    private float wallJumpCooldown;
     public bool isWallSliding;
-    private float wallSlidingSpeed = 2f;
 
-    public bool isWallJumping;
-    private float wallJumpingDirection;
-    private float wallJumpingTime = 0.2f;
-    private float wallJumpingCounter;
-    private float wallJumpingDuration = 0.4f;
-    private Vector2 wallJumpingPower = new Vector2(8f, 16f);
-    private bool isFacingRight = true;
 
 
     [SerializeField] private Transform wallCheck;
@@ -104,9 +101,7 @@ public class PlayerMovement : MonoBehaviour
     #region MainMethods
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         fliper = GetComponent<SpriteRenderer>();
-        coll = GetComponent<BoxCollider2D>();
         OnEnable();
 
         playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps);
@@ -117,7 +112,8 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
-        
+        rb = GetComponent<Rigidbody2D>();
+        coll = GetComponent<BoxCollider2D>();
     }
 
     private void OnEnable()
@@ -142,19 +138,9 @@ public class PlayerMovement : MonoBehaviour
             DrawGroundCheck();
             Jump();
             rb.WakeUp();
-            WallSlide();
-            WallJump();
-            Debug.Log("Is Wall Jumping? " + isWallJumping);
-            Debug.Log("Is Grounded? " + IsGrounded());
             Debug.Log("Movement state: " + MovementState);
-            Debug.Log("Is walled? " + IsWalled());
-            Debug.Log(playerHP);
-
-
-            if (!isWallJumping)
-            {
-                Flip();
-            }
+            wallCheckFunc();
+          
 
         }
 
@@ -176,10 +162,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!isWallJumping)
-        {
-            rb.velocity = new Vector2(dirX.x * moveSpeed, rb.velocity.y);
-        }
     
     }
     #endregion
@@ -192,6 +174,15 @@ public class PlayerMovement : MonoBehaviour
             dirX = playerControls.PlayerActions.Movement.ReadValue<Vector2>();
 
             rb.velocity = new Vector2(dirX.x * moveSpeed, rb.velocity.y);
+
+            if (dirX.x > 0.01f)
+            {
+                transform.localScale = Vector3.one;
+            }
+            else if (dirX.x < -0.01f)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
 
             if (dirX.x != 0 && MovementState == 0 && AttackState == 0 && IsGrounded() && !isFalling && !isJumping)
             {
@@ -207,28 +198,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 isRunning = false;
             }
-
-            if (MovementState == 0)
-            {
-                isWallJumping = false;
-            }
         }
-
-        /*if (dirX.x < 0f && !isWallJumping)
-        {
-            gameObject.transform.localScale = new Vector3(-1f, 1f, 1f);
-            coll.offset = new Vector2(-0.15f, -0.04311925f);
-            
-
-
-        }
-        if (dirX.x > 0f && !isWallJumping)
-        {
-            gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-            coll.offset = new Vector2(0.15f, -0.04311925f);
-            
-            
-        }*/
     }
 
     private void MovementStateCheck()
@@ -299,18 +269,31 @@ public class PlayerMovement : MonoBehaviour
             JumpTimeCounter = jumpTime;
             _wasBabyJamp = false;
         }
-        
-        if (!IsGrounded() && isFalling)
+
+        if (!IsGrounded() && isFalling && !onWall())
         {
             coyoteCounter -= Time.deltaTime;
 
         }
 
-        if (playerControls.PlayerActions.Jump.WasPressedThisFrame() && coyoteCounter > 0 && !isJumping && MovementState < 3 && MovementState >= 0)
+        if (playerControls.PlayerActions.Jump.WasPressedThisFrame() && coyoteCounter > 0 && !isJumping && MovementState < 3 && MovementState >= 0 && IsGrounded())
         {
             isJumping = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             coyoteCounter = 0;
+        }
+
+        else if (playerControls.PlayerActions.Jump.WasPressedThisFrame()&& onWall() && !IsGrounded())
+        {
+            if (dirX.x == 0)
+            {
+                rb.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 20, 0);
+                transform.localScale = new Vector3(-Mathf.Sign(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            else
+             rb.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 6, 12);
+            
+            wallJumpCooldown = 0;
         }
 
         if (playerControls.PlayerActions.Jump.WasReleasedThisFrame())
@@ -348,7 +331,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        if (!IsGrounded() && !isJumping && !isWallJumping && !isWallSliding && MovementState < 3)
+        if (!IsGrounded() && !isJumping && !isWallSliding && MovementState < 3)
         {
             isFalling = true;
         }
@@ -449,76 +432,38 @@ public class PlayerMovement : MonoBehaviour
 
     #region ClimbingState
 
-    private bool IsWalled()
+    private bool onWall()
     {
-        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
+        return raycastHit.collider != null;
     }
 
-    private void WallSlide()
+    private void wallCheckFunc()
     {
-        if (IsWalled() && !IsGrounded() && dirX.x != 0f)
+        if (wallJumpCooldown > 0.2f)
         {
-            isWallSliding = true;
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-        }
-        else
-        {
-            isWallSliding = false;
-        }
-    }
 
-    private void WallJump()
-    {
-        if (isWallSliding)
-        {
-            isWallJumping = false;
-            wallJumpingDirection = -transform.localScale.x;
-            wallJumpingCounter = wallJumpingTime;
-
-            CancelInvoke(nameof(StopWallJumping));
-        }
-        else
-        {
-            wallJumpingCounter -= Time.deltaTime;
-        }
-
-        if (playerControls.PlayerActions.Jump.WasPressedThisFrame() && wallJumpingCounter > 0f)
-        {
-            isWallJumping = true;
-            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
-            wallJumpingCounter = 0f;
-
-            if (transform.localScale.x != wallJumpingDirection)
+            if (onWall() && !IsGrounded())
             {
-                isFacingRight = !isFacingRight;
-                Vector3 localScale = transform.localScale;
-                localScale.x *= 1f;
-                transform.localScale = localScale;
+                isWallSliding = true;
+                rb.gravityScale = 1;
+                rb.velocity = Vector2.zero;
+                fliper.flipX = true;
             }
 
-            Invoke(nameof(StopWallJumping), wallJumpingDuration);
+            else
+            {
+                fliper.flipX = false;
+                isWallSliding = false;
+                rb.gravityScale = 3.2f;
+            }
         }
-    }
 
-    private void StopWallJumping()
-    {
-        isWallJumping = false;
-    }
-
-    private void Flip()
-    {
-        if (isFacingRight && dirX.x < 0f || !isFacingRight && dirX.x > 0f)
+        else
         {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-        }
+            wallJumpCooldown += Time.deltaTime;
+        } 
     }
-
-
-
-
     #endregion
 
     #region TriggerMethods
