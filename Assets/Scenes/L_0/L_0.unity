@@ -5911,8 +5911,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.17540002, y: 0.12835002, z: 0}
-    m_Extent: {x: 4.4285, y: 1.43365, z: 0}
+    m_Center: {x: 0.16764998, y: 0.123650014, z: 0}
+    m_Extent: {x: 4.4347496, y: 1.43415, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -13395,8 +13395,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 9.0871, y: -0.44175, z: 0}
-    m_Extent: {x: 11.9248, y: 2.06335, z: 0}
+    m_Center: {x: 9.08305, y: -0.4494, z: 0}
+    m_Extent: {x: 11.93025, y: 2.0606, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -19702,8 +19702,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.6868, y: -0.15935004, z: 0}
-    m_Extent: {x: 7.5855, y: 0.94875, z: 0}
+    m_Center: {x: 3.69355, y: -0.1688, z: 0}
+    m_Extent: {x: 7.58895, y: 0.9527, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -22019,8 +22019,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.035300016, y: -1.86675, z: 0}
-    m_Extent: {x: 3.3743, y: 2.09685, z: 0}
+    m_Center: {x: 0.032250047, y: -1.8668, z: 0}
+    m_Extent: {x: 3.3828502, y: 2.0990999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -22325,7 +22325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598246195}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.069978, y: -41.311768, z: -8.9574995}
+  m_LocalPosition: {x: -47.16998, y: -8.421767, z: -8.9574995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23436,7 +23436,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 680054082}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.36, y: -40.579002, z: 0}
+  m_LocalPosition: {x: 5.324, y: -40.579002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23952,7 +23952,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 690175100}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.069976, y: -40.608543, z: -8.9574995}
+  m_LocalPosition: {x: -47.16997, y: -8.439364, z: -8.9574995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30967,8 +30967,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.5660496, y: -0.99975, z: 0}
-    m_Extent: {x: 15.49815, y: 0.85795, z: 0}
+    m_Center: {x: 3.56325, y: -0.9895, z: 0}
+    m_Extent: {x: 15.491951, y: 0.85830003, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -31922,8 +31922,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 1.66215, y: -1.3694999, z: 0}
-    m_Extent: {x: 1.80505, y: 2.9286, z: 0}
+    m_Center: {x: 1.669, y: -1.37745, z: 0}
+    m_Extent: {x: 1.7971, y: 2.92455, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -33466,7 +33466,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1032372153}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9, y: -40.89, z: 0}
+  m_LocalPosition: {x: -47.1, y: -8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -33597,7 +33597,7 @@ MonoBehaviour:
   isCrowlingIdle: 0
   isCrowlingRun: 0
   isOnWall: 0
-  playerHP: 100
+  playerHP: 0
   playerMoney: 0
   attackPoint: {fileID: 769655538}
   attackRange: 0.7
@@ -40239,6 +40239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1178158857}
+  - component: {fileID: 1178158858}
   m_Layer: 0
   m_Name: Boss1Move
   m_TagString: Untagged
@@ -40264,6 +40265,25 @@ Transform:
   m_Father: {fileID: 1395819521}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1178158858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178158856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797d147add619014392debcde79830a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftEdge: {fileID: 1651150529}
+  rightEdge: {fileID: 680054083}
+  enemy: {fileID: 2040808990}
+  speed: 1.5
+  idleDuration: 4
+  anim: {fileID: 2040808991}
+  state: {fileID: 2040808996}
 --- !u!1 &1182428763
 GameObject:
   m_ObjectHideFlags: 0
@@ -42091,8 +42111,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.3475008, y: -0.51495, z: 0}
-    m_Extent: {x: 21.8553, y: 1.9969499, z: 0}
+    m_Center: {x: 3.3546, y: -0.5143, z: 0}
+    m_Extent: {x: 21.854198, y: 1.9999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -49863,8 +49883,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 1.6608499, y: -1.3784499, z: 0}
-    m_Extent: {x: 1.79535, y: 2.92765, z: 0}
+    m_Center: {x: 1.66125, y: -1.3787498, z: 0}
+    m_Extent: {x: 1.7926501, y: 2.93435, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -51480,7 +51500,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651150528}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.69, y: -40.429, z: 0}
+  m_LocalPosition: {x: -6.776, y: -40.429, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -51637,8 +51657,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.6886501, y: -0.1706, z: 0}
-    m_Extent: {x: 7.58055, y: 0.95, z: 0}
+    m_Center: {x: 3.6878, y: -0.16984999, z: 0}
+    m_Extent: {x: 7.5913997, y: 0.94725, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -52654,8 +52674,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.69005, y: -0.15985, z: 0}
-    m_Extent: {x: 7.5864496, y: 0.95285, z: 0}
+    m_Center: {x: 3.6834002, y: -0.16504997, z: 0}
+    m_Extent: {x: 7.585, y: 0.94525, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -63300,8 +63320,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 1.66595, y: -1.37725, z: 0}
-    m_Extent: {x: 1.30065, y: 2.42325, z: 0}
+    m_Center: {x: 1.6700001, y: -1.3762, z: 0}
+    m_Extent: {x: 1.2965, y: 2.4267, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -64229,8 +64249,7 @@ GameObject:
   - component: {fileID: 2040808992}
   - component: {fileID: 2040808995}
   - component: {fileID: 2040808996}
-  - component: {fileID: 2040808997}
-  m_Layer: 21
+  m_Layer: 0
   m_Name: Boss1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64391,30 +64410,6 @@ MonoBehaviour:
   range: 2
   colliderDistance: 0.2
   attackState: 0
-  leftEdge: {fileID: 1651150529}
-  rightEdge: {fileID: 680054083}
-  enemy: {fileID: 2040808990}
-  speed: 1.5
-  idleDuration: 3
-  attackStateBoss: 0
-  bossRun: 0
-  bossIdle: 0
---- !u!114 &2040808997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2040808989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 559940bddafef9542843af49e645a1f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageable: 1
-  healthAmount: 1
-  invulnerabilityTime: 0.2
-  giveUpwardForce: 1
 --- !u!1 &2051129543
 GameObject:
   m_ObjectHideFlags: 0

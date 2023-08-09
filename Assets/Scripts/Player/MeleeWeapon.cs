@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeleeWeapon : MonoBehaviour
 {
     //How much damage the melee attack does
-    [SerializeField] public int damageAmount;
+    [SerializeField] private int damageAmount = 20;
     //Reference to Character script which contains the value if the player is facing left or right; if you don't have this or it's named something different, either omit it or change the class name to what your Character script is called
     private PlayerMovement character;
     //Reference to the Rigidbody2D on the player

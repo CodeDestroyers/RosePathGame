@@ -22,7 +22,6 @@ public class MeleeAttackManager : PlayerMovement
     private bool wasAttack;
 
     private PlayerControls playerControls;
-    private MeleeWeapon damage;
 
     private bool airAttack;
     public int comboState;
@@ -52,7 +51,6 @@ public class MeleeAttackManager : PlayerMovement
 
     private void Start()
     {
-        damage = GetComponent <MeleeWeapon>();
         //The Animator component on the player
         anim = GetComponent<Animator>();
         //The Character script on the player; this script on my project manages the grounded state, so if you have a different script for that reference that script
@@ -177,8 +175,7 @@ public class MeleeAttackManager : PlayerMovement
                 {
                     character.AttackState = 1;
                     isForwardAttack = true;
-                    isForwardAttackRun = false;
-                    damage.damageAmount = 35;
+                    isForwardAttackRun = false;  
                 }
 
                 else
@@ -191,7 +188,6 @@ public class MeleeAttackManager : PlayerMovement
                     character.AttackState = 1;
                     isForwardAttackJump = true;
                     airAttack = true;
-                    damage.damageAmount = 25;
                 }
 
                 else
@@ -212,7 +208,6 @@ public class MeleeAttackManager : PlayerMovement
             {
                 isForwardComboOne = true;
                 isForwardAttack = false;
-                damage.damageAmount = 50;
             }
         }
 
@@ -220,7 +215,6 @@ public class MeleeAttackManager : PlayerMovement
         {
             if (playerControls.PlayerActions.AttackL.WasPressedThisFrame())
             {
-                damage.damageAmount = 100;
                 isForwardComboTwo = true;
                 isForwardComboOne = false;
             }
