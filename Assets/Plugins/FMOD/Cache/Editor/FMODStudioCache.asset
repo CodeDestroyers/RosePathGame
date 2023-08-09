@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Memes.bank
   Name: Memes
   StudioPath: bank:/Memes
-  lastModified: 638269010685269858
+  lastModified: 638271487370988835
   FileSizes:
   - Name: Desktop
-    Value: 62208
+    Value: 494
   Exists: 1
 --- !u!114 &-5520490193030413802
 MonoBehaviour:
@@ -47,7 +47,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 500
---- !u!114 &-3897703420064526540
+--- !u!114 &-4603254206209481166
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,24 +56,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Memes/DiscordLeave
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Enemy.bank
   m_EditorClassIdentifier: 
-  Path: event:/Memes/DiscordLeave
-  Guid:
-    Data1: -1724288944
-    Data2: 1289710088
-    Data3: 1080173449
-    Data4: 1165398950
-  Banks:
-  - {fileID: -7688551825653729345}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 626
+  Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Enemy.bank
+  Name: Enemy
+  StudioPath: bank:/Enemy
+  lastModified: 638271487371188875
+  FileSizes:
+  - Name: Desktop
+    Value: 900864
+  Exists: 1
 --- !u!114 &-3375021203016219731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,33 +87,6 @@ MonoBehaviour:
   - Name: Desktop
     Value: 758304
   Exists: 1
---- !u!114 &-2040177787644631201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Memes/Bad
-  m_EditorClassIdentifier: 
-  Path: event:/Memes/Bad
-  Guid:
-    Data1: 1491059271
-    Data2: 1265944827
-    Data3: 124599473
-    Data4: 1732091711
-  Banks:
-  - {fileID: -7688551825653729345}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2246
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,48 +105,19 @@ MonoBehaviour:
   - {fileID: 8042381114683576855}
   - {fileID: -3375021203016219731}
   - {fileID: -7688551825653729345}
+  - {fileID: -4603254206209481166}
   EditorEvents:
   - {fileID: -5520490193030413802}
   - {fileID: 4095709909907955797}
   - {fileID: 6638264154189957361}
-  - {fileID: -2040177787644631201}
-  - {fileID: -3897703420064526540}
-  - {fileID: 7255236814366672866}
-  - {fileID: 1012978578107710874}
+  - {fileID: 4378254108381497938}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8381976726770435846}
   StringsBanks:
   - {fileID: 1726338470507851090}
-  cacheTime: 638269010685269858
+  cacheTime: 638271487371188875
   cacheVersion: 131605
---- !u!114 &1012978578107710874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Memes/Idi
-  m_EditorClassIdentifier: 
-  Path: event:/Memes/Idi
-  Guid:
-    Data1: -876409607
-    Data2: 1113352620
-    Data3: -1311329638
-    Data4: 260176732
-  Banks:
-  - {fileID: -7688551825653729345}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2500
 --- !u!114 &1726338470507851090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,10 +133,10 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638269010684170024
+  lastModified: 638271487370958827
   FileSizes:
   - Name: Desktop
-    Value: 1192
+    Value: 1128
   Exists: 1
 --- !u!114 &4095709909907955797
 MonoBehaviour:
@@ -228,6 +165,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 63346
+--- !u!114 &4378254108381497938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/EnemySounds/L0_S0/Bosses/Boss1/Boss1_Footstep
+  m_EditorClassIdentifier: 
+  Path: event:/EnemySounds/L0_S0/Bosses/Boss1/Boss1_Footstep
+  Guid:
+    Data1: -1192115636
+    Data2: 1223739612
+    Data3: -170917710
+    Data4: 624874322
+  Banks:
+  - {fileID: -4603254206209481166}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 54857
 --- !u!114 &6638264154189957361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,33 +219,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &7255236814366672866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Memes/Boom
-  m_EditorClassIdentifier: 
-  Path: event:/Memes/Boom
-  Guid:
-    Data1: -583348043
-    Data2: 1208223977
-    Data3: 224594099
-    Data4: -1432928098
-  Banks:
-  - {fileID: -7688551825653729345}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1175
 --- !u!114 &8042381114683576855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +254,7 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638269010684150028
+  lastModified: 638271487370948828
   FileSizes:
   - Name: Desktop
     Value: 1036

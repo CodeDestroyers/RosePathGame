@@ -9,7 +9,6 @@ using System;
 using JetBrains.Annotations;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,19 +23,18 @@ public class PlayerMovement : MonoBehaviour
     private PlayerControls playerControls;
     private float flip;
 
-    public int AttackState;
-    public int ZeroState;
 
+    #region StateVariable
 
     // If Movement state = 0 = is Idle
     // If Movement state = 1 = is any movement states
     // If Movement state = 2 = is climbing states
     // If Movement state = 3 = is crowling states
+    
+    [Header("StateVariable")]
+    public int AttackState;
+    public int ZeroState;
     public int MovementState;
-
-
-
-
     public bool isJumping;
     public bool isFalling;
     public bool isRunning;
@@ -47,13 +45,22 @@ public class PlayerMovement : MonoBehaviour
 
     private bool wasCrowling;
     private float switcherCrowling;
+    private bool _wasBabyJamp;
+
+    #endregion
+
+    #region ExpenseVariable
+
+    public int playerHP = 100;
+    public int playerMoney;
+
+    #endregion
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
 
     private float _fallSpeedYDampingChangeTreshold;
-    private bool _wasBabyJamp;
 
     [SerializeField] public float moveSpeed = 4f;
     public BoxCollider2D flipCollision;
@@ -141,6 +148,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Is Grounded? " + IsGrounded());
             Debug.Log("Movement state: " + MovementState);
             Debug.Log("Is walled? " + IsWalled());
+            Debug.Log(playerHP);
 
 
             if (!isWallJumping)

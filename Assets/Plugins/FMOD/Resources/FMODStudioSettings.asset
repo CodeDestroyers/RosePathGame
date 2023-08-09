@@ -519,6 +519,7 @@ MonoBehaviour:
   - Master
   Banks:
   - BackgroundsAmbient
+  - Enemy
   - Memes
   - SFX
   BanksToLoad: []

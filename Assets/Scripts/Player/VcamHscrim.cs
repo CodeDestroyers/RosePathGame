@@ -29,11 +29,11 @@ public class VcamHscrim : MonoBehaviour
     public void cameraUptade()
     {
 
-        if (flipXc.flipX == false)
+        if (flipXc.transform.localScale.x != -1)
         {
             trackingX.m_TrackedObjectOffset.x = Mathf.Lerp(0.2f, 2f, 0.4f);
         }
-        else if (flipXc.flipX == true)
+        else if (flipXc.transform.localScale.x == -1)
         {
             trackingX.m_TrackedObjectOffset.x = Mathf.Lerp(-0.2f, -2f, 0.4f);
         }
