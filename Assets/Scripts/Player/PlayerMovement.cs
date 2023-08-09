@@ -289,6 +289,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 20, 0);
                 transform.localScale = new Vector3(-Mathf.Sign(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                isJumping = true;
             }
             else
              rb.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 6, 12);
