@@ -140,6 +140,7 @@ public class PlayerMovement : MonoBehaviour
             rb.WakeUp();
             Debug.Log("Movement state: " + MovementState);
             wallCheckFunc();
+            Debug.Log("Is Falling?: " + isFalling);
           
 
         }
@@ -293,6 +294,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
              rb.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 6, 12);
+            isJumping = false;
             
             wallJumpCooldown = 0;
         }
@@ -307,43 +309,28 @@ public class PlayerMovement : MonoBehaviour
             
             if (JumpTimeCounter > 0f)
             {
+                isJumping = true;
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 JumpTimeCounter -= Time.deltaTime;
                 coyoteCounter = 0;
 
             }
 
-            else if(JumpTimeCounter == 0f)
+        if (playerControls.PlayerActions.Jump.WasReleasedThisFrame() || _wasBabyJamp)
+            {
+                isJumping = false;
+            }
+        if (!IsGrounded() && !onWall() && !onCeiling())
             {
                 isFalling = true;
-                isJumping = false;
+                rb.drag = Mathf.Lerp(rb.drag, 2f, 1f);
             }
-
-            else
-            {
-                isJumping = false;
-            }
-
-        if (playerControls.PlayerActions.Jump.WasReleasedThisFrame())
-            {
-                isJumping = false;
-            }
-            
-
-        }
-
-        if (!IsGrounded() && !isJumping && !isWallSliding && MovementState < 3)
-        {
-            isFalling = true;
-        }
-
-        if (isFalling)
-        {
-            rb.drag = Mathf.Lerp(rb.drag, 2f, 1f);
-        }
         else
-        {
-            rb.drag = 5f;
+            {
+                rb.drag = 5f;
+            }
+
+
         }
 
 

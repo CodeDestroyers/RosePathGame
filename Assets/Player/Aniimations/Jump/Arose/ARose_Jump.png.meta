@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 12b713f4383b5c544afe19e805737ca6
+guid: 41c72a0c192c7e24a8c1fc2724801836
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ARose_RunStart_0
+      name: ARose_Jump_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2f6a765a56e095499d8e6d8640d80a9
-      internalID: -1633608057
+      spriteID: 478cb84ad53b880469b3e0f2e8fab5d1
+      internalID: -1173732135
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_1
+      name: ARose_Jump_1
       rect:
         serializedVersion: 2
         x: 42
@@ -152,20 +152,20 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 9
-      pivot: {x: 0.5, y: 0.65}
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a1256ee7f85d0f44aaf34fb7a060cc0
-      internalID: 366467402
+      spriteID: d1c6da14d7611a94f8f32e8e215fbc99
+      internalID: -1330761363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_2
+      name: ARose_Jump_2
       rect:
         serializedVersion: 2
         x: 84
@@ -173,20 +173,20 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 9
-      pivot: {x: 0.5, y: 0.65}
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce3715ea947230240b5fc6328a3c88aa
-      internalID: 1992695845
+      spriteID: abadaf78db8c9a845bf45a76d01d9145
+      internalID: 1868330803
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_3
+      name: ARose_Jump_3
       rect:
         serializedVersion: 2
         x: 126
@@ -194,20 +194,20 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 9
-      pivot: {x: 0.5, y: 0.65}
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 350b527e01e088241bd77c69200458d8
-      internalID: -1709489216
+      spriteID: 14bafb4af44ee014b912d0c7ddff9062
+      internalID: 1101172048
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_4
+      name: ARose_Jump_4
       rect:
         serializedVersion: 2
         x: 168
@@ -215,20 +215,20 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 9
-      pivot: {x: 0.5, y: 0.65}
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e0fe8530861273478d7b5ffa2ca4ed6
-      internalID: 604603932
+      spriteID: 93dbaa4b79d9abd499e0830e95954454
+      internalID: 2067233134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_5
+      name: ARose_Jump_5
       rect:
         serializedVersion: 2
         x: 210
@@ -236,20 +236,20 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 9
-      pivot: {x: 0.5, y: 0.65}
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 760f76388af2a1143997d3fceb4a1e93
-      internalID: -731565782
+      spriteID: 8e66baf27f28c2942815d28924793531
+      internalID: 41161663
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_6
+      name: ARose_Jump_6
       rect:
         serializedVersion: 2
         x: 252
@@ -257,20 +257,20 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 9
-      pivot: {x: 0.5, y: 0.65}
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b41bc4550e4fa7d4e9474c531786f558
-      internalID: 536392744
+      spriteID: b9193e10f7b695d428349e7466fa3198
+      internalID: 1184092124
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_7
+      name: ARose_Jump_7
       rect:
         serializedVersion: 2
         x: 294
@@ -278,20 +278,20 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 9
-      pivot: {x: 0.5, y: 0.65}
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0e5ccadd99e010429b5489e629162c9
-      internalID: 760844824
+      spriteID: 862254bc1e5d7d440b6a1fe0e9c50f13
+      internalID: 1956547967
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_8
+      name: ARose_Jump_8
       rect:
         serializedVersion: 2
         x: 336
@@ -299,20 +299,20 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 9
-      pivot: {x: 0.5, y: 0.65}
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ff6130e2746de94bb1661a929a4c1af
-      internalID: -1396893826
+      spriteID: a4d70aadf2dd8a744b44932c97ffa213
+      internalID: 1554541792
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_9
+      name: ARose_Jump_9
       rect:
         serializedVersion: 2
         x: 378
@@ -320,119 +320,14 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 9
-      pivot: {x: 0.5, y: 0.65}
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7eb69b4e1d27e95438f8f4e74e08e3d0
-      internalID: 953317513
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ARose_RunStart_10
-      rect:
-        serializedVersion: 2
-        x: 420
-        y: 0
-        width: 42
-        height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.65}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8cbe0ce8f32c03345b5a7a143706526c
-      internalID: 374640117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ARose_RunStart_11
-      rect:
-        serializedVersion: 2
-        x: 462
-        y: 0
-        width: 42
-        height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.65}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f730967b5ff4c74da4d43d4654e5f84
-      internalID: 1395493653
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ARose_RunStart_12
-      rect:
-        serializedVersion: 2
-        x: 504
-        y: 0
-        width: 42
-        height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.65}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d272cc45505013f4ba88cf1a27cacad4
-      internalID: 486415481
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ARose_RunStart_13
-      rect:
-        serializedVersion: 2
-        x: 546
-        y: 0
-        width: 42
-        height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.65}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 546d0839670028b48923f434b51d0371
-      internalID: -1018093268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ARose_RunStart_14
-      rect:
-        serializedVersion: 2
-        x: 588
-        y: 0
-        width: 42
-        height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.65}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a58a7a6005fcd884382b07b558c23fbb
-      internalID: 1725776000
+      spriteID: 5d9212e54e31692499786e9eb0323604
+      internalID: 740832771
       vertices: []
       indices: 
       edges: []
@@ -448,21 +343,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ARose_RunStart_0: -1633608057
-      ARose_RunStart_1: 366467402
-      ARose_RunStart_10: 374640117
-      ARose_RunStart_11: 1395493653
-      ARose_RunStart_12: 486415481
-      ARose_RunStart_13: -1018093268
-      ARose_RunStart_14: 1725776000
-      ARose_RunStart_2: 1992695845
-      ARose_RunStart_3: -1709489216
-      ARose_RunStart_4: 604603932
-      ARose_RunStart_5: -731565782
-      ARose_RunStart_6: 536392744
-      ARose_RunStart_7: 760844824
-      ARose_RunStart_8: -1396893826
-      ARose_RunStart_9: 953317513
+      ARose_Jump_0: -1173732135
+      ARose_Jump_1: -1330761363
+      ARose_Jump_2: 1868330803
+      ARose_Jump_3: 1101172048
+      ARose_Jump_4: 2067233134
+      ARose_Jump_5: 41161663
+      ARose_Jump_6: 1184092124
+      ARose_Jump_7: 1956547967
+      ARose_Jump_8: 1554541792
+      ARose_Jump_9: 740832771
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

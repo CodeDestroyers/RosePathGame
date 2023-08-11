@@ -16,6 +16,10 @@ public class PlayerAnimationState : PlayerMovement
 
     private bool isRunStart = false;
     private bool isRunMid;
+    private bool isJumpEnd = false;
+    private bool isFallEnd = false;
+    private bool isLanding = false;
+    private bool isFall;
     private bool PLAYER_IDLE;
     private bool PLAYER_RUN;
     private bool PLAYER_JUMP;
@@ -107,7 +111,7 @@ public class PlayerAnimationState : PlayerMovement
                 return;
             }
 
-            if (PLAYER_RUN && !isRunStart && !isRunMid)
+            if (PLAYER_RUN && !isRunStart && !isRunMid && MovementStorage.IsGrounded())
             {
                 animator.Play("Player_Run_Start");
                 CurrentState = ("Player_Run_Start");
@@ -129,8 +133,8 @@ public class PlayerAnimationState : PlayerMovement
                 isRunStart = false;
             }
 
-            if (PLAYER_JUMP)
-            {
+            if (PLAYER_JUMP && !PLAYER_FALL)
+            { 
                 animator.Play("Player_Jump");
                 CurrentState = ("Jump");
                 return;
@@ -138,9 +142,17 @@ public class PlayerAnimationState : PlayerMovement
 
             if (PLAYER_FALL && !MovementStorage.IsGrounded())
             {
+                isFall = true;
                 animator.Play("Player_Fall");
                 CurrentState = ("Fall");
                 return;
+            }
+
+            if (MovementStorage.IsGrounded())
+            {
+                isFall = false;
+                isJumpEnd = false;
+                isFallEnd = false;
             }
         }
 
@@ -217,6 +229,12 @@ public class PlayerAnimationState : PlayerMovement
     public void runStart()
     {
         isRunStart = true;
+    }
+
+    public void fallPerformed()
+    {
+        isFallEnd = true;
+        isLanding = true;
     }
 
     #endregion

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 12b713f4383b5c544afe19e805737ca6
+guid: fe4916051c085af45acae6e05633a2d1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ARose_RunStart_0
+      name: ARose_Fall_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2f6a765a56e095499d8e6d8640d80a9
-      internalID: -1633608057
+      spriteID: b07dab44f59ee4544b4acf448c54c443
+      internalID: -688597348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_1
+      name: ARose_Fall_1
       rect:
         serializedVersion: 2
         x: 42
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a1256ee7f85d0f44aaf34fb7a060cc0
-      internalID: 366467402
+      spriteID: 8c082131a096fc14fa742f0f21bbd77b
+      internalID: -460268669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_2
+      name: ARose_Fall_2
       rect:
         serializedVersion: 2
         x: 84
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce3715ea947230240b5fc6328a3c88aa
-      internalID: 1992695845
+      spriteID: 8aee5176615a8614bb538234591b9ddf
+      internalID: 659009420
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_3
+      name: ARose_Fall_3
       rect:
         serializedVersion: 2
         x: 126
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 350b527e01e088241bd77c69200458d8
-      internalID: -1709489216
+      spriteID: ce2c734bada4ff540b8478f14f305460
+      internalID: 329335602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_4
+      name: ARose_Fall_4
       rect:
         serializedVersion: 2
         x: 168
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e0fe8530861273478d7b5ffa2ca4ed6
-      internalID: 604603932
+      spriteID: d8b2cb0865b65144380a39c2a55c34fe
+      internalID: 2024640618
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_5
+      name: ARose_Fall_5
       rect:
         serializedVersion: 2
         x: 210
@@ -242,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 760f76388af2a1143997d3fceb4a1e93
-      internalID: -731565782
+      spriteID: 54a46b99a771a0a418e6f0fae8e5b0e1
+      internalID: -323094360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_6
+      name: ARose_Fall_6
       rect:
         serializedVersion: 2
         x: 252
@@ -263,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b41bc4550e4fa7d4e9474c531786f558
-      internalID: 536392744
+      spriteID: 04e3c42c637324949a548565d9b9a657
+      internalID: 1746063478
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_7
+      name: ARose_Fall_7
       rect:
         serializedVersion: 2
         x: 294
@@ -284,14 +284,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0e5ccadd99e010429b5489e629162c9
-      internalID: 760844824
+      spriteID: ee02f472c43cc1942b28ecb041d645e6
+      internalID: -1587703372
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_8
+      name: ARose_Fall_8
       rect:
         serializedVersion: 2
         x: 336
@@ -305,14 +305,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ff6130e2746de94bb1661a929a4c1af
-      internalID: -1396893826
+      spriteID: 0c0c0373e4190bf4ea24df5b3e92517a
+      internalID: 744292443
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_9
+      name: ARose_Fall_9
       rect:
         serializedVersion: 2
         x: 378
@@ -326,14 +326,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7eb69b4e1d27e95438f8f4e74e08e3d0
-      internalID: 953317513
+      spriteID: 056ee8fb7915f2f47b5221afad456e93
+      internalID: -13546970
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_10
+      name: ARose_Fall_10
       rect:
         serializedVersion: 2
         x: 420
@@ -347,14 +347,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8cbe0ce8f32c03345b5a7a143706526c
-      internalID: 374640117
+      spriteID: 0fd577bd564167a4b9c55300956aaee5
+      internalID: -2069909349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_11
+      name: ARose_Fall_11
       rect:
         serializedVersion: 2
         x: 462
@@ -368,14 +368,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f730967b5ff4c74da4d43d4654e5f84
-      internalID: 1395493653
+      spriteID: 10f083f5cc4d0c74798cebb2d8876d14
+      internalID: -455430369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_12
+      name: ARose_Fall_12
       rect:
         serializedVersion: 2
         x: 504
@@ -389,14 +389,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d272cc45505013f4ba88cf1a27cacad4
-      internalID: 486415481
+      spriteID: 088e54205f8f76146abbfea789215fbd
+      internalID: 1129490419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_13
+      name: ARose_Fall_13
       rect:
         serializedVersion: 2
         x: 546
@@ -410,14 +410,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 546d0839670028b48923f434b51d0371
-      internalID: -1018093268
+      spriteID: 7aaaa2c3c2aa6a943b19dbe7c8acde01
+      internalID: 267678324
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_RunStart_14
+      name: ARose_Fall_14
       rect:
         serializedVersion: 2
         x: 588
@@ -431,8 +431,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a58a7a6005fcd884382b07b558c23fbb
-      internalID: 1725776000
+      spriteID: 1bfdc4f99b3429348bd07d7baed9612e
+      internalID: 234510390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ARose_Fall_15
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 0
+        width: 42
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d3e3567a8e11724682ef9c94288bf55
+      internalID: 1827727096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ARose_Fall_16
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 42
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a589d574497de548a1dadaaf1279706
+      internalID: 508218747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ARose_Fall_17
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 0
+        width: 42
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b7390ee969960a48a00662d6138f8bc
+      internalID: 896007942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ARose_Fall_18
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 0
+        width: 42
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a8f7e061f361924a85332f4684de00c
+      internalID: 304542565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ARose_Fall_19
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 0
+        width: 42
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbbd050d7d37f804eb74e63e1ff67853
+      internalID: -1166675751
       vertices: []
       indices: 
       edges: []
@@ -448,21 +553,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ARose_RunStart_0: -1633608057
-      ARose_RunStart_1: 366467402
-      ARose_RunStart_10: 374640117
-      ARose_RunStart_11: 1395493653
-      ARose_RunStart_12: 486415481
-      ARose_RunStart_13: -1018093268
-      ARose_RunStart_14: 1725776000
-      ARose_RunStart_2: 1992695845
-      ARose_RunStart_3: -1709489216
-      ARose_RunStart_4: 604603932
-      ARose_RunStart_5: -731565782
-      ARose_RunStart_6: 536392744
-      ARose_RunStart_7: 760844824
-      ARose_RunStart_8: -1396893826
-      ARose_RunStart_9: 953317513
+      ARose_Fall_0: -688597348
+      ARose_Fall_1: -460268669
+      ARose_Fall_10: -2069909349
+      ARose_Fall_11: -455430369
+      ARose_Fall_12: 1129490419
+      ARose_Fall_13: 267678324
+      ARose_Fall_14: 234510390
+      ARose_Fall_15: 1827727096
+      ARose_Fall_16: 508218747
+      ARose_Fall_17: 896007942
+      ARose_Fall_18: 304542565
+      ARose_Fall_19: -1166675751
+      ARose_Fall_2: 659009420
+      ARose_Fall_3: 329335602
+      ARose_Fall_4: 2024640618
+      ARose_Fall_5: -323094360
+      ARose_Fall_6: 1746063478
+      ARose_Fall_7: -1587703372
+      ARose_Fall_8: 744292443
+      ARose_Fall_9: -13546970
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
