@@ -11,7 +11,11 @@ public class PlayerAnimationState : PlayerMovement
     private string CurrentState;
     private PlayerMovement MovementStorage;
     private MeleeAttackManager CombatStorage;
+    private Rigidbody2D rb;
 
+
+    private bool isRunStart = false;
+    private bool isRunMid;
     private bool PLAYER_IDLE;
     private bool PLAYER_RUN;
     private bool PLAYER_JUMP;
@@ -38,6 +42,7 @@ public class PlayerAnimationState : PlayerMovement
         animator = GetComponent<Animator>();
         MovementStorage = GetComponent<PlayerMovement>();
         CombatStorage = GetComponent<MeleeAttackManager>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -102,11 +107,26 @@ public class PlayerAnimationState : PlayerMovement
                 return;
             }
 
-            if (PLAYER_RUN)
+            if (PLAYER_RUN && !isRunStart && !isRunMid)
+            {
+                animator.Play("Player_Run_Start");
+                CurrentState = ("Player_Run_Start");
+                return;
+            }
+
+            if (PLAYER_RUN && isRunStart)
             {
                 animator.Play("Player_Running");
                 CurrentState = ("Run");
+                isRunStart = false;
+                isRunMid = true;
                 return;
+            }
+
+            if (rb.velocity.x == 0 || !MovementStorage.IsGrounded())
+            {
+                isRunMid = false;
+                isRunStart = false;
             }
 
             if (PLAYER_JUMP)
@@ -192,6 +212,14 @@ public class PlayerAnimationState : PlayerMovement
 
     #endregion
 
+    #region TriggerAnimation
+
+    public void runStart()
+    {
+        isRunStart = true;
+    }
+
+    #endregion
 
 }
 
