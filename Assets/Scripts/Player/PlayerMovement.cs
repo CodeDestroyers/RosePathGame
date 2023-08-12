@@ -406,7 +406,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (!onCeiling() && !wasCrowling && MovementState == 3)
         {
-            moveSpeed = 3.2f;
+            moveSpeed = 4f;
             MovementState = 0;
         }
 
