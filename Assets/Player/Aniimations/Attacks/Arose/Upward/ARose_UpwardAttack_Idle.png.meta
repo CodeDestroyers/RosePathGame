@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9fb89c8d8506ca94fa3aa8a2a4d46088
+guid: 79b3aae764834ab49904d2d251aff6b3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ARose_ForwardAttack_Idle_0
+      name: ARose_UpwardAttack_Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c080c32aeb149a149a0204433b09ddd4
-      internalID: -1388215100
+      spriteID: e4042c061136a2b46ab6bf403adcb3d9
+      internalID: -841923366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_ForwardAttack_Idle_1
+      name: ARose_UpwardAttack_Idle_1
       rect:
         serializedVersion: 2
         x: 128
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6f57c69e37def447a97d1825bf2e911
-      internalID: 1353148745
+      spriteID: 42f98d00ea7da6645ba647cef57df6ec
+      internalID: 2131307012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_ForwardAttack_Idle_2
+      name: ARose_UpwardAttack_Idle_2
       rect:
         serializedVersion: 2
         x: 256
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a98312a5090cf9743aee95de76448519
-      internalID: -128823230
+      spriteID: ba05554d9eb58644b8930e6e297f27d9
+      internalID: -1950743085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_ForwardAttack_Idle_3
+      name: ARose_UpwardAttack_Idle_3
       rect:
         serializedVersion: 2
         x: 384
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acb6c575a8ff7724d890b3f9196e05bb
-      internalID: -426090128
+      spriteID: bced0b81c25af994aba610591ef7b65b
+      internalID: -526111752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_ForwardAttack_Idle_4
+      name: ARose_UpwardAttack_Idle_4
       rect:
         serializedVersion: 2
         x: 512
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41a0108f0f7e0534da3d81b42af23b0b
-      internalID: -1219626729
+      spriteID: 6dfcbb583d733e0478be9885ee9ee178
+      internalID: 1825758776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_ForwardAttack_Idle_5
+      name: ARose_UpwardAttack_Idle_5
       rect:
         serializedVersion: 2
         x: 640
@@ -242,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad85523f6f0c1da459c5cca025acc49e
-      internalID: 1296301791
+      spriteID: 2f25d049cad738641a0cd72861d5a389
+      internalID: 302479957
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_ForwardAttack_Idle_6
+      name: ARose_UpwardAttack_Idle_6
       rect:
         serializedVersion: 2
         x: 768
@@ -263,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9863eba6b2e167148b75813752f7cc0f
-      internalID: 985729603
+      spriteID: a15bd3ea73220664e8f23956b891da15
+      internalID: 601535848
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_ForwardAttack_Idle_7
+      name: ARose_UpwardAttack_Idle_7
       rect:
         serializedVersion: 2
         x: 896
@@ -284,14 +284,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: deb4d599c5511604abd8a2992f4578b4
-      internalID: 879854749
+      spriteID: f037499498be318449e55b854849aa47
+      internalID: -1747940518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_ForwardAttack_Idle_8
+      name: ARose_UpwardAttack_Idle_8
       rect:
         serializedVersion: 2
         x: 1024
@@ -305,14 +305,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8572fd4702ebe64aa7a17d1b986f4a7
-      internalID: -120978083
+      spriteID: f15d2e09f128fd646b26c3935bff29ba
+      internalID: -575397993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_ForwardAttack_Idle_9
+      name: ARose_UpwardAttack_Idle_9
       rect:
         serializedVersion: 2
         x: 1152
@@ -326,14 +326,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 497bb8316e8fa4347ae4ad29e1cb94e2
-      internalID: -280792793
+      spriteID: 56112539f6c7ff1468e38fc685b74ca0
+      internalID: -350068376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_ForwardAttack_Idle_10
+      name: ARose_UpwardAttack_Idle_10
       rect:
         serializedVersion: 2
         x: 1280
@@ -347,14 +347,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dae1c1835afb49d46b344ec084495e03
-      internalID: 145651594
+      spriteID: b84167e226ee3654da8b33ddce410558
+      internalID: -1854440648
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_ForwardAttack_Idle_11
+      name: ARose_UpwardAttack_Idle_11
       rect:
         serializedVersion: 2
         x: 1408
@@ -368,8 +368,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c4e50d1ef0aa2e4e83f7a92fc3dc178
-      internalID: 1023839254
+      spriteID: 3049e81a9d4ab8a48a9685ed9e0a2016
+      internalID: 1799847327
       vertices: []
       indices: 
       edges: []
@@ -385,18 +385,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ARose_ForwardAttack_Idle_0: -1388215100
-      ARose_ForwardAttack_Idle_1: 1353148745
-      ARose_ForwardAttack_Idle_10: 145651594
-      ARose_ForwardAttack_Idle_11: 1023839254
-      ARose_ForwardAttack_Idle_2: -128823230
-      ARose_ForwardAttack_Idle_3: -426090128
-      ARose_ForwardAttack_Idle_4: -1219626729
-      ARose_ForwardAttack_Idle_5: 1296301791
-      ARose_ForwardAttack_Idle_6: 985729603
-      ARose_ForwardAttack_Idle_7: 879854749
-      ARose_ForwardAttack_Idle_8: -120978083
-      ARose_ForwardAttack_Idle_9: -280792793
+      ARose_UpwardAttack_Idle_0: -841923366
+      ARose_UpwardAttack_Idle_1: 2131307012
+      ARose_UpwardAttack_Idle_10: -1854440648
+      ARose_UpwardAttack_Idle_11: 1799847327
+      ARose_UpwardAttack_Idle_2: -1950743085
+      ARose_UpwardAttack_Idle_3: -526111752
+      ARose_UpwardAttack_Idle_4: 1825758776
+      ARose_UpwardAttack_Idle_5: 302479957
+      ARose_UpwardAttack_Idle_6: 601535848
+      ARose_UpwardAttack_Idle_7: -1747940518
+      ARose_UpwardAttack_Idle_8: -575397993
+      ARose_UpwardAttack_Idle_9: -350068376
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

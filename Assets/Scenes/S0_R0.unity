@@ -330,8 +330,8 @@ MonoBehaviour:
   m_LookaheadTime: 0.217
   m_LookaheadSmoothing: 5
   m_LookaheadIgnoreY: 1
-  m_XDamping: 0.3
-  m_YDamping: 0.7
+  m_XDamping: 1.56
+  m_YDamping: 1.02
   m_ZDamping: 0
   m_TargetMovementOnly: 1
   m_ScreenX: 0.46
@@ -1595,7 +1595,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.047619, y: 3.047619}
+  m_Size: {x: 1.3125, y: 1.3125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1657,8 +1657,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3125, y: 1.3125}
-    newSize: {x: 3.047619, y: 3.047619}
+    oldSize: {x: 3.047619, y: 3.047619}
+    newSize: {x: 1.3125, y: 1.3125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -2020,8 +2020,8 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3125, y: 1.3125}
-    newSize: {x: 3.047619, y: 3.047619}
+    oldSize: {x: 3.047619, y: 3.047619}
+    newSize: {x: 1.3125, y: 1.3125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
