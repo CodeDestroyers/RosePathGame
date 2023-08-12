@@ -5,7 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Vcam
-  - L0_LightTrigger
+  - Enemy
   layers:
   - Default
   - TransparentFX

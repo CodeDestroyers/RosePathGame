@@ -10,6 +10,7 @@ using JetBrains.Annotations;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.Animations;
+using UnityEngine.TextCore.Text;
 
 public class PlayerGodController : MonoBehaviour
 {
@@ -42,7 +43,14 @@ public class PlayerGodController : MonoBehaviour
     //For _Attacks
 
     private bool attackEnd = false;
-    private bool attackStart = false;
+    private Vector2 horizontalAttackVector;
+    private float attackCooldownTime;
+    [SerializeField] private float attackStartTime;
+    [SerializeField] private Transform attackPos;
+    public float enumAttackTime;
+    public float upwardsForce;
+    public float defaultForce;
+    public PlayerAttackScript playerAttackScript;
 
     //For objects
     private BoxCollider2D coll;
@@ -55,7 +63,7 @@ public class PlayerGodController : MonoBehaviour
     [SerializeField] private Animator animator;
     private string CurrentState;
 
-    //States
+    //Movement States
     private int SPECIAL_STATE;
     private int MODE_STATE;
     private int ATTACK_STATE;
@@ -68,6 +76,16 @@ public class PlayerGodController : MonoBehaviour
     private bool player_isClimbing = false;
     private bool player_isClimbingJump = false;
     private bool player_isRunStart = false;
+
+    //Attack States
+
+    private bool player_isForwardAttack;
+    private bool player_isForwardAttackRun;
+    private bool player_isForwardAttackFall;
+    private bool player_isUpwardAttackIdle;
+    private bool player_isUpwardAttackRun;
+    private bool player_isUpwardAttackFall;
+    private bool player_isDownwardAttackFall;
 
     //For Layers
     [SerializeField] private LayerMask wallLayer;
@@ -90,6 +108,8 @@ public class PlayerGodController : MonoBehaviour
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
+        playerControls.PlayerActions.ChooseVerticalDerection.performed += ctx => horizontalAttackVector = ctx.ReadValue<Vector2>();
+        playerAttackScript = GetComponentInChildren<PlayerAttackScript>();
     }
 
     private void OnEnable()
@@ -109,14 +129,14 @@ public class PlayerGodController : MonoBehaviour
         AttackState();
         onCeiling();
         PlayerMove();
-        GroundStates();
-        AirStates();
         PlayerMovementAnimator();
+        PlayerAttackAnimator();
 
         Debug.Log("Current State: " + CurrentState);
         Debug.Log("MODE STATE:" + MODE_STATE);
-        Debug.Log("PLAYER JUMP?:" + player_isJump);
+        Debug.Log("HORIZONTAL IMPUT:" + horizontalAttackVector);
         Debug.Log("PLAYER FALL?:" + player_isFall);
+        Debug.Log("ATTACK STATE?: " + ATTACK_STATE);
 
     }
     #endregion
@@ -129,24 +149,31 @@ public class PlayerGodController : MonoBehaviour
         attackEnd = true;
     }
 
-    private int AttackState() 
+    private void AttackState() 
     {
-        if (playerControls.PlayerActions.AttackL.WasPressedThisFrame() && !attackEnd && !attackStart)
+        if (playerControls.PlayerActions.AttackL.WasPressedThisFrame() && !attackEnd)
         {
-            attackStart = true;
-            return 1;
+            ATTACK_STATE = 1;
+            player_isFall = false;
+            player_isIdle = false;
+            player_isJump = false;
+            player_isRun = false;
+            player_isRunStart = false;
         }
-        else if (attackEnd == true)
+        if (attackEnd == true)
         {
-            attackStart = false;
-            return 0;
-        }
-        else
-        {
-            return 2;
-        }
+            attackEnd = false;
+            ATTACK_STATE = 0;
+            player_isUpwardAttackFall = false;
+            player_isUpwardAttackIdle = false;
+            player_isUpwardAttackRun = false;
+            player_isDownwardAttackFall = false;
+            player_isForwardAttackFall = false;
+            player_isForwardAttack = false;
+            player_isForwardAttackRun = false;
+            animator.StopPlayback();
+}
     }
-
 
     private bool IsWall()
     {
@@ -154,7 +181,7 @@ public class PlayerGodController : MonoBehaviour
         return raycastHit.collider != null;
     }
 
-    private bool IsGround()
+    public bool IsGround()
     {
         GroundHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
 
@@ -195,6 +222,7 @@ public class PlayerGodController : MonoBehaviour
         if (IsAir())
         {
             MODE_STATE = 2;
+            AirStates();
         }
 
         if (IsWall())
@@ -204,7 +232,7 @@ public class PlayerGodController : MonoBehaviour
     }
     #endregion
 
-    #region ModeState1
+    #region ModeState1 (Ground)
 
     private void GroundStates()
     {
@@ -349,6 +377,33 @@ public class PlayerGodController : MonoBehaviour
     private void PlayerAttackState1()
     {
 
+        //Use Berserk Method and Combo there later (MAYBE)
+
+        if (horizontalAttackVector.y >= 0.1f)
+        {
+            if (rb.velocity.x == 0f)
+            {
+               player_isUpwardAttackIdle = true;
+            }
+
+            else if (rb.velocity.x != 0f)
+            {
+                player_isUpwardAttackRun = true;
+            }
+        }
+
+        if (horizontalAttackVector.y <= 0f)
+        {
+            if (rb.velocity.x == 0f)
+            {
+                player_isForwardAttack = true;
+            }
+
+            else if (rb.velocity.x != 0f)
+            {
+                player_isForwardAttackRun = true;
+            }
+        }
     }
 
     private bool onCeiling()
@@ -380,7 +435,7 @@ public class PlayerGodController : MonoBehaviour
 
     #endregion
 
-    #region ModeState2
+    #region ModeState2 (Air)
 
     private void AirStates()
     {
@@ -427,12 +482,48 @@ public class PlayerGodController : MonoBehaviour
 
     private void PlayerAttackState2()
     {
+        if (horizontalAttackVector.y == 0f)
+        {
+            player_isForwardAttackFall = true;
+        }
 
+        if (horizontalAttackVector.y  == -1f)
+        {
+            player_isDownwardAttackFall = true;
+        }
+
+        if (horizontalAttackVector.y == 1f)
+        {
+            player_isUpwardAttackFall = true;
+        }
     }
 
     #endregion
 
-    #region ModeState3
+    #region ModeState3 (Wall)
+    #endregion
+
+    #region MethodsAttackAndDamage
+
+    public void HandleMovement()
+    {
+        //Checks to see if the GameObject should allow the player to move when melee attack colides
+        if (playerAttackScript.collided)
+        {
+            //If the attack was in a downward direction
+            if (playerAttackScript.downwardStrike)
+            {
+                //Propels the player upwards by the amount of upwardsForce in the meleeAttackManager script
+                rb.AddForce(playerAttackScript.direction * upwardsForce);
+            }
+            else
+            {
+                //Propels the player backwards by the amount of horizontalForce in the meleeAttackManager script
+                rb.AddForce(playerAttackScript.direction * defaultForce);
+            }
+        }
+    }
+
     #endregion
 
     #region MethodsAnimation
@@ -499,6 +590,51 @@ public class PlayerGodController : MonoBehaviour
 
     private void PlayerAttackAnimator()
     {
+
+        if (player_isUpwardAttackIdle)
+        {
+            CurrentState = ("Attack_Upward_Idle");
+            animator.Play("Attack_Upward_Idle");
+            return;
+
+        }
+        if (player_isUpwardAttackRun)
+        {
+            CurrentState = ("Attack_Upward_Run");
+            animator.Play("Attack_Upward_Run");
+            return;
+        }
+        if (player_isUpwardAttackFall)
+        {
+            CurrentState = ("Attack_Upward_Jump");
+            animator.Play("Attack_Upward_Jump");
+            return;
+        }
+        if (player_isDownwardAttackFall)
+        {
+            CurrentState = ("Attack_Downward_Fall");
+            animator.Play("Attack_Downward_Fall");
+            return;
+
+        }
+        if (player_isForwardAttack)
+        {
+            CurrentState = ("ForwardAttack");
+            animator.Play("Forward_Attack");
+            return;
+        }
+        if (player_isForwardAttackRun)
+        {
+            CurrentState = ("Attack_Forward_Run");
+            animator.Play("Attack_Forward_Run");
+            return;
+        }
+        if (player_isForwardAttackFall)
+        {
+            CurrentState = ("Forward_Attack_Jummp");
+            animator.Play("Attack_Forward_Jump");
+            return;
+        }
 
     }
 

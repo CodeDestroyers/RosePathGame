@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+
+    SpriteRenderer enemySprite;
     //Determines if this GameObject should receive damage or not
     [SerializeField]
     private bool damageable = true;
@@ -22,6 +24,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void Start()
     {
+        enemySprite = GetComponent<SpriteRenderer>();
         //Sets the enemy to the max amount of health when the scene loads
         currentHealth = healthAmount;    
     }
@@ -35,6 +38,11 @@ public class EnemyHealth : MonoBehaviour
             hit = true;
             //Reduces currentHealthPoints by the amount value that was set by whatever script called this method, for this tutorial in the OnTriggerEnter2D() method
             currentHealth -= amount;
+            enemySprite.color = Color.red;
+            Debug.Log(currentHealth);
+            Debug.Log(amount);
+
+
             //If currentHealthPoints is below zero, player is dead, and then we handle all the logic to manage the dead state
             if (currentHealth <= 0)
             {
@@ -58,5 +66,6 @@ public class EnemyHealth : MonoBehaviour
         yield return new WaitForSeconds(invulnerabilityTime);
         //Turn off the hit bool so the enemy can receive damage again
         hit = false;
+        enemySprite.color = Color.white;
     }
 }
