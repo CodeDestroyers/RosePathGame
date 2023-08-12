@@ -258,6 +258,17 @@
                     "action": "EscMenue",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13965824-7fa0-4642-a667-c25d832c3ff2",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EscMenue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

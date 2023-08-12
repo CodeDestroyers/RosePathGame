@@ -185,7 +185,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerAnimations
+  m_Name: rAnimationstions
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 4524725533245097931}
@@ -240,7 +240,7 @@ AnimatorStateMachine:
     m_Position: {x: 300, y: 740, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8046834061643115927}
-    m_Position: {x: 335, y: 805, z: 0}
+    m_Position: {x: 300, y: 800, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

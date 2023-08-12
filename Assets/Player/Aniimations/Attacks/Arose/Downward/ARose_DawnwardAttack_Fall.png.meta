@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9170cd5e08e07f2499f89995ad457301
+guid: 644deeb8508a4304b8974271fbe89ab1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ARose_DownwardAttack_Fall_0
+      name: ARose_DawnwardAttack_Fall_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9ec29981ed360b45a08b019ef0930d5
-      internalID: -1248003592
+      spriteID: 0518fd5d1b6aacf4ab46ae1696e7993a
+      internalID: 1612711362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_DownwardAttack_Fall_1
+      name: ARose_DawnwardAttack_Fall_1
       rect:
         serializedVersion: 2
         x: 128
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6570e065febc9e41b29045921ed8f65
-      internalID: 1178387477
+      spriteID: 5caad8568a509df499d56a8d49592cf0
+      internalID: -1255160056
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_DownwardAttack_Fall_2
+      name: ARose_DawnwardAttack_Fall_2
       rect:
         serializedVersion: 2
         x: 256
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ce6990109133784b86036667f239816
-      internalID: -1117379819
+      spriteID: e7f5d800e566da044b434dc9abf5af11
+      internalID: 1787457222
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_DownwardAttack_Fall_3
+      name: ARose_DawnwardAttack_Fall_3
       rect:
         serializedVersion: 2
         x: 384
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50285a66d77c27349bc03a944609cafc
-      internalID: 1637358421
+      spriteID: 0e5ec968fee2d0a4aa8fe9435bf58702
+      internalID: -847295904
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_DownwardAttack_Fall_4
+      name: ARose_DawnwardAttack_Fall_4
       rect:
         serializedVersion: 2
         x: 512
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27e4033fac0e92f4c94f90c9c705fb54
-      internalID: -1549765744
+      spriteID: 56657535559290e4d9ec2f09cba273b4
+      internalID: -1209114727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_DownwardAttack_Fall_5
+      name: ARose_DawnwardAttack_Fall_5
       rect:
         serializedVersion: 2
         x: 640
@@ -242,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f63f4e0ab72dd04c84b314295ef9350
-      internalID: 1960985319
+      spriteID: e93187511c7c5964ebb9e3151b1d2544
+      internalID: -1150222128
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_DownwardAttack_Fall_6
+      name: ARose_DawnwardAttack_Fall_6
       rect:
         serializedVersion: 2
         x: 768
@@ -263,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 559c3e77b88b45b4c8b2974537540482
-      internalID: 443845621
+      spriteID: 9a9c7d21dfe5df648a52cc13d3b5a66f
+      internalID: 2077263581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ARose_DownwardAttack_Fall_7
+      name: ARose_DawnwardAttack_Fall_7
       rect:
         serializedVersion: 2
         x: 896
@@ -284,8 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51a1ef7ee217ea44ab0c996fc72d5907
-      internalID: -1976449783
+      spriteID: 01f526c632313e34185964dcf378130c
+      internalID: -2105360031
       vertices: []
       indices: 
       edges: []
@@ -301,14 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ARose_DownwardAttack_Fall_0: -1248003592
-      ARose_DownwardAttack_Fall_1: 1178387477
-      ARose_DownwardAttack_Fall_2: -1117379819
-      ARose_DownwardAttack_Fall_3: 1637358421
-      ARose_DownwardAttack_Fall_4: -1549765744
-      ARose_DownwardAttack_Fall_5: 1960985319
-      ARose_DownwardAttack_Fall_6: 443845621
-      ARose_DownwardAttack_Fall_7: -1976449783
+      ARose_DawnwardAttack_Fall_0: 1612711362
+      ARose_DawnwardAttack_Fall_1: -1255160056
+      ARose_DawnwardAttack_Fall_2: 1787457222
+      ARose_DawnwardAttack_Fall_3: -847295904
+      ARose_DawnwardAttack_Fall_4: -1209114727
+      ARose_DawnwardAttack_Fall_5: -1150222128
+      ARose_DawnwardAttack_Fall_6: 2077263581
+      ARose_DawnwardAttack_Fall_7: -2105360031
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
