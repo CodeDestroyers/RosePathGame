@@ -16,6 +16,14 @@ public class PlayerGodController : MonoBehaviour
 {
     #region Variables
 
+    //For _HP and Getting damage
+
+    private int playerCurrentHp;
+    private int playerMaxHp = 100;
+    [SerializeField] private float playerInvulnerabilityTime;
+    private bool playerWasHit;
+    private SpriteRenderer playerSprite;
+
     //For _OnCelling
     [SerializeField] private float cellingHight;
     private RaycastHit2D CeilingHit;
@@ -100,7 +108,7 @@ public class PlayerGodController : MonoBehaviour
     #region MethodsMain
     private void Start()
     {
-
+        
     }
 
     private void Awake()
@@ -108,8 +116,10 @@ public class PlayerGodController : MonoBehaviour
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
+        playerSprite = GetComponent<SpriteRenderer>();
         playerControls.PlayerActions.ChooseVerticalDerection.performed += ctx => horizontalAttackVector = ctx.ReadValue<Vector2>();
         playerAttackScript = GetComponentInChildren<PlayerAttackScript>();
+        playerCurrentHp = playerMaxHp;
     }
 
     private void OnEnable()
@@ -636,6 +646,40 @@ public class PlayerGodController : MonoBehaviour
             return;
         }
 
+    }
+
+    #endregion
+
+    #region HP and damage METHODS
+
+    public void Damage(int amount)
+    {
+        playerCurrentHp -= amount;
+        playerWasHit = true;
+        Debug.Log(playerCurrentHp);
+        playerSprite.color = Color.red;
+
+        if (playerCurrentHp <= 0)
+        {
+            //Caps currentHealth to 0 for cleaner code
+            playerCurrentHp = 0;
+            //Removes GameObject from the scene; this should probably play a dying animation in a method that would handle all the other death logic, but for the test it just disables it from the scene
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            //Coroutine that runs to allow the enemy to receive damage again
+            StartCoroutine(TurnOffHit());
+        }
+    }
+
+    private IEnumerator TurnOffHit()
+    {
+        //Wait in the amount of invulnerabilityTime, which by default is .2 seconds
+        yield return new WaitForSeconds(playerInvulnerabilityTime);
+        //Turn off the hit bool so the enemy can receive damage again
+        playerWasHit = false;
+        playerSprite.color = Color.white;
     }
 
     #endregion

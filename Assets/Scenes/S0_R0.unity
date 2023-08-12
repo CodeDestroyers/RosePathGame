@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0.92, y: 0, z: 0}
+  m_TrackedObjectOffset: {x: -0.92, y: 0, z: 0}
   m_LookaheadTime: 0.217
   m_LookaheadSmoothing: 5
   m_LookaheadIgnoreY: 1
@@ -1910,7 +1910,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598246195}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -43.894154, y: -8.711767, z: -8.9574995}
+  m_LocalPosition: {x: -45.73415, y: -8.711767, z: -8.9574995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2171,7 +2171,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 690175100}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -43.894154, y: -8.711767, z: -8.9574995}
+  m_LocalPosition: {x: -45.73415, y: -8.711767, z: -8.9574995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3214,6 +3214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26229ab1bb341c64380a6c257b27aa40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInvulnerabilityTime: 0.3
   cellingHight: 0
   moveSpeed: 4
   baseMoveSpeed: 4
@@ -3365,6 +3366,7 @@ GameObject:
   - component: {fileID: 1284235205}
   - component: {fileID: 1284235206}
   - component: {fileID: 1284235207}
+  - component: {fileID: 1284235208}
   m_Layer: 21
   m_Name: Boss
   m_TagString: Enemy
@@ -3491,9 +3493,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -802967749
+  m_SortingLayer: 9
+  m_SortingOrder: 3
   m_Sprite: {fileID: -1898334891, guid: 2b2a9881068755948aad358ff51c9fd5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3512,7 +3514,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284235199}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -3608,6 +3610,18 @@ MonoBehaviour:
   healthAmount: 10000
   invulnerabilityTime: 0.2
   giveUpwardForce: 1
+--- !u!114 &1284235208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284235199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e341e69f617941d4195a16781bcf0cd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1315103173
 GameObject:
   m_ObjectHideFlags: 0
