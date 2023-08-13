@@ -676,6 +676,7 @@ public class PlayerGodController : MonoBehaviour
         Debug.Log(playerCurrentHp);
         playerSprite.color = Color.red;
         CameraShakeManager.instance.CameraShake(impulseSource);
+        GetComponentInChildren<ParticleSystem>().Play();
 
 
         if (playerCurrentHp <= 0)
@@ -715,6 +716,8 @@ public class PlayerGodController : MonoBehaviour
             CameraShakeManager.instance.CameraShake(impulseSource);
 
             StartCoroutine(CollisionOffHit());
+
+            GetComponentInChildren<ParticleSystem>().Play();
 
         }
     }
