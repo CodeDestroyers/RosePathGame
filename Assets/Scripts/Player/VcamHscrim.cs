@@ -1,24 +1,28 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class VcamHscrim : MonoBehaviour
 {
     public SpriteRenderer flipXc;
     CinemachineFramingTransposer trackingX;
-    
+
 
     void Start()
     {
         var Vcamn = GetComponent<CinemachineVirtualCamera>();
+
         if ( Vcamn != null )
         {
             trackingX = Vcamn.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
-      
-      var fliperX = GetComponent<PlayerMovement>();
-      flipXc = fliperX.fliper;
+
+        var fliperX = GetComponent<PlayerGodController>();
+
+        flipXc = fliperX.playerSprite;
+
     }
 
     void Update()

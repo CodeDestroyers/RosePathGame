@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,11 +23,15 @@ public class EnemyHealth : MonoBehaviour
     //The current amount after receiving damage the enemy has
     private int currentHealth;
 
+    private CinemachineImpulseSource impulseSource;
+
     private void Start()
     {
-        enemySprite = GetComponent<SpriteRenderer>();
         //Sets the enemy to the max amount of health when the scene loads
-        currentHealth = healthAmount;    
+        currentHealth = healthAmount;
+        enemySprite = GetComponent<SpriteRenderer>();
+        GetComponentInChildren<ParticleSystem>().Stop();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     public void Damage(int amount)
@@ -38,9 +43,11 @@ public class EnemyHealth : MonoBehaviour
             hit = true;
             //Reduces currentHealthPoints by the amount value that was set by whatever script called this method, for this tutorial in the OnTriggerEnter2D() method
             currentHealth -= amount;
-            enemySprite.color = Color.red;
+            enemySprite.color = Color.Lerp(Color.white, Color.black, 0.5f);
             Debug.Log(currentHealth);
             Debug.Log(amount);
+            GetComponentInChildren<ParticleSystem>().Play();
+            CameraShakeManager.instance.CameraShake(impulseSource);
 
 
             //If currentHealthPoints is below zero, player is dead, and then we handle all the logic to manage the dead state
@@ -59,6 +66,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+
     //Coroutine that runs to allow the enemy to receive damage again
     private IEnumerator TurnOffHit()
     {
@@ -67,5 +75,8 @@ public class EnemyHealth : MonoBehaviour
         //Turn off the hit bool so the enemy can receive damage again
         hit = false;
         enemySprite.color = Color.white;
+        GetComponentInChildren<ParticleSystem>().Stop();
     }
+
+
 }

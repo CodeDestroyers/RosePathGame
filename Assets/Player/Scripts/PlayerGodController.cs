@@ -11,6 +11,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.Animations;
 using UnityEngine.TextCore.Text;
+using Cinemachine;
 
 public class PlayerGodController : MonoBehaviour
 {
@@ -21,8 +22,13 @@ public class PlayerGodController : MonoBehaviour
     private int playerCurrentHp;
     private int playerMaxHp = 100;
     [SerializeField] private float playerInvulnerabilityTime;
-    private bool playerWasHit;
-    private SpriteRenderer playerSprite;
+    [SerializeField] private float playerCollisionInvulnerabilityTime;
+    [SerializeField] private float collisionPower;
+    public SpriteRenderer playerSprite;
+    private Vector2 damageDirection;
+    private int staticCoolisionDamage = 20;
+    public bool playerWasHit;
+    public bool playerWasCollisionHit;
 
     //For _OnCelling
     [SerializeField] private float cellingHight;
@@ -103,11 +109,17 @@ public class PlayerGodController : MonoBehaviour
     //For Collision Check
     private RaycastHit2D GroundHit;
 
+
+    //For Camera Control
+
+    private CinemachineImpulseSource impulseSource;
+
     #endregion
 
     #region MethodsMain
     private void Start()
     {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
         
     }
 
@@ -148,6 +160,11 @@ public class PlayerGodController : MonoBehaviour
         Debug.Log("PLAYER FALL?:" + player_isFall);
         Debug.Log("ATTACK STATE?: " + ATTACK_STATE);
 
+    }
+
+    private void FixedUpdate()
+    {
+        playerCollisionDamageForce();
     }
     #endregion
 
@@ -650,7 +667,7 @@ public class PlayerGodController : MonoBehaviour
 
     #endregion
 
-    #region HP and damage METHODS
+    #region HP and damage collision METHODS
 
     public void Damage(int amount)
     {
@@ -658,6 +675,8 @@ public class PlayerGodController : MonoBehaviour
         playerWasHit = true;
         Debug.Log(playerCurrentHp);
         playerSprite.color = Color.red;
+        CameraShakeManager.instance.CameraShake(impulseSource);
+
 
         if (playerCurrentHp <= 0)
         {
@@ -673,14 +692,62 @@ public class PlayerGodController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && !playerWasCollisionHit)
+        {
+
+            if (collision.gameObject.transform.position.x > transform.position.x)
+            {
+                damageDirection = new Vector2 (-1f, 0);
+            }
+
+            else if (collision.gameObject.transform.position.x < transform.position.x)
+            {
+                damageDirection = new Vector2(1f, 0);
+            }
+            playerWasCollisionHit = true;
+
+            playerCurrentHp -= staticCoolisionDamage;
+
+            playerSprite.color = Color.Lerp(Color.white, Color.black, 0.5f);
+
+            CameraShakeManager.instance.CameraShake(impulseSource);
+
+            StartCoroutine(CollisionOffHit());
+
+        }
+    }
+
+    private void playerCollisionDamageForce()
+    {
+        if(playerWasCollisionHit)
+        {
+            rb.AddForce(damageDirection * collisionPower);
+        }
+    }
+
     private IEnumerator TurnOffHit()
     {
-        //Wait in the amount of invulnerabilityTime, which by default is .2 seconds
         yield return new WaitForSeconds(playerInvulnerabilityTime);
-        //Turn off the hit bool so the enemy can receive damage again
+
         playerWasHit = false;
+
         playerSprite.color = Color.white;
+
+    }
+    private IEnumerator CollisionOffHit()
+    {
+        yield return new WaitForSeconds(playerCollisionInvulnerabilityTime);
+
+        playerWasCollisionHit = false;
+
+        playerSprite.color = Color.white;
+
+
+
     }
 
     #endregion
+
 }
