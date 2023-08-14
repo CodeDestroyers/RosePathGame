@@ -250,6 +250,17 @@
                 },
                 {
                     "name": "",
+                    "id": "df93d1d6-a256-4536-8ca2-fd9265bd7ac2",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button12",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crowling",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "bdab7e43-a8f9-4953-b9b4-f3c83befe298",
                     "path": "<Keyboard>/escape",
                     "interactions": "",

@@ -19,8 +19,8 @@ public class PlayerGodController : MonoBehaviour
 
     //For _HP and Getting damage
 
-    private int playerCurrentHp;
-    private int playerMaxHp = 100;
+    public int playerCurrentHp;
+    public int playerMaxHp = 200;
     [SerializeField] private float playerInvulnerabilityTime;
     [SerializeField] private float playerCollisionInvulnerabilityTime;
     [SerializeField] private float collisionPower;
@@ -30,9 +30,6 @@ public class PlayerGodController : MonoBehaviour
     public bool playerWasHit;
     public bool playerWasCollisionHit;
 
-    //For _OnCelling
-    [SerializeField] private float cellingHight;
-    private RaycastHit2D CeilingHit;
 
     //For _Movement
     private Vector2 dirX;
@@ -49,11 +46,6 @@ public class PlayerGodController : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpTime;
 
-    //For _Crowling
-
-    private float switcherCrowling;
-    private bool wasCrowling;
-
     //For _Attacks
 
     private bool attackEnd = false;
@@ -68,6 +60,7 @@ public class PlayerGodController : MonoBehaviour
 
     //For objects
     private BoxCollider2D coll;
+    private CircleCollider2D cColl;
 
     //For Clasess
     private PlayerControls playerControls;
@@ -85,8 +78,6 @@ public class PlayerGodController : MonoBehaviour
     private bool player_isRun = false;
     private bool player_isJump = false;
     private bool player_isFall = false;
-    private bool player_isCrowlingIdle = false;
-    private bool player_isCrowlingRun = false;
     private bool player_isClimbing = false;
     private bool player_isClimbingJump = false;
     private bool player_isRunStart = false;
@@ -108,6 +99,8 @@ public class PlayerGodController : MonoBehaviour
 
     //For Collision Check
     private RaycastHit2D GroundHit;
+    private Transform m_Transform;
+    [SerializeField]  private float distanceRay;
 
 
     //For Camera Control
@@ -125,13 +118,17 @@ public class PlayerGodController : MonoBehaviour
 
     private void Awake()
     {
+        m_Transform = GetComponent<Transform>();
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
+        cColl = GetComponent<CircleCollider2D>();
         playerSprite = GetComponent<SpriteRenderer>();
         playerControls.PlayerActions.ChooseVerticalDerection.performed += ctx => horizontalAttackVector = ctx.ReadValue<Vector2>();
         playerAttackScript = GetComponentInChildren<PlayerAttackScript>();
         playerCurrentHp = playerMaxHp;
+        
+
     }
 
     private void OnEnable()
@@ -149,16 +146,16 @@ public class PlayerGodController : MonoBehaviour
         IsAir();
         StateMachine();
         AttackState();
-        onCeiling();
         PlayerMove();
         PlayerMovementAnimator();
         PlayerAttackAnimator();
+        Death();
 
         Debug.Log("Current State: " + CurrentState);
         Debug.Log("MODE STATE:" + MODE_STATE);
-        Debug.Log("HORIZONTAL IMPUT:" + horizontalAttackVector);
-        Debug.Log("PLAYER FALL?:" + player_isFall);
         Debug.Log("ATTACK STATE?: " + ATTACK_STATE);
+        Debug.Log("Was Collision hit? " + playerWasCollisionHit);
+        Debug.Log("Player current hp " + playerCurrentHp);
 
     }
 
@@ -233,7 +230,7 @@ public class PlayerGodController : MonoBehaviour
         else return false;
     }
 
-
+  
     #endregion
 
     #region MethodsStateMachine
@@ -252,7 +249,7 @@ public class PlayerGodController : MonoBehaviour
             AirStates();
         }
 
-        if (IsWall())
+        if (IsWall() && !IsAir())
         {
             MODE_STATE = 3;
         }
@@ -275,26 +272,19 @@ public class PlayerGodController : MonoBehaviour
             if (ATTACK_STATE == 1)
             {
                 PlayerAttackState1();
+           
             }
             else
             {
                 flip();
 
-                if (onCeiling())
+            if (SPECIAL_STATE == 1)
+            {
+                   //Some Special States like Door open animation and etc.
+            }
+            else
                 {
-                    PlayerCrowling();
-                }
-                else if (SPECIAL_STATE == 1)
-                {
-                    player_isCrowlingIdle = false;
-                    player_isCrowlingRun = false;
-
-                    //Some Special States like Door open animation and etc.
-                }
-                else
-                {
-                    player_isCrowlingIdle = false;
-                    player_isCrowlingRun = false;
+                    moveSpeed = 4f;
 
                     if (dirX.x != 0)
                     {
@@ -357,50 +347,6 @@ public class PlayerGodController : MonoBehaviour
         }
 
     }
-
-    private void PlayerCrowling()
-    {
-        switcherCrowling = playerControls.PlayerActions.Crowling.ReadValue<float>();
-
-        if (switcherCrowling > 0.5f)
-        {
-            wasCrowling = true;
-
-            if (wasCrowling)
-            {
-                moveSpeed = 2f;
-            }
-
-            if (wasCrowling && dirX.x != 0)
-            {
-                player_isCrowlingRun = true;
-                player_isCrowlingIdle = false;
-            }
-            if (wasCrowling && dirX.x == 0)
-            {
-                player_isCrowlingRun = false;
-                player_isCrowlingIdle = true;
-            }
-        }
-
-        if (switcherCrowling < 0.5f)
-        {
-            wasCrowling = false;
-
-            if(dirX.x != 0)
-            {
-                player_isCrowlingIdle = false;
-                player_isCrowlingRun = true;
-            }
-            else if (dirX.x == 0)
-            {
-                player_isCrowlingIdle = true;
-                player_isCrowlingRun = false;
-            }
-        }
-
-    }
-
     private void PlayerAttackState1()
     {
 
@@ -432,21 +378,6 @@ public class PlayerGodController : MonoBehaviour
             }
         }
     }
-
-    private bool onCeiling()
-    {
-        CeilingHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.up, cellingHight, jumpableGround);
-
-        if (CeilingHit.collider != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
     private void flip()
     {
         if (dirX.x > 0.01f)
@@ -481,6 +412,8 @@ public class PlayerGodController : MonoBehaviour
             }
             else
             {
+                rb.drag = 4;
+
                 flip();
 
                 if (coyoteCounter <=0 && jumpTimeCounter <=0)
@@ -512,6 +445,7 @@ public class PlayerGodController : MonoBehaviour
         if (horizontalAttackVector.y == 0f)
         {
             player_isForwardAttackFall = true;
+            rb.drag = 15;
         }
 
         if (horizontalAttackVector.y  == -1f)
@@ -563,21 +497,6 @@ public class PlayerGodController : MonoBehaviour
             CurrentState = ("Player_isClimbing");
             return;
         }*/
-
-        if (player_isCrowlingIdle)
-        {
-            animator.Play("Player_crow_idle");
-            CurrentState = ("Player_isCrowling_idle");
-            return;
-        }
-
-        if (player_isCrowlingRun)
-        {
-            animator.Play("Player_Crow_Run");
-            CurrentState = ("Player_isCrowlingRun");
-            return;
-
-        }
 
         if (player_isIdle)
         {
@@ -674,9 +593,11 @@ public class PlayerGodController : MonoBehaviour
         playerCurrentHp -= amount;
         playerWasHit = true;
         Debug.Log(playerCurrentHp);
-        playerSprite.color = Color.red;
+        playerSprite.color = Color.Lerp(Color.white, Color.black, 0.5f);
         CameraShakeManager.instance.CameraShake(impulseSource);
-        GetComponentInChildren<ParticleSystem>().Play();
+        GetComponentInChildren<ParticleSystem>().Play();    
+
+        
 
 
         if (playerCurrentHp <= 0)
@@ -692,6 +613,18 @@ public class PlayerGodController : MonoBehaviour
             StartCoroutine(TurnOffHit());
         }
     }
+
+    private void Death()
+    {
+        if (playerCurrentHp <= 0)
+        {
+            //Caps currentHealth to 0 for cleaner code
+            playerCurrentHp = 0;
+            //Removes GameObject from the scene; this should probably play a dying animation in a method that would handle all the other death logic, but for the test it just disables it from the scene
+            gameObject.SetActive(false);
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -7,6 +7,8 @@ public class PlayerAttackScript : MonoBehaviour
     //How much damage the melee attack does
     //Reference to Character script which contains the value if the player is facing left or right; if you don't have this or it's named something different, either omit it or change the class name to what your Character script is called
     private PlayerGodController character;
+
+    [SerializeField] Transform playerTransform;
     //Reference to the Rigidbody2D on the player
 
     private int damageAmount = 25;
@@ -30,6 +32,7 @@ public class PlayerAttackScript : MonoBehaviour
         //Reference to the Rigidbody2D on the player
         //Reference to the MeleeAttackManager script on the player
         OnEnable();
+        playerTransform = GetComponentInParent<GameObject>().transform;
     }
 
     private void Awake()
@@ -82,12 +85,12 @@ public class PlayerAttackScript : MonoBehaviour
         if ((moveVal.y <= 0 && character.IsGround()) || moveVal.y == 0)
         {
             //Checks to see if the player is facing left; if you don't have a character script, the commented out line of code can also check for that
-            if (gameObject.transform.localScale.x == -1) //(transform.parent.localScale.x < 0)
+            if (playerTransform.transform.localScale.x == -1) //(transform.parent.localScale.x < 0)
             {
                 //Sets the direction variable to right
                 direction = Vector2.right;
             }
-            else
+            else if (playerTransform.transform.localScale.x == 1)
             {
                 //Sets the direction variable to right left
                 direction = Vector2.left;
