@@ -185,7 +185,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8370e159-0306-4424-998d-d25e78fe9143"",
-                    ""path"": ""<HID::DragonRise Inc.   Generic   USB  Joystick  >/button2"",
+                    ""path"": ""<HID::DragonRise Inc.   Generic   USB  Joystick  >/button4"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

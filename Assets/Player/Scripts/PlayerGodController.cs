@@ -45,6 +45,9 @@ public class PlayerGodController : MonoBehaviour
     [SerializeField] private float coyoteTime;
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpTime;
+    private bool wasJump;
+    [SerializeField] private float fallSpeed;
+    [SerializeField] private float baseDrag;
 
     //For _Attacks
 
@@ -260,6 +263,8 @@ public class PlayerGodController : MonoBehaviour
 
     private void GroundStates()
     {
+        rb.drag = baseDrag;
+
         if (MODE_STATE == 1)
         {
             coyoteCounter = coyoteTime;
@@ -333,6 +338,7 @@ public class PlayerGodController : MonoBehaviour
         if (playerControls.PlayerActions.Jump.WasReleasedThisFrame() && player_isJump)
         {
             jumpTimeCounter = 0;
+            wasJump = true;
         }
 
         if (playerControls.PlayerActions.Jump.IsPressed())
@@ -359,7 +365,7 @@ public class PlayerGodController : MonoBehaviour
                player_isUpwardAttackIdle = true;
             }
 
-            else if (rb.velocity.x != 0f)
+            if (rb.velocity.x != 0f)
             {
                 player_isUpwardAttackRun = true;
             }
@@ -372,7 +378,7 @@ public class PlayerGodController : MonoBehaviour
                 player_isForwardAttack = true;
             }
 
-            else if (rb.velocity.x != 0f)
+            if (rb.velocity.x != 0f)
             {
                 player_isForwardAttackRun = true;
             }
@@ -412,7 +418,6 @@ public class PlayerGodController : MonoBehaviour
             }
             else
             {
-                rb.drag = 4;
 
                 flip();
 
@@ -436,6 +441,30 @@ public class PlayerGodController : MonoBehaviour
                 {
                     player_isFall = false;
                 }
+            }
+
+            if (jumpTimeCounter <= 0)
+            {
+                wasJump = true;
+            }
+            if (jumpTimeCounter > 0)
+            {
+                wasJump = false;
+            }
+
+            if (wasJump)
+            {
+                rb.drag = fallSpeed;
+            }
+
+            else if (!wasJump && jumpTimeCounter == jumpTime)
+            {
+                rb.drag = fallSpeed;
+            } 
+
+            else if (!wasJump)
+            {
+                rb.drag = baseDrag;
             }
         }
     }
@@ -593,7 +622,7 @@ public class PlayerGodController : MonoBehaviour
         playerCurrentHp -= amount;
         playerWasHit = true;
         Debug.Log(playerCurrentHp);
-        playerSprite.color = Color.Lerp(Color.white, Color.black, 0.5f);
+        playerSprite.color = Color.Lerp(Color.HSVToRGB(0, 0, 50), Color.black, 0.5f);
         CameraShakeManager.instance.CameraShake(impulseSource);
         GetComponentInChildren<ParticleSystem>().Play();    
 
@@ -644,7 +673,7 @@ public class PlayerGodController : MonoBehaviour
 
             playerCurrentHp -= staticCoolisionDamage;
 
-            playerSprite.color = Color.Lerp(Color.white, Color.black, 0.5f);
+            playerSprite.color = Color.Lerp(Color.HSVToRGB(0, 0, 50), Color.black, 0.5f);
 
             CameraShakeManager.instance.CameraShake(impulseSource);
 
@@ -669,7 +698,7 @@ public class PlayerGodController : MonoBehaviour
 
         playerWasHit = false;
 
-        playerSprite.color = Color.white;
+        playerSprite.color = Color.HSVToRGB(0, 0, 50);
 
     }
     private IEnumerator CollisionOffHit()
@@ -678,7 +707,7 @@ public class PlayerGodController : MonoBehaviour
 
         playerWasCollisionHit = false;
 
-        playerSprite.color = Color.white;
+        playerSprite.color = Color.HSVToRGB(0, 0, 50);
 
 
 
