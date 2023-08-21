@@ -19,6 +19,6 @@ public class ScneSwitcher : MonoBehaviour
 
     public void sceneSwitch()
     {
-        SceneManager.LoadScene("S0_R0", LoadSceneMode.Single);
+        SceneManager.LoadScene("L0_S0", LoadSceneMode.Single);
     }
 }
