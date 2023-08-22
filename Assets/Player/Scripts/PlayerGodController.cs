@@ -30,7 +30,6 @@ public class PlayerGodController : MonoBehaviour
     public bool playerWasHit;
     public bool playerWasCollisionHit;
 
-
     //For _Movement
     private Vector2 dirX;
     private Vector2 dirY;
@@ -87,6 +86,7 @@ public class PlayerGodController : MonoBehaviour
 
     //Attack States
 
+    private bool duringAttack;
     private bool player_isForwardAttack;
     private bool player_isForwardAttackRun;
     private bool player_isForwardAttackFall;
@@ -110,13 +110,22 @@ public class PlayerGodController : MonoBehaviour
 
     private CinemachineImpulseSource impulseSource;
 
+    //For sound play
+
+    private bool wasAttackSound;
+    private EventInstance playerFootsteps;
+    private EventInstance playerJumpSound;
+
     #endregion
 
     #region MethodsMain
     private void Start()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
-        
+
+        //For sound getters
+        playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps);
+        playerJumpSound = AudioManager.instance.CreateInstance(FMODEvents.instance.playerJump);
     }
 
     private void Awake()
@@ -154,6 +163,8 @@ public class PlayerGodController : MonoBehaviour
         PlayerAttackAnimator();
         Death();
 
+        UpdateSound();
+
         Debug.Log("Current State: " + CurrentState);
         Debug.Log("MODE STATE:" + MODE_STATE);
         Debug.Log("ATTACK STATE?: " + ATTACK_STATE);
@@ -173,7 +184,10 @@ public class PlayerGodController : MonoBehaviour
     //Invoke By Attack Animation Event
     public void AttackEnd()
     {
+        duringAttack = false;
+        ATTACK_STATE = 0;
         attackEnd = true;
+        wasAttackSound = false;
     }
 
     private void AttackState() 
@@ -274,7 +288,7 @@ public class PlayerGodController : MonoBehaviour
 
             player_isFall = false;
 
-            if (ATTACK_STATE == 1)
+            if (ATTACK_STATE == 1 && !duringAttack)
             {
                 PlayerAttackState1();
            
@@ -287,7 +301,7 @@ public class PlayerGodController : MonoBehaviour
             {
                    //Some Special States like Door open animation and etc.
             }
-            else
+            if (ATTACK_STATE == 0)
                 {
                     moveSpeed = 4f;
 
@@ -353,6 +367,8 @@ public class PlayerGodController : MonoBehaviour
         }
 
     }
+
+
     private void PlayerAttackState1()
     {
 
@@ -360,27 +376,35 @@ public class PlayerGodController : MonoBehaviour
 
         if (horizontalAttackVector.y >= 0.1f)
         {
+            ATTACK_STATE = 1;
+
             if (rb.velocity.x == 0f)
             {
                player_isUpwardAttackIdle = true;
+                duringAttack = true;
             }
 
             if (rb.velocity.x != 0f)
             {
                 player_isUpwardAttackRun = true;
+                duringAttack = true;
             }
         }
 
         if (horizontalAttackVector.y <= 0f)
         {
+            ATTACK_STATE = 1;
+
             if (rb.velocity.x == 0f)
             {
                 player_isForwardAttack = true;
+                duringAttack = true;
             }
 
-            if (rb.velocity.x != 0f)
+            if (playerControls.PlayerActions.Movement.IsPressed())
             {
                 player_isForwardAttackRun = true;
+                duringAttack = true;            
             }
         }
     }
@@ -412,11 +436,11 @@ public class PlayerGodController : MonoBehaviour
             player_isRun = false;
             player_isRunStart = false;
 
-            if (ATTACK_STATE == 1)
+            if (ATTACK_STATE == 1 && !duringAttack)
             {
                 PlayerAttackState2();
             }
-            else
+            else if (ATTACK_STATE == 0)
             {
 
                 flip();
@@ -475,16 +499,19 @@ public class PlayerGodController : MonoBehaviour
         {
             player_isForwardAttackFall = true;
             rb.drag = 15;
+            duringAttack = true;
         }
 
         if (horizontalAttackVector.y  == -1f)
         {
             player_isDownwardAttackFall = true;
+            duringAttack = true;
         }
 
         if (horizontalAttackVector.y == 1f)
         {
             player_isUpwardAttackFall = true;
+            duringAttack = true;
         }
     }
 
@@ -622,13 +649,10 @@ public class PlayerGodController : MonoBehaviour
         playerCurrentHp -= amount;
         playerWasHit = true;
         Debug.Log(playerCurrentHp);
-        playerSprite.color = Color.Lerp(Color.HSVToRGB(0, 0, 50), Color.black, 0.5f);
         CameraShakeManager.instance.CameraShake(impulseSource);
         GetComponentInChildren<ParticleSystem>().Play();    
 
         
-
-
         if (playerCurrentHp <= 0)
         {
             //Caps currentHealth to 0 for cleaner code
@@ -659,21 +683,22 @@ public class PlayerGodController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") && !playerWasCollisionHit)
         {
+            PlayerCollisionDamageSound();
 
             if (collision.gameObject.transform.position.x > transform.position.x)
             {
-                damageDirection = new Vector2 (-1f, 0);
+                damageDirection = new Vector2 (-1f, 0.1f);
             }
 
             else if (collision.gameObject.transform.position.x < transform.position.x)
             {
-                damageDirection = new Vector2(1f, 0);
+                damageDirection = new Vector2(1f, 0.1f);
             }
             playerWasCollisionHit = true;
 
-            playerCurrentHp -= staticCoolisionDamage;
+            Time.timeScale = 0.3f;
 
-            playerSprite.color = Color.Lerp(Color.HSVToRGB(0, 0, 50), Color.black, 0.5f);
+            playerCurrentHp -= staticCoolisionDamage;
 
             CameraShakeManager.instance.CameraShake(impulseSource);
 
@@ -686,7 +711,7 @@ public class PlayerGodController : MonoBehaviour
 
     private void playerCollisionDamageForce()
     {
-        if(playerWasCollisionHit)
+        if (playerWasCollisionHit)
         {
             rb.AddForce(damageDirection * collisionPower);
         }
@@ -694,23 +719,64 @@ public class PlayerGodController : MonoBehaviour
 
     private IEnumerator TurnOffHit()
     {
-        yield return new WaitForSeconds(playerInvulnerabilityTime);
-
         playerWasHit = false;
-
-        playerSprite.color = Color.HSVToRGB(0, 0, 50);
-
+        yield return new WaitForSeconds(playerInvulnerabilityTime);
+        Time.timeScale = 1f;
     }
     private IEnumerator CollisionOffHit()
     {
-        yield return new WaitForSeconds(playerCollisionInvulnerabilityTime);
-
         playerWasCollisionHit = false;
+        yield return new WaitForSeconds(playerCollisionInvulnerabilityTime);
+        Time.timeScale = 1f;
 
-        playerSprite.color = Color.HSVToRGB(0, 0, 50);
+    }
+    #endregion
 
+    #region SoundPlayer
+    private void UpdateSound()
+    {
+        FootStepSound();
+        JumpSound();
+        AttackSound();
+    }
 
+    private void FootStepSound()
+    {
+        if (player_isRun)
+        {
+            PLAYBACK_STATE playbackState;
+            playerFootsteps.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                playerFootsteps.start();
+            }
+        }
+        else
+        {
+            playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+        }
+    }
 
+    private void JumpSound()
+    {
+        if (playerControls.PlayerActions.Jump.WasPressedThisFrame() && player_isJump)
+        {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.playerJump, this.transform.position);
+        }
+    }
+
+    private void AttackSound()
+    {
+        if (playerControls.PlayerActions.AttackL.WasPressedThisFrame() && !wasAttackSound)
+        {
+            wasAttackSound = true;
+           AudioManager.instance.PlayOneShot(FMODEvents.instance.baseAttack, this.transform.position);
+        }
+    }
+
+    private void PlayerCollisionDamageSound()
+    {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.playerTakeHit, this.transform.position);
     }
 
     #endregion

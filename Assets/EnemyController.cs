@@ -146,32 +146,32 @@ public class EnemyController : MonoBehaviour
     }
     private void enemyPatrol()
     {
-            /*if (point.transform.localPosition.x <= transform.localPosition.x)
-            {
-             rb.velocity = new Vector2(MovementsSpeed, 0f);
-             transform.localScale = new Vector2(-1, 1);
-             anim.Play("Boss1_run");
+        /*if (point.transform.localPosition.x <= transform.localPosition.x)
+        {
+         rb.velocity = new Vector2(MovementsSpeed, 0f);
+         transform.localScale = new Vector2(-1, 1);
+         anim.Play("Boss1_run");
 
-            }
+        }
 
-            if (point.transform.localPosition.x >= transform.localPosition.x)
-            {
-             rb.velocity = new Vector2(-MovementsSpeed, 0f);
-             transform.localScale = new Vector2(1, 1);
-             anim.Play("Boss1_run");
-            }*/
-              enemyIdle();
+        if (point.transform.localPosition.x >= transform.localPosition.x)
+        {
+         rb.velocity = new Vector2(-MovementsSpeed, 0f);
+         transform.localScale = new Vector2(1, 1);
+         anim.Play("Boss1_run");
+        }*/
+        enemyIdle();
     }
 
     private void enemyChasing()
     {
-        if(player.transform.localPosition.x >= transform.localPosition.x)
+        if (player.transform.localPosition.x >= transform.localPosition.x)
         {
             rb.velocity = new Vector2(MovementsSpeed, 0f);
             transform.localScale = new Vector2(-1, 1);
 
         }
-        else if(player.transform.localPosition.x <= transform.localPosition.x)
+        else if (player.transform.localPosition.x <= transform.localPosition.x)
         {
             rb.velocity = new Vector2(-MovementsSpeed, 0f);
             transform.localScale = new Vector2(1, 1);

@@ -20,6 +20,54 @@ MonoBehaviour:
   - Name: Desktop
     Value: 494
   Exists: 1
+--- !u!114 &-6788666414600856789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/L0/WindBase
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/L0/WindBase
+  Guid:
+    Data1: -485162577
+    Data2: 1148400883
+    Data3: -308204888
+    Data4: -830320658
+  Banks:
+  - {fileID: -5744320283130253243}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 985239021963325293}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 94981
+--- !u!114 &-5744320283130253243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/L0.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/L0.bank
+  Name: L0
+  StudioPath: bank:/L0
+  lastModified: 638283101607516431
+  FileSizes:
+  - Name: Desktop
+    Value: 1106208
+  Exists: 1
 --- !u!114 &-5520490193030413802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,11 +110,38 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Enemy.bank
   Name: Enemy
   StudioPath: bank:/Enemy
-  lastModified: 638271487371188875
+  lastModified: 638283268493259843
   FileSizes:
   - Name: Desktop
-    Value: 900864
+    Value: 916160
   Exists: 1
+--- !u!114 &-4595907102930877794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerEvenets/PlayerJump
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerEvenets/PlayerJump
+  Guid:
+    Data1: 1779493933
+    Data2: 1128545830
+    Data3: -1474850386
+    Data4: 746461835
+  Banks:
+  - {fileID: 8381976726770435846}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 940
 --- !u!114 &-3375021203016219731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,11 +157,38 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/BackgroundsAmbient.bank
   Name: BackgroundsAmbient
   StudioPath: bank:/BackgroundsAmbient
-  lastModified: 638264469319473886
+  lastModified: 638283096372179836
   FileSizes:
   - Name: Desktop
     Value: 758304
   Exists: 1
+--- !u!114 &-2087526865024311744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemy/L0/SimpleEnemy/GraveRunner/GraveRunnerRun
+  m_EditorClassIdentifier: 
+  Path: event:/Enemy/L0/SimpleEnemy/GraveRunner/GraveRunnerRun
+  Guid:
+    Data1: 1834334193
+    Data2: 1207254277
+    Data3: 720726189
+    Data4: -666047189
+  Banks:
+  - {fileID: -4603254206209481166}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,18 +208,49 @@ MonoBehaviour:
   - {fileID: -3375021203016219731}
   - {fileID: -7688551825653729345}
   - {fileID: -4603254206209481166}
+  - {fileID: -5744320283130253243}
   EditorEvents:
   - {fileID: -5520490193030413802}
   - {fileID: 4095709909907955797}
   - {fileID: 6638264154189957361}
   - {fileID: 4378254108381497938}
+  - {fileID: -4595907102930877794}
+  - {fileID: 4923756963656959613}
+  - {fileID: -6788666414600856789}
+  - {fileID: -2087526865024311744}
+  - {fileID: 2618215135674252651}
+  - {fileID: 7121007635807105051}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8381976726770435846}
   StringsBanks:
   - {fileID: 1726338470507851090}
-  cacheTime: 638271487371188875
+  cacheTime: 638283311666762495
   cacheVersion: 131605
+--- !u!114 &985239021963325293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WindBase/wind_intesity
+  m_EditorClassIdentifier: 
+  Name: wind_intesity
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 397589692
+    data2: 444572286
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &1726338470507851090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,11 +266,38 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638271487370958827
+  lastModified: 638283311666762495
   FileSizes:
   - Name: Desktop
-    Value: 1128
+    Value: 1564
   Exists: 1
+--- !u!114 &2618215135674252651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerEvenets/BaseAttack
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerEvenets/BaseAttack
+  Guid:
+    Data1: -1468582200
+    Data2: 1079768041
+    Data3: -1887166845
+    Data4: -158245343
+  Banks:
+  - {fileID: 8381976726770435846}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &4095709909907955797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +352,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 54857
+--- !u!114 &4923756963656959613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GlobalSFX/F0/Lamp
+  m_EditorClassIdentifier: 
+  Path: event:/GlobalSFX/F0/Lamp
+  Guid:
+    Data1: -1627740332
+    Data2: 1120193558
+    Data3: 378663314
+    Data4: 1847458655
+  Banks:
+  - {fileID: 8042381114683576855}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 20297
 --- !u!114 &6638264154189957361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +406,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &7121007635807105051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerEvenets/PlayerTakeHit
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerEvenets/PlayerTakeHit
+  Guid:
+    Data1: -2092960355
+    Data2: 1076924679
+    Data3: -1152708460
+    Data4: -783645335
+  Banks:
+  - {fileID: 8381976726770435846}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 705
 --- !u!114 &8042381114683576855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,10 +448,10 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638264469305251922
+  lastModified: 638283096372656216
   FileSizes:
   - Name: Desktop
-    Value: 43104
+    Value: 270624
   Exists: 1
 --- !u!114 &8381976726770435846
 MonoBehaviour:
@@ -254,8 +468,8 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638271487370948828
+  lastModified: 638283311666752490
   FileSizes:
   - Name: Desktop
-    Value: 1036
+    Value: 41792
   Exists: 1

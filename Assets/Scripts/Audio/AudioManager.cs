@@ -12,6 +12,14 @@ public class AudioManager : MonoBehaviour
 
     private List<EventInstance> eventInstances;
 
+    private EventInstance ambienceEventInstance;
+
+
+    private void Start()
+    {
+        InitializeAmbience(FMODEvents.instance.WindBase);
+    }
+
     private void Awake()
     {
         if (instance != null) 
@@ -46,5 +54,16 @@ public class AudioManager : MonoBehaviour
     private void OnDestroy()
     {
         CleannUp();
+    }
+
+    private void InitializeAmbience(EventReference ambienceEventReference)
+    {
+        ambienceEventInstance = CreateInstance(ambienceEventReference);
+        ambienceEventInstance.start();
+    }
+
+    public void SetAmbientParmeter(string paramenterName, float parameterValue)
+    {
+        ambienceEventInstance.setParameterByName(paramenterName, parameterValue);
     }
 }

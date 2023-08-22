@@ -43,7 +43,6 @@ public class EnemyHealth : MonoBehaviour
             hit = true;
             //Reduces currentHealthPoints by the amount value that was set by whatever script called this method, for this tutorial in the OnTriggerEnter2D() method
             currentHealth -= amount;
-            enemySprite.color = Color.Lerp(Color.HSVToRGB(0, 0, 50), Color.black, 0.5f);
             Debug.Log(currentHealth);
             Debug.Log(amount);
             GetComponentInChildren<ParticleSystem>().Play();
@@ -74,7 +73,6 @@ public class EnemyHealth : MonoBehaviour
         yield return new WaitForSeconds(invulnerabilityTime);
         //Turn off the hit bool so the enemy can receive damage again
         hit = false;
-        enemySprite.color = Color.HSVToRGB(0, 0, 50);
         GetComponentInChildren<ParticleSystem>().Stop();
     }
 

@@ -520,6 +520,7 @@ MonoBehaviour:
   Banks:
   - BackgroundsAmbient
   - Enemy
+  - L0
   - Memes
   - SFX
   BanksToLoad: []
