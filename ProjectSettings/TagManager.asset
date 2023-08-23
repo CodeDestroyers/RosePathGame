@@ -6,6 +6,15 @@ TagManager:
   tags:
   - Vcam
   - Enemy
+  - LoadPosition1
+  - LoadPosition2
+  - LoadPosition3
+  - LoadPosition4
+  - LoadPosition5
+  - LoadPosition6
+  - LoadPosition7
+  - CollisionPosition1
+  - DamageCollision
   layers:
   - Default
   - TransparentFX

@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 2901350170137827808}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6772422323153875344
 MonoBehaviour:
@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0da843ecbd8cc49a8beecbafd0ffa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: L0_S1
+  playerExitPoint: 2
 --- !u!61 &7617031904933391995
 BoxCollider2D:
   m_ObjectHideFlags: 0

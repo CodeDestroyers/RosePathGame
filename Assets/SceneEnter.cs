@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneEnter : MonoBehaviour
 {
     [SerializeField] private string sceneName;
+    [SerializeField] private int playerExitPoint;
 
     Animator animator;
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class SceneEnter : MonoBehaviour
     {
         if (collision.GetComponent<PlayerGodController>())
         {
+            PlayerGodController.scenePosition = playerExitPoint;
             SceneSwitchAnimation();
         }
     }

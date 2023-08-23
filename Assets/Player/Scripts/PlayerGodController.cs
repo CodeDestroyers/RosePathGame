@@ -116,9 +116,55 @@ public class PlayerGodController : MonoBehaviour
     private EventInstance playerFootsteps;
     private EventInstance playerJumpSound;
 
+    //For Player Load
+
+    public static int scenePosition = 1;
+    private GameObject loadPosition;
+    private GameObject collisionLoadPosition;
+    public int collisionPoint;
+    public bool wasCollisionHitWall = false;
+
     #endregion
 
     #region MethodsMain
+
+    private void PlayerSceneLoader()
+    {
+        if (scenePosition == 1)
+        {
+            loadPosition = GameObject.FindWithTag("LoadPosition1");
+        }
+
+        else if (scenePosition == 2)
+        {
+            loadPosition = GameObject.FindWithTag("LoadPosition2");
+        }
+
+        else if(scenePosition == 3)
+        {
+            loadPosition = GameObject.FindWithTag("LoadPosition3");
+        }
+        else if (scenePosition == 4)
+        {
+            loadPosition = GameObject.FindWithTag("LoadPosition4");
+        }
+        else if (scenePosition == 5)
+        {
+            loadPosition = GameObject.FindWithTag("LoadPosition5");
+        }
+        else if (scenePosition == 6)
+        {
+            loadPosition = GameObject.FindWithTag("LoadPosition6");
+        }
+        else if (scenePosition == 7)
+        {
+            loadPosition = GameObject.FindWithTag("LoadPosition7");
+        }
+
+        transform.localPosition = loadPosition.transform.localPosition;
+    }
+
+
     private void Start()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
@@ -130,6 +176,7 @@ public class PlayerGodController : MonoBehaviour
 
     private void Awake()
     {
+        PlayerSceneLoader();
         m_Transform = GetComponent<Transform>();
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
@@ -155,6 +202,8 @@ public class PlayerGodController : MonoBehaviour
 
     void Update()
     {
+        CollisionDamage();
+        playerWasCollisionHitColl();
         IsAir();
         StateMachine();
         AttackState();
@@ -643,6 +692,16 @@ public class PlayerGodController : MonoBehaviour
     #endregion
 
     #region HP and damage collision METHODS
+    
+    public void playerWasCollisionHitColl()
+    {
+        if (wasCollisionHitWall)
+        {
+            collisionLoadPosition = GameObject.FindWithTag("CollisionPosition1");
+            transform.localPosition = collisionLoadPosition.transform.position;
+            wasCollisionHitWall = false;
+        }
+    }
 
     public void Damage(int amount)
     {
@@ -678,10 +737,23 @@ public class PlayerGodController : MonoBehaviour
         }
     }
 
+    private void CollisionDamage()
+    {
+
+        if (wasCollisionHitWall)
+        {
+            GetComponentInChildren<ParticleSystem>().Play();
+            PlayerCollisionDamageSound();
+            playerCurrentHp -= staticCoolisionDamage;
+            playerSprite.color = Color.Lerp(Color.white, Color.black, 0.5f);
+            StartCoroutine(CollisionOffHit());
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && !playerWasCollisionHit)
+        if (collision.gameObject.CompareTag("Enemy") && !playerWasCollisionHit || collision.gameObject.CompareTag("DamageCollision") && !playerWasCollisionHit)
         {
             PlayerCollisionDamageSound();
 
@@ -696,7 +768,7 @@ public class PlayerGodController : MonoBehaviour
             }
             playerWasCollisionHit = true;
 
-            Time.timeScale = 0.3f;
+            playerSprite.color = Color.Lerp(Color.white, Color.black, 0.5f);
 
             playerCurrentHp -= staticCoolisionDamage;
 
@@ -721,14 +793,13 @@ public class PlayerGodController : MonoBehaviour
     {
         playerWasHit = false;
         yield return new WaitForSeconds(playerInvulnerabilityTime);
-        Time.timeScale = 1f;
+        playerSprite.color = Color.gray;
     }
     private IEnumerator CollisionOffHit()
     {
         playerWasCollisionHit = false;
         yield return new WaitForSeconds(playerCollisionInvulnerabilityTime);
-        Time.timeScale = 1f;
-
+        playerSprite.color = Color.gray;
     }
     #endregion
 

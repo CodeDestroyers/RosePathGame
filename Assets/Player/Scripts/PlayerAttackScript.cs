@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using FMODUnity;
 
 public class PlayerAttackScript : MonoBehaviour
 {
@@ -59,6 +61,21 @@ public class PlayerAttackScript : MonoBehaviour
             //Method that checks to see what force can be applied to the player when melee attacking
             HandleCollision(collision.GetComponent<EnemyHealth>());
             Debug.Log("Enemy was hit!");
+        }
+
+        if (collision.tag.Equals("Enemy"))
+        {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.playerHitEnemy, this.transform.position);
+        }
+
+        if (collision.tag.Equals("Wall"))
+        {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.playerHitWall, this.transform.position);
+        }
+
+        if (collision.tag.Equals("Enviroment"))
+        {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.playerHitEnviroment, this.transform.position);
         }
     }
 

@@ -13,6 +13,12 @@ public class FMODEvents : MonoBehaviour
 
     [field: SerializeField] public EventReference playerTakeHit { get; private set; }
 
+    [field: SerializeField] public EventReference playerHitEnemy { get; private set; }
+
+    [field: SerializeField] public EventReference playerHitWall { get; private set; }
+
+    [field: SerializeField] public EventReference playerHitEnviroment { get; private set; }
+
     [field: Header("L0")] 
     [field: SerializeField] public EventReference WindBase { get; private set; }
 

@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class ColliderHealth : MonoBehaviour
 {
-
     SpriteRenderer enemySprite;
     //Determines if this GameObject should receive damage or not
     [SerializeField]
@@ -23,6 +22,8 @@ public class EnemyHealth : MonoBehaviour
     //The current amount after receiving damage the enemy has
     private int currentHealth;
 
+    private PlayerGodController player;
+
     private CinemachineImpulseSource impulseSource;
 
     private void Start()
@@ -30,7 +31,6 @@ public class EnemyHealth : MonoBehaviour
         //Sets the enemy to the max amount of health when the scene loads
         currentHealth = healthAmount;
         enemySprite = GetComponent<SpriteRenderer>();
-        GetComponentInChildren<ParticleSystem>().Stop();
         impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
@@ -45,7 +45,6 @@ public class EnemyHealth : MonoBehaviour
             currentHealth -= amount;
             Debug.Log(currentHealth);
             Debug.Log(amount);
-            enemySprite.color = Color.black;
             GetComponentInChildren<ParticleSystem>().Play();
             CameraShakeManager.instance.CameraShake(impulseSource);
 
@@ -66,6 +65,15 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<PlayerGodController>())
+        {  
+           player = collision.GetComponent<PlayerGodController>();
+            player.wasCollisionHitWall = true;
+        }
+    }
+
 
     //Coroutine that runs to allow the enemy to receive damage again
     private IEnumerator TurnOffHit()
@@ -74,7 +82,6 @@ public class EnemyHealth : MonoBehaviour
         yield return new WaitForSeconds(invulnerabilityTime);
         //Turn off the hit bool so the enemy can receive damage again
         hit = false;
-        enemySprite.color = Color.gray;
         GetComponentInChildren<ParticleSystem>().Stop();
     }
 

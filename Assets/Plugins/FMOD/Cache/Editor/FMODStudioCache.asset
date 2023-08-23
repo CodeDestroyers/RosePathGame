@@ -20,6 +20,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 494
   Exists: 1
+--- !u!114 &-7377479167080121798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerEvenets/OnHitEffect/EnemyHit
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerEvenets/OnHitEffect/EnemyHit
+  Guid:
+    Data1: 503028249
+    Data2: 1076099153
+    Data3: 2061838760
+    Data4: -467079979
+  Banks:
+  - {fileID: 8381976726770435846}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-6788666414600856789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,12 +247,13 @@ MonoBehaviour:
   - {fileID: -2087526865024311744}
   - {fileID: 2618215135674252651}
   - {fileID: 7121007635807105051}
+  - {fileID: -7377479167080121798}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8381976726770435846}
   StringsBanks:
   - {fileID: 1726338470507851090}
-  cacheTime: 638283311666762495
+  cacheTime: 638284155085757601
   cacheVersion: 131605
 --- !u!114 &985239021963325293
 MonoBehaviour:
@@ -266,10 +294,10 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638283311666762495
+  lastModified: 638284155085757601
   FileSizes:
   - Name: Desktop
-    Value: 1564
+    Value: 1616
   Exists: 1
 --- !u!114 &2618215135674252651
 MonoBehaviour:
@@ -468,8 +496,8 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638283311666752490
+  lastModified: 638284155085737593
   FileSizes:
   - Name: Desktop
-    Value: 41792
+    Value: 46592
   Exists: 1
