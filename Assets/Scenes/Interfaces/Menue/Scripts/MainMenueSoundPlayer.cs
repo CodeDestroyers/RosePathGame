@@ -7,6 +7,11 @@ public class MainMenueSoundPlayer : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    private void Start()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/MainMenue/MainMenueMusic");
+    }
+
     public void backButton()
     {
         //FMODUnity.RuntimeManager.PlayOneShot("event:/Memes/DiscordLeave");

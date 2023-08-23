@@ -248,12 +248,13 @@ MonoBehaviour:
   - {fileID: 2618215135674252651}
   - {fileID: 7121007635807105051}
   - {fileID: -7377479167080121798}
+  - {fileID: 7979366053630804542}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8381976726770435846}
   StringsBanks:
   - {fileID: 1726338470507851090}
-  cacheTime: 638284155085757601
+  cacheTime: 638284422983962469
   cacheVersion: 131605
 --- !u!114 &985239021963325293
 MonoBehaviour:
@@ -294,10 +295,10 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638284155085757601
+  lastModified: 638284422983962469
   FileSizes:
   - Name: Desktop
-    Value: 1616
+    Value: 1670
   Exists: 1
 --- !u!114 &2618215135674252651
 MonoBehaviour:
@@ -461,6 +462,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 705
+--- !u!114 &7979366053630804542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenue/MainMenueMusic
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenue/MainMenueMusic
+  Guid:
+    Data1: 507386357
+    Data2: 1136885115
+    Data3: 855232694
+    Data4: 1392083626
+  Banks:
+  - {fileID: 8381976726770435846}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 150935
 --- !u!114 &8042381114683576855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,8 +524,8 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638284155085737593
+  lastModified: 638284422983942463
   FileSizes:
   - Name: Desktop
-    Value: 46592
+    Value: 1922176
   Exists: 1
