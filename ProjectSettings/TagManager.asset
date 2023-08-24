@@ -15,6 +15,11 @@ TagManager:
   - LoadPosition7
   - CollisionPosition1
   - DamageCollision
+  - PlayerWeapon
+  - Enviroment
+  - CollisionPosition2
+  - CollisionPosition3
+  - CollisionPosition4
   layers:
   - Default
   - TransparentFX

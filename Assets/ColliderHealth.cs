@@ -26,6 +26,8 @@ public class ColliderHealth : MonoBehaviour
 
     private CinemachineImpulseSource impulseSource;
 
+    [SerializeField] private int collisionPointNumber;
+
     private void Start()
     {
         //Sets the enemy to the max amount of health when the scene loads
@@ -70,6 +72,7 @@ public class ColliderHealth : MonoBehaviour
         if (collision.GetComponent<PlayerGodController>())
         {  
            player = collision.GetComponent<PlayerGodController>();
+            player.collisionPoint = collisionPointNumber;
             player.wasCollisionHitWall = true;
         }
     }

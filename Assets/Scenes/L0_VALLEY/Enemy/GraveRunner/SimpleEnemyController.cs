@@ -38,10 +38,13 @@ public class SimpleEnemyController : MonoBehaviour
 
     #endregion
 
+    private EnemyHealth health;
+
     #region BaseMainMethods
 
     private void Awake()
     {
+        health = GetComponent<EnemyHealth>();
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponent<Animator>();
@@ -100,7 +103,10 @@ public class SimpleEnemyController : MonoBehaviour
 
     private void MovementMethods()
     {
-        enemyPatrol();
+        if (!health.hit)
+        {
+            enemyPatrol();
+        }
     }
 
     private void enemyIdle()

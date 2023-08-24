@@ -19,15 +19,18 @@ public class EnemyHealth : MonoBehaviour
     //Allows the player to be forced up when performing a downward strike above the enemy
     public bool giveUpwardForce = true;
     //Bool that manages if the enemy can receive more damage
-    private bool hit;
+    public bool hit;
     //The current amount after receiving damage the enemy has
     private int currentHealth;
 
     private CinemachineImpulseSource impulseSource;
 
+    private Rigidbody2D rb;
+
     private void Start()
     {
         //Sets the enemy to the max amount of health when the scene loads
+        rb = GetComponent<Rigidbody2D>();
         currentHealth = healthAmount;
         enemySprite = GetComponent<SpriteRenderer>();
         GetComponentInChildren<ParticleSystem>().Stop();
@@ -48,6 +51,7 @@ public class EnemyHealth : MonoBehaviour
             enemySprite.color = Color.black;
             GetComponentInChildren<ParticleSystem>().Play();
             CameraShakeManager.instance.CameraShake(impulseSource);
+            rb.velocity = Vector3.zero;
 
 
             //If currentHealthPoints is below zero, player is dead, and then we handle all the logic to manage the dead state
@@ -70,6 +74,7 @@ public class EnemyHealth : MonoBehaviour
     //Coroutine that runs to allow the enemy to receive damage again
     private IEnumerator TurnOffHit()
     {
+        
         //Wait in the amount of invulnerabilityTime, which by default is .2 seconds
         yield return new WaitForSeconds(invulnerabilityTime);
         //Turn off the hit bool so the enemy can receive damage again

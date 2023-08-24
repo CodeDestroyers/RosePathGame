@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 1301855006063174571}
   m_Layer: 18
   m_Name: AttackPoint
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6358,7 +6358,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    gravitySource: 0
+    gravitySource: 1
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -6366,7 +6366,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9435,10 +9435,10 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
-    collisionMode: 0
+    type: 1
+    collisionMode: 1
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
@@ -9447,7 +9447,7 @@ ParticleSystem:
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -10695,7 +10695,7 @@ Transform:
   - {fileID: 4566569402017410573}
   - {fileID: 228081558824291514}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &198674983759976310
 SpriteRenderer:
@@ -12203,7 +12203,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    gravitySource: 0
+    gravitySource: 1
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -12211,7 +12211,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -15277,10 +15277,10 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
-    collisionMode: 0
+    type: 1
+    collisionMode: 1
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
@@ -15289,7 +15289,7 @@ ParticleSystem:
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -16560,11 +16560,11 @@ MonoBehaviour:
     Path: event:/PlayerEvenets/PlayerTakeHit
   <playerHitEnemy>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 503028249
+      Data2: 1076099153
+      Data3: 2061838760
+      Data4: -467079979
+    Path: event:/PlayerEvenets/OnHitEffect/EnemyHit
   <playerHitWall>k__BackingField:
     Guid:
       Data1: 0
@@ -16574,11 +16574,11 @@ MonoBehaviour:
     Path: 
   <playerHitEnviroment>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1639384239
+      Data2: 1075450762
+      Data3: 1558085818
+      Data4: 922680867
+    Path: event:/PlayerEvenets/OnHitEffect/EnviromentHit
   <WindBase>k__BackingField:
     Guid:
       Data1: -485162577
@@ -16586,6 +16586,13 @@ MonoBehaviour:
       Data3: -308204888
       Data4: -830320658
     Path: event:/Ambience/L0/WindBase
+  <objectDestroy1>k__BackingField:
+    Guid:
+      Data1: -1201396855
+      Data2: 1177002798
+      Data3: -527601272
+      Data4: 255361616
+    Path: event:/GlobalSFX/F0/Eviroment/ObjDestroy1
 --- !u!1 &8900041907343799927
 GameObject:
   m_ObjectHideFlags: 0

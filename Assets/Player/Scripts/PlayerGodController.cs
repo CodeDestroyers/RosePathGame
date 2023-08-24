@@ -118,11 +118,13 @@ public class PlayerGodController : MonoBehaviour
 
     //For Player Load
 
+    public int collisionPosition;
     public static int scenePosition = 1;
     private GameObject loadPosition;
     private GameObject collisionLoadPosition;
-    public int collisionPoint;
+    public int collisionPoint = 1;
     public bool wasCollisionHitWall = false;
+
 
     #endregion
 
@@ -697,9 +699,30 @@ public class PlayerGodController : MonoBehaviour
     {
         if (wasCollisionHitWall)
         {
-            collisionLoadPosition = GameObject.FindWithTag("CollisionPosition1");
-            transform.localPosition = collisionLoadPosition.transform.position;
-            wasCollisionHitWall = false;
+            if (collisionPoint == 1)
+            {
+                collisionLoadPosition = GameObject.FindWithTag("CollisionPosition1");
+                transform.localPosition = collisionLoadPosition.transform.localPosition;
+                wasCollisionHitWall = false;
+            }
+            if (collisionPoint == 2)
+            {
+                collisionLoadPosition = GameObject.FindWithTag("CollisionPosition2");
+                transform.localPosition = collisionLoadPosition.transform.localPosition;
+                wasCollisionHitWall = false;
+            }
+            if (collisionPoint == 3)
+            {
+                collisionLoadPosition = GameObject.FindWithTag("CollisionPosition3");
+                transform.localPosition = collisionLoadPosition.transform.localPosition;
+                wasCollisionHitWall = false;
+            }
+            if (collisionPoint == 4)
+            {
+                collisionLoadPosition = GameObject.FindWithTag("CollisionPosition4");
+                transform.localPosition = collisionLoadPosition.transform.localPosition;
+                wasCollisionHitWall = false;
+            }
         }
     }
 

@@ -169,6 +169,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 940
+--- !u!114 &-3914660248850827448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GlobalSFX/F0/Eviroment/ObjDestroy1
+  m_EditorClassIdentifier: 
+  Path: event:/GlobalSFX/F0/Eviroment/ObjDestroy1
+  Guid:
+    Data1: -1201396855
+    Data2: 1177002798
+    Data3: -527601272
+    Data4: 255361616
+  Banks:
+  - {fileID: 8042381114683576855}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 966
 --- !u!114 &-3375021203016219731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +216,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 758304
   Exists: 1
+--- !u!114 &-2313870773579182971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerEvenets/OnHitEffect/EnviromentHit
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerEvenets/OnHitEffect/EnviromentHit
+  Guid:
+    Data1: 1639384239
+    Data2: 1075450762
+    Data3: 1558085818
+    Data4: 922680867
+  Banks:
+  - {fileID: 8381976726770435846}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 992
 --- !u!114 &-2087526865024311744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,19 +296,21 @@ MonoBehaviour:
   - {fileID: 6638264154189957361}
   - {fileID: 4378254108381497938}
   - {fileID: -4595907102930877794}
-  - {fileID: 4923756963656959613}
   - {fileID: -6788666414600856789}
   - {fileID: -2087526865024311744}
   - {fileID: 2618215135674252651}
   - {fileID: 7121007635807105051}
   - {fileID: -7377479167080121798}
   - {fileID: 7979366053630804542}
+  - {fileID: -2313870773579182971}
+  - {fileID: 1612374069835013483}
+  - {fileID: -3914660248850827448}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8381976726770435846}
   StringsBanks:
   - {fileID: 1726338470507851090}
-  cacheTime: 638284425131710410
+  cacheTime: 638284874272937139
   cacheVersion: 131605
 --- !u!114 &985239021963325293
 MonoBehaviour:
@@ -280,6 +336,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &1612374069835013483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GlobalSFX/F0/Eviroment/Lamp
+  m_EditorClassIdentifier: 
+  Path: event:/GlobalSFX/F0/Eviroment/Lamp
+  Guid:
+    Data1: -1627740332
+    Data2: 1120193558
+    Data3: 378663314
+    Data4: 1847458655
+  Banks:
+  - {fileID: 8042381114683576855}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 20297
 --- !u!114 &1726338470507851090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,10 +378,10 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638284425131710410
+  lastModified: 638284874272226973
   FileSizes:
   - Name: Desktop
-    Value: 1670
+    Value: 1788
   Exists: 1
 --- !u!114 &2618215135674252651
 MonoBehaviour:
@@ -381,33 +464,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 54857
---- !u!114 &4923756963656959613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GlobalSFX/F0/Lamp
-  m_EditorClassIdentifier: 
-  Path: event:/GlobalSFX/F0/Lamp
-  Guid:
-    Data1: -1627740332
-    Data2: 1120193558
-    Data3: 378663314
-    Data4: 1847458655
-  Banks:
-  - {fileID: 8042381114683576855}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 20297
 --- !u!114 &6638264154189957361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,10 +560,10 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638283096372656216
+  lastModified: 638284874272937139
   FileSizes:
   - Name: Desktop
-    Value: 270624
+    Value: 283616
   Exists: 1
 --- !u!114 &8381976726770435846
 MonoBehaviour:
@@ -524,8 +580,8 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638284425131690404
+  lastModified: 638284874272206963
   FileSizes:
   - Name: Desktop
-    Value: 1922176
+    Value: 1931264
   Exists: 1

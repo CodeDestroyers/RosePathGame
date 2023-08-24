@@ -22,6 +22,8 @@ public class FMODEvents : MonoBehaviour
     [field: Header("L0")] 
     [field: SerializeField] public EventReference WindBase { get; private set; }
 
+    [field: SerializeField] public EventReference objectDestroy1 { get; private set; }
+
 
 
     public static FMODEvents instance { get; private set; }
