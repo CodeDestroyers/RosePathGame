@@ -10695,7 +10695,7 @@ Transform:
   - {fileID: 4566569402017410573}
   - {fileID: 228081558824291514}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &198674983759976310
 SpriteRenderer:
@@ -11018,6 +11018,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   distanceRay: 1
+  collisionPosition: 0
   collisionPoint: 0
   wasCollisionHitWall: 0
 --- !u!114 &8749406161207557662
