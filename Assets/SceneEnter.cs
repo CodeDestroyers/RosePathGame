@@ -19,6 +19,7 @@ public class SceneEnter : MonoBehaviour
     {
         if (collision.GetComponent<PlayerGodController>())
         {
+            DataPersistenceManager.Instance.SaveGame();
             PlayerGodController.scenePosition = playerExitPoint;
             SceneSwitchAnimation();
         }

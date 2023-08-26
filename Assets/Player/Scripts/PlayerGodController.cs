@@ -13,12 +13,27 @@ using UnityEngine.Animations;
 using UnityEngine.TextCore.Text;
 using Cinemachine;
 
-public class PlayerGodController : MonoBehaviour
+public class PlayerGodController : MonoBehaviour, IDataPersistence
 {
+    #region SaveLoad Methods
+
+    public void LoadData(GameData data)
+    {
+        this.playerMaxHp = data.playerMaxHP;
+        this.playerCurrentHp = data.playerCurrentHp;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.playerCurrentHp = this.playerCurrentHp;
+        data.playerMaxHP = this.playerMaxHp;
+    }
+
+    #endregion
+
     #region Variables
 
     //For _HP and Getting damage
-
     public int playerCurrentHp;
     public int playerMaxHp = 200;
     [SerializeField] private float playerInvulnerabilityTime;
@@ -65,7 +80,7 @@ public class PlayerGodController : MonoBehaviour
     private CircleCollider2D cColl;
 
     //For Clasess
-    private PlayerControls playerControls;
+    public PlayerControls playerControls;
 
     //For Animator 
 
@@ -83,6 +98,7 @@ public class PlayerGodController : MonoBehaviour
     private bool player_isClimbing = false;
     private bool player_isClimbingJump = false;
     private bool player_isRunStart = false;
+    private bool player_WasFall = false;
 
     //Attack States
 
@@ -169,6 +185,7 @@ public class PlayerGodController : MonoBehaviour
 
     private void Start()
     {
+        DataPersistenceManager.Instance.LoadGame();
         impulseSource = GetComponent<CinemachineImpulseSource>();
 
         //For sound getters
@@ -245,6 +262,7 @@ public class PlayerGodController : MonoBehaviour
     {
         if (playerControls.PlayerActions.AttackL.WasPressedThisFrame() && !attackEnd)
         {
+            player_WasFall = false;
             ATTACK_STATE = 1;
             player_isFall = false;
             player_isIdle = false;
@@ -298,7 +316,12 @@ public class PlayerGodController : MonoBehaviour
         else return false;
     }
 
-  
+    public void fallEnd()
+    {
+        player_WasFall = false;
+    }
+
+
     #endregion
 
     #region MethodsStateMachine
@@ -356,7 +379,7 @@ public class PlayerGodController : MonoBehaviour
                 {
                     moveSpeed = 4f;
 
-                    if (dirX.x != 0)
+                    if (dirX.x != 0 && !player_WasFall)
                     {
                         player_isRun = true;
                         player_isIdle = false;
@@ -472,6 +495,7 @@ public class PlayerGodController : MonoBehaviour
     }
 
 
+
     #endregion
 
     #region ModeState2 (Air)
@@ -486,6 +510,7 @@ public class PlayerGodController : MonoBehaviour
             player_isIdle = false;
             player_isRun = false;
             player_isRunStart = false;
+            player_WasFall = true;
 
             if (ATTACK_STATE == 1 && !duringAttack)
             {
@@ -605,6 +630,13 @@ public class PlayerGodController : MonoBehaviour
             return;
         }*/
 
+        if (player_WasFall && IsGround() && ATTACK_STATE == 0 && !player_isRun)
+        {
+            animator.Play("Player_AfterJump");
+            CurrentState = ("After Jump");
+            return;
+        }
+
         if (player_isIdle)
         {
             animator.Play("Player_Idle");
@@ -614,6 +646,7 @@ public class PlayerGodController : MonoBehaviour
 
         if (player_isRun && !player_isRunStart)
         {
+            player_WasFall = false;
             animator.Play("Player_Run_Start");
             CurrentState = ("Player_Run_Start");
             return;

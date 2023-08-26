@@ -3,8 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour 
 {
+
+
+
+    [SerializeField] private string DeathAnimationName;
+
+    private Animator anim;
+
 
     SpriteRenderer enemySprite;
     //Determines if this GameObject should receive damage or not
@@ -30,12 +37,14 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         //Sets the enemy to the max amount of health when the scene loads
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         currentHealth = healthAmount;
         enemySprite = GetComponent<SpriteRenderer>();
         GetComponentInChildren<ParticleSystem>().Stop();
         impulseSource = GetComponent<CinemachineImpulseSource>();
     }
+
 
     public void Damage(int amount)
     {
@@ -59,8 +68,10 @@ public class EnemyHealth : MonoBehaviour
             {
                 //Caps currentHealth to 0 for cleaner code
                 currentHealth = 0;
+                Death();
+
+                anim.Play(DeathAnimationName);
                 //Removes GameObject from the scene; this should probably play a dying animation in a method that would handle all the other death logic, but for the test it just disables it from the scene
-                gameObject.SetActive(false);
             }
             else
             {
@@ -81,6 +92,11 @@ public class EnemyHealth : MonoBehaviour
         hit = false;
         enemySprite.color = Color.gray;
         GetComponentInChildren<ParticleSystem>().Stop();
+    }
+
+    public void Death()
+    {
+        gameObject.SetActive(false);
     }
 
 

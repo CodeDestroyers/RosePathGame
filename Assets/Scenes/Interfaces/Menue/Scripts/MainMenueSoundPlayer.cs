@@ -9,7 +9,6 @@ public class MainMenueSoundPlayer : MonoBehaviour
 
     private void Start()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/MainMenue/MainMenueMusic");
     }
 
     public void backButton()
@@ -19,7 +18,6 @@ public class MainMenueSoundPlayer : MonoBehaviour
     }
     public void loadGameButton()
     {
-        //FMODUnity.RuntimeManager.PlayOneShot("event:/Memes/Bad");
 
     }
     public void AboutUsButton()

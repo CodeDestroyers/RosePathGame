@@ -80,6 +80,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interaction"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f6f96f9-e269-405c-8dac-c6514059a952"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -302,6 +311,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""EscMenue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10f25f19-26f2-4c47-a251-be5a305cff15"",
+                    ""path"": ""<Joystick>/stick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""498cea70-ced6-4174-9ce6-7c0a84ebbb49"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -322,6 +353,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_ChooseVerticalDerection = m_PlayerActions.FindAction("ChooseVerticalDerection", throwIfNotFound: true);
         m_PlayerActions_Crowling = m_PlayerActions.FindAction("Crowling", throwIfNotFound: true);
         m_PlayerActions_EscMenue = m_PlayerActions.FindAction("EscMenue", throwIfNotFound: true);
+        m_PlayerActions_Interaction = m_PlayerActions.FindAction("Interaction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -389,6 +421,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_ChooseVerticalDerection;
     private readonly InputAction m_PlayerActions_Crowling;
     private readonly InputAction m_PlayerActions_EscMenue;
+    private readonly InputAction m_PlayerActions_Interaction;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -399,6 +432,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @ChooseVerticalDerection => m_Wrapper.m_PlayerActions_ChooseVerticalDerection;
         public InputAction @Crowling => m_Wrapper.m_PlayerActions_Crowling;
         public InputAction @EscMenue => m_Wrapper.m_PlayerActions_EscMenue;
+        public InputAction @Interaction => m_Wrapper.m_PlayerActions_Interaction;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -426,6 +460,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @EscMenue.started += instance.OnEscMenue;
             @EscMenue.performed += instance.OnEscMenue;
             @EscMenue.canceled += instance.OnEscMenue;
+            @Interaction.started += instance.OnInteraction;
+            @Interaction.performed += instance.OnInteraction;
+            @Interaction.canceled += instance.OnInteraction;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -448,6 +485,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @EscMenue.started -= instance.OnEscMenue;
             @EscMenue.performed -= instance.OnEscMenue;
             @EscMenue.canceled -= instance.OnEscMenue;
+            @Interaction.started -= instance.OnInteraction;
+            @Interaction.performed -= instance.OnInteraction;
+            @Interaction.canceled -= instance.OnInteraction;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -482,5 +522,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnChooseVerticalDerection(InputAction.CallbackContext context);
         void OnCrowling(InputAction.CallbackContext context);
         void OnEscMenue(InputAction.CallbackContext context);
+        void OnInteraction(InputAction.CallbackContext context);
     }
 }

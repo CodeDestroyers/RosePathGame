@@ -39,7 +39,6 @@ public class SimpleEnemyController : MonoBehaviour
     #endregion
 
     private EnemyHealth health;
-
     #region BaseMainMethods
 
     private void Awake()
