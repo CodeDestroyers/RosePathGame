@@ -46,7 +46,7 @@ public class PlayerGodController : MonoBehaviour, IDataPersistence
     public bool playerWasCollisionHit;
 
     //For _Movement
-    private Vector2 dirX;
+    public static Vector2 dirX;
     private Vector2 dirY;
     private Rigidbody2D rb;
     [SerializeField] private float moveSpeed;

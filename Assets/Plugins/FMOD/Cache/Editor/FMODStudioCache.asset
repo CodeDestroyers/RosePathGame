@@ -90,11 +90,38 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/L0.bank
   Name: L0
   StudioPath: bank:/L0
-  lastModified: 638283101607516431
+  lastModified: 638286651749099711
   FileSizes:
   - Name: Desktop
-    Value: 1106208
+    Value: 1523808
   Exists: 1
+--- !u!114 &-5584611854181802567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GlobalSFX/F0/Eviroment/Vortex
+  m_EditorClassIdentifier: 
+  Path: event:/GlobalSFX/F0/Eviroment/Vortex
+  Guid:
+    Data1: -1379120876
+    Data2: 1280915735
+    Data3: -1281646710
+    Data4: -330306075
+  Banks:
+  - {fileID: -5744320283130253243}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 31791
 --- !u!114 &-5520490193030413802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,12 +332,13 @@ MonoBehaviour:
   - {fileID: -2313870773579182971}
   - {fileID: 1612374069835013483}
   - {fileID: -3914660248850827448}
+  - {fileID: -5584611854181802567}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8381976726770435846}
   StringsBanks:
   - {fileID: 1726338470507851090}
-  cacheTime: 638284874272937139
+  cacheTime: 638286651750019997
   cacheVersion: 131605
 --- !u!114 &985239021963325293
 MonoBehaviour:
@@ -378,10 +406,10 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638284874272226973
+  lastModified: 638286651750019997
   FileSizes:
   - Name: Desktop
-    Value: 1788
+    Value: 1826
   Exists: 1
 --- !u!114 &2618215135674252651
 MonoBehaviour:
@@ -580,7 +608,7 @@ MonoBehaviour:
   Path: ../../../Users/user/Documents/FMOD Studio/RoseFMODsystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638284874272206963
+  lastModified: 638286651749989984
   FileSizes:
   - Name: Desktop
     Value: 1931264

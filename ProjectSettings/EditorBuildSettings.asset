@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/L0_VALLEY/L0_S5/L0_S5.unity
     guid: 7ff88ce1a346c3e40b72c4545b33ead8
   - enabled: 1
+    path: Assets/Scenes/L0_VALLEY/L0_S5/L0_S5.1.unity
+    guid: 601fabba2e5d5144a9b11ae0923ac2a2
+  - enabled: 1
     path: Assets/Scenes/L0_VALLEY/L0_S1/L0_S2.1.unity
     guid: c06e407a290021a46a7eac786dcdf8a9
   - enabled: 1
