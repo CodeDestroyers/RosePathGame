@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/L0_VALLEY/L0_S1/L0_S1.1.unity
     guid: 69b5f867c7238c742a41bc0943b832b3
+  - enabled: 1
+    path: Assets/Scenes/L0_VALLEY/L0_S6/L0_S6.unity
+    guid: ead6c10d8e7954d43a76a61293e09511
   m_configObjects: {}
