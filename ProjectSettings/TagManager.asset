@@ -20,6 +20,7 @@ TagManager:
   - CollisionPosition2
   - CollisionPosition3
   - CollisionPosition4
+  - Bonfire
   layers:
   - Default
   - TransparentFX

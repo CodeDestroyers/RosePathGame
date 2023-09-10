@@ -12,6 +12,7 @@ using UnityEngine.UI;
 using UnityEngine.Animations;
 using UnityEngine.TextCore.Text;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class PlayerGodController : MonoBehaviour, IDataPersistence
 {
@@ -21,6 +22,7 @@ public class PlayerGodController : MonoBehaviour, IDataPersistence
     {
         this.playerMaxHp = data.playerMaxHP;
         this.playerCurrentHp = data.playerCurrentHp;
+        this.playerRespawnPoint = data.playerRespawnScene;
     }
 
     public void SaveData(ref GameData data)
@@ -141,6 +143,11 @@ public class PlayerGodController : MonoBehaviour, IDataPersistence
     public int collisionPoint = 1;
     public bool wasCollisionHitWall = false;
 
+    //For Bonfire
+
+    public int playerLastBonfire;
+    public string playerRespawnPoint;
+
 
     #endregion
 
@@ -177,6 +184,11 @@ public class PlayerGodController : MonoBehaviour, IDataPersistence
         else if (scenePosition == 7)
         {
             loadPosition = GameObject.FindWithTag("LoadPosition7");
+        }
+
+        else if (scenePosition == 8)
+        {
+            loadPosition = GameObject.FindWithTag("Bonfire");
         }
 
         transform.localPosition = loadPosition.transform.localPosition;
@@ -229,7 +241,8 @@ public class PlayerGodController : MonoBehaviour, IDataPersistence
         PlayerMove();
         PlayerMovementAnimator();
         PlayerAttackAnimator();
-        Death();
+
+        PlayerDeath();
 
         UpdateSound();
 
@@ -727,7 +740,18 @@ public class PlayerGodController : MonoBehaviour, IDataPersistence
     #endregion
 
     #region HP and damage collision METHODS
-    
+
+
+    public void PlayerDeath()
+    {
+        if (playerCurrentHp == 0)
+        {
+            SceneManager.LoadScene(playerRespawnPoint);
+            playerCurrentHp = playerMaxHp;
+            scenePosition = 8;
+        }
+    }
+
     public void playerWasCollisionHitColl()
     {
         if (wasCollisionHitWall)
@@ -772,24 +796,12 @@ public class PlayerGodController : MonoBehaviour, IDataPersistence
         {
             //Caps currentHealth to 0 for cleaner code
             playerCurrentHp = 0;
-            //Removes GameObject from the scene; this should probably play a dying animation in a method that would handle all the other death logic, but for the test it just disables it from the scene
-            gameObject.SetActive(false);
+            //Removes GameObject from the scene; this should probably play a dying animation in a method that would handle all the other death logic, but for the test it just disables it from the sce
         }
         else
         {
             //Coroutine that runs to allow the enemy to receive damage again
             StartCoroutine(TurnOffHit());
-        }
-    }
-
-    private void Death()
-    {
-        if (playerCurrentHp <= 0)
-        {
-            //Caps currentHealth to 0 for cleaner code
-            playerCurrentHp = 0;
-            //Removes GameObject from the scene; this should probably play a dying animation in a method that would handle all the other death logic, but for the test it just disables it from the scene
-            gameObject.SetActive(false);
         }
     }
 

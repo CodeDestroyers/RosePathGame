@@ -4,64 +4,59 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class BonfireManager : MonoBehaviour, IDataPersistence
 {
 
-    [SerializeField] private string BonfireId;
-    [SerializeField] private TextMeshPro announce;
-    private bool playerInPresence;
+    [SerializeField] private int BonfireId;
+    private Animator animator;
+    [SerializeField] private string playerRespownBonfireScene;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!playerInPresence)
-        {
-            announce.color = Color.clear;
-        }
     }
 
     public void LoadData(GameData data)
     {
-        data.playerCurrentHp = data.playerMaxHP;
+
     }
 
     public void SaveData(ref GameData data)
     {
-        data.playerCurrentHp = data.playerMaxHP;
+        data.playerBonfire = this.BonfireId;
+        data.playerRespawnScene = playerRespownBonfireScene;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        playerInPresence = true;
 
         if (collision.gameObject.tag.Equals("Player"))
         {
+
+            animator.Play("BonfireOpen");
+
             var player = collision.GetComponent<PlayerGodController>();
-            announce.color = Color.Lerp(Color.clear, Color.grey, 0.5f);
 
             if (player.playerControls.PlayerActions.Interaction.WasPressedThisFrame())
             {
-                DataPersistenceManager.Instance.SaveGame();
                 player.playerCurrentHp = player.playerMaxHp;
                 Debug.Log("Heal!");
+                DataPersistenceManager.Instance.SaveGame();
             }
         }
 
-        else
-        {
-            announce.color = Color.clear;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        playerInPresence = false;
+        animator.Play("BonfireExit");
     }
 }
